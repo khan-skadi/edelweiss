@@ -8,12 +8,25 @@ import FacebookIcon from '@material-ui/icons/Facebook';
 import eyeOfSkadi from '../../assets/images/eyeOfSkadi.png';
 
 const useStyles = makeStyles((theme) => ({
-  menuButton: {
-    marginRight: theme.spacing(2)
+  appBar: {
+    position: 'absolute',
+    background: 'transparent',
+    boxShadow: 'none',
+    WebkitTransition: 'all 0.5s ease-in-out 0s',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    margin: 'auto'
   },
   toolbar: {
-    minHeight: '110px'
+    minHeight: '110px',
+    // background: 'linear-gradient()'
+    // background: 'rgba(0, 0, 0, 0.5)'
+    background:
+      'linear-gradient(to bottom, rgba(0, 0, 0, 1.0) 30%, rgba(0, 0, 0, 0.0) 100%)'
   },
+
   logo: {
     minWidth: '64px',
     minHeight: '64px'
@@ -47,7 +60,7 @@ const Navbar = () => {
 
   return (
     <>
-      <AppBar position="static" style={{ backgroundColor: 'black' }}>
+      <AppBar position="static" className={classes.appBar}>
         <Toolbar className={classes.toolbar}>
           <Avatar className={classes.logo} src={eyeOfSkadi} alt="avatar" />
           <Typography className={classes.title}>
