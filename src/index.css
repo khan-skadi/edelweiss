@@ -1,3 +1,26 @@
+@font-face {
+  font-family: 'BacktrackRegular';
+  src: local('BacktrackRegular'),
+    url(./assets/fonts/BacktrackRegular.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: 'StonyIsland';
+  src: local('StonyIsland'),
+    url(./assets/fonts/StonyIsland.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: 'TheFrontman';
+  src: local('TheFrontman'),
+    url(./assets/fonts/TheFrontman.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: 'Barlow';
+  src: local('Barlow'), url(./assets/fonts/Barlow.ttf) format('truetype');
+}
+
 body {
   font-family: 'Roboto', sans-serif;
   -webkit-font-smoothing: antialiased;

@@ -9,6 +9,12 @@ import App from './components/app/App';
 import theme from './theme/theme';
 import './index.css';
 
+// fonts
+import './assets/fonts/BacktrackRegular.ttf';
+import './assets/fonts/StonyIsland.ttf';
+import './assets/fonts/TheFrontman.ttf';
+import './assets/fonts/Barlow.ttf';
+
 ReactDOM.render(
   <React.StrictMode>
     <ThemeProvider theme={theme}>
