@@ -1,11 +1,12 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { AppBar, Toolbar, Typography, Avatar, Button } from '@material-ui/core';
-import Icon from '@material-ui/core/Icon';
 
+import Icon from '@material-ui/core/Icon';
 import InstagramIcon from '@material-ui/icons/Instagram';
 import FacebookIcon from '@material-ui/icons/Facebook';
-import eyeOfSkadi from '../../assets/images/eyeOfSkadi.png';
+
+import eyeOfSkadi from '../../assets/logo/logo400.png';
 
 const useStyles = makeStyles((theme) => ({
   appBar: {
@@ -21,15 +22,13 @@ const useStyles = makeStyles((theme) => ({
   },
   toolbar: {
     minHeight: '110px',
-    // background: 'linear-gradient()'
-    // background: 'rgba(0, 0, 0, 0.5)'
     background:
       'linear-gradient(to bottom, rgba(0, 0, 0, 1.0) 30%, rgba(0, 0, 0, 0.0) 100%)'
   },
 
   logo: {
-    minWidth: '64px',
-    minHeight: '64px'
+    minWidth: '83px',
+    minHeight: '83px'
   },
   title: {
     flexGrow: 1,

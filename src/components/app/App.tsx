@@ -4,6 +4,7 @@ import { makeStyles } from '@material-ui/core/styles';
 
 import Navbar from '../navbar/Navbar';
 import Header from '../header/Header';
+import Services from '../services/Services';
 
 const useStyles = makeStyles((theme) => ({
   test: {
@@ -18,6 +19,7 @@ const App = () => {
     <BrowserRouter>
       <Navbar />
       <Header />
+      <Services />
     </BrowserRouter>
   );
 };
