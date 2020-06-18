@@ -1,9 +1,23 @@
 import React from 'react';
 import withStyles from '@material-ui/core/styles/withStyles';
 
+// Images
 import benchtop3 from '../../assets/images/kitchen/benchtop3.jpg';
+import bathroom from '../../assets/images/bathroom/bathroom.jpg';
+import renovations from '../../assets/images/renovations/renovations.jpg';
+import stoneSplashbacks from '../../assets/images/stoneSplashbacks/stoneSplashbacks.jpg';
+import fireplace from '../../assets/images/fireplace/fireplace.jpg';
+import stoneTable from '../../assets/images/stoneTable/stoneTable.jpg';
+
+// SVG Icons
 import kitchenSvg from '../../assets/images/svg/kitchen.svg';
 import rightArrowSvg from '../../assets/images/svg/send.svg';
+import laundrySvg from '../../assets/images/svg/laundry.svg';
+import renovationsSvg from '../../assets/images/svg/renovations.svg';
+import refrigeratorSvg from '../../assets/images/svg/refrigerator.svg';
+import fireplaceSvg from '../../assets/images/svg/fireplace.svg';
+import stoneTableSvg from '../../assets/images/svg/stoneTable.svg';
+
 import './services.module.css';
 
 interface ObjectLiteral {
@@ -58,6 +72,29 @@ const styles = (theme: ObjectLiteral) => ({
       color: '#26a69a',
       fontWeight: 600
     }
+  },
+  servicesSecondLinkBox: {
+    display: 'block',
+    position: 'relative'
+  },
+  servicesThirdLinkBox: {
+    display: 'block',
+    position: 'relative',
+    marginTop: '30px'
+  },
+  servicesFourthLinkBox: {
+    display: 'block',
+    position: 'relative',
+    marginTop: '30px'
+  },
+  servicesFifthLinkBox: {
+    display: 'block',
+    position: 'relative'
+  },
+  servicesSixthLinkBox: {
+    display: 'block',
+    position: 'relative',
+    marginTop: '30px'
   }
 });
 
@@ -69,6 +106,7 @@ const Services = (props: ObjectLiteral) => {
       <div className={classes.container}>
         <ul className={classes.servicesUl}>
           <li>
+            {/* Kitchen. First Column, 1st Row */}
             <div className={classes.servicesFirstDiv}>
               <div className={classes.ourServices}>
                 <span>Our</span> Services
@@ -86,7 +124,7 @@ const Services = (props: ObjectLiteral) => {
                   <img
                     className={classes.firstIcon}
                     src={kitchenSvg}
-                    alt="kitchen svg"
+                    alt="Kitchen"
                     width="57"
                     height="57"
                   />
@@ -96,8 +134,107 @@ const Services = (props: ObjectLiteral) => {
               </div>
             </a>
           </li>
-          <li>2</li>
-          <li>3</li>
+          <li>
+            {/* Bathroom. 2nd Column, 1st Row */}
+            <a href="#!" className={classes.servicesSecondLinkBox}>
+              <div className={classes.serviceImage}>
+                <img src={bathroom} alt="Bathroom / Laundry vanities" />
+              </div>
+              <div className={classes.serviceText}>
+                <div className={classes.serviceIcon}>
+                  <img
+                    className={classes.firstIcon}
+                    src={laundrySvg}
+                    alt="Laundry, washing machine"
+                    width="57"
+                    height="57"
+                  />
+                </div>
+                <div className={classes.serviceTitle}>
+                  Bathroom / Laundry Vanities
+                </div>
+                <div className={classes.serviceDisc}>Gallery</div>
+              </div>
+            </a>
+            {/* Renovations. 2nd Column, 2nd Row */}
+            <a href="#!" className={classes.servicesThirdLinkBox}>
+              <div className={classes.serviceImage}>
+                <img src={renovations} alt="Renovations" />
+              </div>
+              <div className={classes.serviceText}>
+                <div className={classes.serviceIcon}>
+                  <img
+                    className={classes.firstIcon}
+                    src={renovationsSvg}
+                    alt="Renovations"
+                    width="57"
+                    height="57"
+                  />
+                </div>
+                <div className={classes.serviceTitle}>Renovations</div>
+                <div className={classes.serviceDisc}>Gallery</div>
+              </div>
+            </a>
+            {/* Stone Splashbacks. 2nd Column, 3rd Row */}
+            <a href="#!" className={classes.servicesFourthLinkBox}>
+              <div className={classes.serviceImage}>
+                <img src={stoneSplashbacks} alt="Stone Splashbacks" />
+              </div>
+              <div className={classes.serviceText}>
+                <div className={classes.serviceIcon}>
+                  <img
+                    className={classes.firstIcon}
+                    src={refrigeratorSvg}
+                    alt="Stone Splashbacks"
+                    width="57"
+                    height="57"
+                  />
+                </div>
+                <div className={classes.serviceTitle}>Stone Splashbacks</div>
+                <div className={classes.serviceDisc}>Gallery</div>
+              </div>
+            </a>
+          </li>
+          <li>
+            {/* Fireplaces. 3rd Column, 1st Row */}
+            <a href="#!" className={classes.servicesFifthLinkBox}>
+              <div className={classes.serviceImage}>
+                <img src={fireplace} alt="Fireplaces" />
+              </div>
+              <div className={classes.serviceText}>
+                <div className={classes.serviceIcon}>
+                  <img
+                    className={classes.firstIcon}
+                    src={fireplaceSvg}
+                    alt="Fireplaces"
+                    width="57"
+                    height="57"
+                  />
+                </div>
+                <div className={classes.serviceTitle}>Fireplaces</div>
+                <div className={classes.serviceDisc}>Gallery</div>
+              </div>
+            </a>
+            {/* Stone Tables. 3rd Column, 2nd Row */}
+            <a href="#!" className={classes.servicesSixthLinkBox}>
+              <div className={classes.serviceImage}>
+                <img src={stoneTable} alt="Stone Tables" />
+              </div>
+              <div className={classes.serviceText}>
+                <div className={classes.serviceIcon}>
+                  <img
+                    className={classes.firstIcon}
+                    src={stoneTableSvg}
+                    alt="Stone Tables"
+                    width="57"
+                    height="57"
+                  />
+                </div>
+                <div className={classes.serviceTitle}>Stone Tables</div>
+                <div className={classes.serviceDisc}>Gallery</div>
+              </div>
+            </a>
+          </li>
         </ul>
       </div>
     </section>
