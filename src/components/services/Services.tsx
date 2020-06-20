@@ -1,8 +1,10 @@
 import React from 'react';
 import withStyles from '@material-ui/core/styles/withStyles';
+import { ObjectLiteral } from '../../utils/interface/interface';
 
 // Images
-import benchtop3 from '../../assets/images/kitchen/benchtop3.jpg';
+// import benchtop3 from '../../assets/images/kitchen/benchtop3.jpg';
+import benchtop from '../../assets/images/kitchen/benchtop2.jpg';
 import bathroom from '../../assets/images/bathroom/bathroom.jpg';
 import renovations from '../../assets/images/renovations/renovations.jpg';
 import stoneSplashbacks from '../../assets/images/stoneSplashbacks/stoneSplashbacks.jpg';
@@ -20,10 +22,6 @@ import stoneTableSvg from '../../assets/images/svg/stoneTable.svg';
 
 import './services.module.css';
 
-interface ObjectLiteral {
-  [key: string]: any;
-}
-
 const styles = (theme: ObjectLiteral) => ({
   ...theme.spreadThis,
   serviceIcon: {
@@ -35,7 +33,7 @@ const styles = (theme: ObjectLiteral) => ({
     height: '66px'
   },
   firstIcon: {
-    WebkitTransition: 'all .5s ease-in-out',
+    webkitTransition: 'all .5s ease-in-out',
     position: 'absolute',
     left: 0,
     top: 0,
@@ -102,7 +100,7 @@ const Services = (props: ObjectLiteral) => {
   const { classes } = props;
 
   return (
-    <section className={classes.section_services}>
+    <section className={classes.sectionServices}>
       <div className={classes.container}>
         <ul className={classes.servicesUl}>
           <li>
@@ -117,7 +115,7 @@ const Services = (props: ObjectLiteral) => {
             </div>
             <a href="#!" className={classes.servicesFirstLinkBox}>
               <div className={classes.serviceImage}>
-                <img src={benchtop3} alt="Kitchen Benchtop" />
+                <img src={benchtop} alt="Kitchen Benchtop" />
               </div>
               <div className={classes.serviceText}>
                 <div className={classes.serviceIcon}>

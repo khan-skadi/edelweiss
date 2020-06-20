@@ -25,9 +25,14 @@ const createTheme = createMuiTheme({
     }
   },
   spreadThis: {
+    sectionServices: {
+      padding: '80px 0',
+      margin: 0,
+      border: 0
+    },
     container: {
       height: '100%',
-      maxWidth: '1685px',
+      maxWidth: '1650px',
       paddingRight: '15px',
       paddingLeft: '15px',
       marginRight: 'auto',
@@ -35,8 +40,7 @@ const createTheme = createMuiTheme({
       position: 'relative',
       '&:before': {
         display: 'table',
-        content: "''",
-        boxSizing: 'border-box'
+        content: "''"
       },
       '&:after': {
         clear: 'both',
@@ -44,41 +48,30 @@ const createTheme = createMuiTheme({
         content: "''"
       }
     },
-    section_services: {
-      padding: '80px 0',
-      display: 'block',
-      border: 0,
-      margin: 0
-    },
     servicesUl: {
+      margin: '0 -15px',
+      listStyle: 'none',
+      letterSpacing: 'normal',
+      padding: '0 15px',
+      display: 'block',
       '&:before': {
         display: 'table',
         content: "''"
       },
-      margin: '0 -15px',
-      listStyle: 'none',
-      letterSpacing: 'normal',
-      padding: 0,
-      border: 0,
-      verticalAlign: 'baseline',
-      display: 'block',
-      marginBlockStart: '1em',
-      marginBlockEnd: '1em',
-      marginInlineStart: '0px',
-      marginInlineEnd: '0px',
-      paddingInlineStart: '40px',
       '&:after': {
         display: 'table',
         content: "''",
         clear: 'both'
       },
       '& > li': {
-        padding: '0 15px',
+        padding: '0 10px',
         width: '33.3%',
         float: 'left'
       }
     },
     servicesFirstDiv: {
+      display: 'block',
+      position: 'relative',
       marginBottom: '30px',
       '& > p': {
         fontWeight: '400',
@@ -99,8 +92,7 @@ const createTheme = createMuiTheme({
       display: 'block',
       position: 'relative',
       textDecoration: 'none',
-      color: 'inherit',
-      WebkitTransition: 'all .5s ease-in-out',
+      webkitTransition: 'all .5s ease-in-out',
       cursor: 'pointer',
       '& > img': {
         border: 'none'
@@ -120,7 +112,7 @@ const createTheme = createMuiTheme({
         top: 0,
         height: '100%',
         background: 'rgba(0, 0, 0, 0.4)',
-        WebkitTransition: 'all .5s ease-in-out'
+        webkitTransition: 'all .5s ease-in-out'
       },
       '&:after': {
         position: 'absolute',
@@ -158,10 +150,29 @@ const createTheme = createMuiTheme({
       verticalAlign: 'middle',
       paddingLeft: '15px',
       width: 'calc(100% - 68px)',
-      WebkitTransition: 'all .5s ease-in-out',
+      webkitTransition: 'all .5s ease-in-out',
       '&:hover': {
         color: '#26a69a'
       }
+    }
+  },
+  sectionProjects: {
+    display: 'block',
+    margin: 0,
+    background: '#f1f5f6',
+    padding: '70px 0',
+    position: 'relative',
+    borderTop: '1px solid #eaeaea',
+    marginBottom: '10px',
+    '&:before': {
+      position: 'absolute',
+      content: "''",
+      right: '50px',
+      top: 0,
+      width: '1px',
+      height: '100%',
+      background: '#cbcecf',
+      boxSizing: 'border-box'
     }
   }
 });
