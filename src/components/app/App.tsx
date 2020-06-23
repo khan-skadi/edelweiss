@@ -6,6 +6,7 @@ import Navbar from '../navbar/Navbar';
 import Header from '../header/Header';
 import Services from '../services/Services';
 import Projects from '../projects/Projects';
+import Contact from '../contact/Contact';
 
 // const useStyles = makeStyles((theme) => ({
 //   test: {
@@ -22,6 +23,7 @@ const App = () => {
       <Header />
       <Services />
       <Projects />
+      <Contact />
     </BrowserRouter>
   );
 };
