@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { withStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
+import { Map, GoogleApiWrapper, Marker } from 'google-maps-react';
 
 import { ObjectLiteral } from '../../utils/interface/interface';
 import {
@@ -12,6 +13,8 @@ import {
   IconButton
 } from '@material-ui/core';
 
+import benchtop from '../../assets/images/original/modified/1wide.jpg';
+
 import Icon from '@material-ui/core/Icon';
 import AddressIcon from '@material-ui/icons/Room';
 import MailIcon from '@material-ui/icons/Mail';
@@ -19,8 +22,7 @@ import PhoneIcon from '@material-ui/icons/Phone';
 import FaxIcon from '@material-ui/icons/Print';
 import AttachFileIcon from '@material-ui/icons/AttachFile';
 
-const styles = (theme: ObjectLiteral) => ({
-  ...theme.spreadThis,
+const useStyles = makeStyles((theme) => ({
   sectionContact: {
     padding: '70px 0',
     position: 'relative',
@@ -33,6 +35,24 @@ const styles = (theme: ObjectLiteral) => ({
       height: '100%',
       left: '41px',
       boxSizing: 'border-box'
+    }
+  },
+  container: {
+    height: '100%',
+    maxWidth: '1650px',
+    paddingRight: '15px',
+    paddingLeft: '15px',
+    marginRight: 'auto',
+    marginLeft: 'auto',
+    position: 'relative',
+    '&:before': {
+      display: 'table',
+      content: "''"
+    },
+    '&:after': {
+      clear: 'both',
+      display: 'table',
+      content: "''"
     }
   },
   titleBorder: {
@@ -242,11 +262,26 @@ const styles = (theme: ObjectLiteral) => ({
     margin: '-13px 0',
     padding: 0,
     '& > label': {} // save for reference
+  },
+  contactImage: {
+    position: 'relative',
+    overflow: 'hidden',
+    marginTop: '-90px'
+  },
+  contactPicture: {
+    margin: '0 auto',
+    display: 'block',
+    maxWidth: '100%',
+    verticalAlign: 'bottom'
+  },
+  mapStyles: {
+    width: '100%',
+    height: '100%'
   }
-});
+}));
 
 const Contact = (props: ObjectLiteral) => {
-  const { classes } = props;
+  const classes = useStyles();
 
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
@@ -483,8 +518,40 @@ const Contact = (props: ObjectLiteral) => {
           </div>
         </div>
       </div>
+      <div className={classes.contactImage}>
+        <img
+          className={classes.contactPicture}
+          alt="kitchen benchtop"
+          src={benchtop}
+        />
+      </div>
+      <div>
+        <Map
+          google={props.google}
+          style={{
+            width: '100%',
+            height: '450px',
+            margin: 0,
+            padding: 0,
+            verticalAlign: 'baseline',
+            boxSizing: 'border-box',
+            borderBottom: '10px solid #26a69a',
+            position: 'relative'
+          }}
+          initialCenter={{ lat: -33.858258, lng: 150.959442 }}
+          zoom={18}
+        >
+          <Marker
+            position={{ lat: -33.858258, lng: 150.959442 }}
+            mapCenter={{ lat: -33.858258, lng: 150.959442 }}
+            title={'Edelweiss Stone'}
+          />
+        </Map>
+      </div>
     </section>
   );
 };
 
-export default withStyles(styles)(Contact);
+export default GoogleApiWrapper({
+  apiKey: `${process.env.REACT_APP_GOOGLE_MAP_API}`
+})(Contact);
