@@ -1,14 +1,23 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { withStyles } from '@material-ui/core/styles';
 
 import { ObjectLiteral } from '../../utils/interface/interface';
-import { Typography } from '@material-ui/core';
+import {
+  Typography,
+  TextField,
+  FormControl,
+  InputLabel,
+  Input,
+  InputAdornment,
+  IconButton
+} from '@material-ui/core';
 
 import Icon from '@material-ui/core/Icon';
 import AddressIcon from '@material-ui/icons/Room';
 import MailIcon from '@material-ui/icons/Mail';
 import PhoneIcon from '@material-ui/icons/Phone';
 import FaxIcon from '@material-ui/icons/Print';
+import AttachFileIcon from '@material-ui/icons/AttachFile';
 
 const styles = (theme: ObjectLiteral) => ({
   ...theme.spreadThis,
@@ -136,11 +145,150 @@ const styles = (theme: ObjectLiteral) => ({
       lineHeight: '24px',
       fontWeight: 400
     }
+  },
+  contactBox: {
+    width: '49%',
+    float: 'right',
+    overflow: 'hidden',
+    marginTop: '-45px',
+    background: theme.palette.primary.main,
+    padding: '50px 65px 40px',
+    position: 'relative',
+    zIndex: 1,
+    display: 'block',
+    boxSizing: 'border-box',
+    '@media (max-width:1400px)': {
+      padding: '50px 40px 40px'
+    },
+    '&:after': {
+      clear: 'both',
+      display: 'table',
+      content: "''",
+      boxSizing: 'border-box'
+    }
+  },
+  contactBoxTitle: {
+    color: '#fff',
+    fontFamily: "'Lato', sans-serif",
+    fontWeight: 600,
+    textTransform: 'capitalize',
+    fontSize: '36px',
+    lineHeight: '100%',
+    marginBottom: '15px'
+  },
+  form: {
+    display: 'block',
+    margin: 0,
+    padding: 0,
+    border: 0,
+    verticalAlign: 'baseline',
+    boxSizing: 'border-box'
+  },
+  formGroup: {
+    marginBottom: '20px',
+    display: 'block',
+    boxSizing: 'border-box'
+  },
+  row: {
+    marginLeft: '-15px',
+    marginRight: '-15px',
+    display: 'block',
+    boxSizing: 'border-box',
+    '&:before': {
+      display: 'table',
+      content: "''",
+      boxSizing: 'border-box'
+    },
+    '&:after': {
+      clear: 'both',
+      display: 'table',
+      content: "''",
+      boxSizing: 'border-box'
+    }
+  },
+  width50: {
+    width: '50%',
+    paddingLeft: '15px',
+    paddingRight: '15px',
+    position: 'relative',
+    float: 'left',
+    display: 'block'
+  },
+  formControlWrap: {
+    position: 'relative',
+    margin: 0,
+    padding: 0,
+    border: 0,
+    verticalAlign: 'baseline'
+  },
+  formControl: {
+    width: '100%',
+    padding: '13px 0',
+    border: '1px solid transparent',
+    borderRadius: 0,
+    height: '44px',
+    backgroundColor: 'transparent',
+    fontFamily: "'Lato', sans-serif",
+    fontWeight: 400,
+    fontSize: '16px',
+    color: '#fff',
+    WebkitTransition: 'all .5s ease-in-out'
+  },
+  inputLabel: {
+    paddingLeft: '18px',
+    paddingRight: '18px'
+  },
+  labelColor: {
+    margin: '-13px 0',
+    padding: 0,
+    '& > label': {} // save for reference
   }
 });
 
 const Contact = (props: ObjectLiteral) => {
   const { classes } = props;
+
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [phone, setPhone] = useState('');
+  const [suburb, setSuburb] = useState('');
+  const [image, setImage] = useState(null);
+  const [message, setMessage] = useState('');
+
+  const handleName = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setName(e.target.value);
+    console.log(name);
+  };
+
+  const handleEmail = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setEmail(e.target.value);
+    console.log(email);
+  };
+
+  const handlePhone = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setPhone(e.target.value);
+    console.log(phone);
+  };
+
+  const handleSuburb = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSuburb(e.target.value);
+    console.log(suburb);
+  };
+
+  const handleMessage = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setMessage(e.target.value);
+    console.log(message);
+  };
+
+  const handleImage = (e: React.ChangeEvent<HTMLInputElement>) => {
+    console.log(image);
+  };
+
+  const handleAttachFile = () => {};
+
+  const handleMouseDownFile = (event: React.MouseEvent<HTMLButtonElement>) => {
+    event.preventDefault();
+  };
 
   return (
     <section className={classes.sectionContact}>
@@ -206,6 +354,132 @@ const Contact = (props: ObjectLiteral) => {
                 </div>
               </li>
             </ul>
+          </div>
+          {/* Contact Box */}
+          <div className={classes.contactBox}>
+            <div className={classes.contactBoxTitle}>Get in touch</div>
+            <form className={classes.form} noValidate autoComplete="off">
+              {/* Name Input */}
+              <FormControl className={classes.formGroup}>
+                <InputLabel htmlFor="contact-name" color="secondary">
+                  Name
+                </InputLabel>
+                <span className={classes.formControlWrap}>
+                  <Input
+                    className={classes.formControl}
+                    id="contact-name"
+                    value={name}
+                    onChange={handleName}
+                    color="secondary"
+                  />
+                </span>
+              </FormControl>
+
+              <div className={classes.row}>
+                {/* Email Input */}
+                <FormControl
+                  className={`${classes.formGroup} ${classes.width50}`}
+                >
+                  <InputLabel
+                    className={classes.inputLabel}
+                    htmlFor="contact-email"
+                    color="secondary"
+                  >
+                    Email
+                  </InputLabel>
+                  <span className={classes.formControlWrap}>
+                    <Input
+                      className={classes.formControl}
+                      id="contact-email"
+                      value={email}
+                      onChange={handleEmail}
+                      color="secondary"
+                    />
+                  </span>
+                </FormControl>
+
+                {/* Phone Input */}
+                <FormControl
+                  className={`${classes.formGroup} ${classes.width50}`}
+                >
+                  <InputLabel
+                    className={classes.inputLabel}
+                    htmlFor="contact-phone"
+                    color="secondary"
+                  >
+                    Phone
+                  </InputLabel>
+                  <span className={classes.formControlWrap}>
+                    <Input
+                      className={classes.formControl}
+                      id="contact-phone"
+                      value={phone}
+                      onChange={handlePhone}
+                      color="secondary"
+                    />
+                  </span>
+                </FormControl>
+              </div>
+
+              {/* Suburb Input */}
+              <FormControl className={classes.formGroup}>
+                <InputLabel htmlFor="contact-suburb" color="secondary">
+                  Name
+                </InputLabel>
+                <span className={classes.formControlWrap}>
+                  <Input
+                    className={classes.formControl}
+                    id="contact-suburb"
+                    value={suburb}
+                    onChange={handleSuburb}
+                    color="secondary"
+                  />
+                </span>
+              </FormControl>
+
+              {/* Upload Image */}
+              <FormControl className={classes.formGroup}>
+                <InputLabel htmlFor="contact-image" color="secondary">
+                  Upload Image
+                </InputLabel>
+                <span className={classes.formControlWrap}>
+                  <Input
+                    id="contact-image"
+                    className={classes.formControl}
+                    value={image}
+                    onChange={handleImage}
+                    color="secondary"
+                    endAdornment={
+                      <InputAdornment position="end">
+                        <IconButton
+                          aria-label="attach a file"
+                          onClick={handleAttachFile}
+                          onMouseDown={handleMouseDownFile}
+                        >
+                          <AttachFileIcon />
+                        </IconButton>
+                      </InputAdornment>
+                    }
+                  />
+                </span>
+              </FormControl>
+
+              {/* Message */}
+              <FormControl className={classes.formGroup}>
+                <span className={classes.formControlWrap}>
+                  <TextField
+                    label="Message"
+                    className={`${classes.formControl} ${classes.labelColor}`}
+                    id="contact-message"
+                    multiline
+                    color="secondary"
+                    rowsMax={4}
+                    value={message}
+                    onChange={handleMessage}
+                  />
+                </span>
+              </FormControl>
+            </form>
           </div>
         </div>
       </div>
