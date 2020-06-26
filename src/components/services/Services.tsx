@@ -20,8 +20,6 @@ import refrigeratorSvg from '../../assets/images/svg/refrigerator.svg';
 import fireplaceSvg from '../../assets/images/svg/fireplace.svg';
 import stoneTableSvg from '../../assets/images/svg/stoneTable.svg';
 
-import './services.module.css';
-
 const styles = (theme: ObjectLiteral) => ({
   ...theme.spreadThis,
   serviceIcon: {

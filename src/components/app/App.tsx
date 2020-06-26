@@ -7,6 +7,7 @@ import Header from '../header/Header';
 import Services from '../services/Services';
 import Projects from '../projects/Projects';
 import Contact from '../contact/Contact';
+import Footer from '../footer/Footer';
 
 // const useStyles = makeStyles((theme) => ({
 //   test: {
@@ -24,6 +25,7 @@ const App = () => {
       <Services />
       <Projects />
       <Contact />
+      <Footer />
     </BrowserRouter>
   );
 };
