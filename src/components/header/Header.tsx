@@ -1,15 +1,14 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import { Box, Typography } from '@material-ui/core';
+import { Typography } from '@material-ui/core';
 
 import stoneKitchen from '../../assets/images/stoneKitchen.jpg';
 
 const useStyles = makeStyles((theme) => ({
   heroContainer: {
     height: '97vh',
-    width: '100vw',
     backgroundImage: `url(${stoneKitchen})`,
-    backgroundPosition: 'center center',
+    backgroundPosition: 'center',
     backgroundRepeat: 'no-repeat',
     backgroundSize: 'cover',
     backgroundAttachment: 'fixed',
@@ -88,8 +87,8 @@ const Header = () => {
 
   return (
     <>
-      <Box component="div" className={classes.heroContainer}></Box>
-      <Box component="div" className={classes.heroCaption}>
+      <div className={classes.heroContainer}></div>
+      <div className={classes.heroCaption}>
         <div className={classes.container}>
           <div className={classes.heroText}>
             <div className={classes.heroTextCell}>
@@ -106,7 +105,7 @@ const Header = () => {
             </div>
           </div>
         </div>
-      </Box>
+      </div>
     </>
   );
 };
