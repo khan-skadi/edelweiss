@@ -5,8 +5,13 @@ import { Paper, Box } from '@material-ui/core';
 
 import { ObjectLiteral } from '../../utils/interface/interface';
 
-import benchtop from '../../assets/images/kitchen/benchtop3.jpg';
-import fireplace from '../../assets/images/fireplace/fireplace.jpg';
+import caro1 from '../../assets/images/carousel/caro1.jpg';
+import caro2 from '../../assets/images/carousel/caro2.jpg';
+import caro3 from '../../assets/images/carousel/caro3.jpg';
+import caro4 from '../../assets/images/carousel/caro4.jpg';
+import caro5 from '../../assets/images/carousel/caro5.jpg';
+import caro6 from '../../assets/images/carousel/caro6.jpg';
+import caro7 from '../../assets/images/carousel/caro7.jpg';
 
 import instagram from '../../assets/images/followUsOnInstagram.jpg';
 
@@ -59,8 +64,6 @@ const styles = (theme: ObjectLiteral) => ({
     }
   },
   projectsCarousel: {
-    paddingLeft: '120px',
-    marginTop: '-20px',
     position: 'relative',
     display: 'block',
     boxSizing: 'border-box',
@@ -69,6 +72,13 @@ const styles = (theme: ObjectLiteral) => ({
     webkitTapHighlightColor: 'transparent',
     letterSpacing: 'normal',
     overflow: 'hidden'
+  },
+  caroHolder: {
+    position: 'relative',
+    width: '100%',
+    height: '502px',
+    paddingLeft: '120px',
+    marginTop: '-20px'
   },
   projectRight: {
     float: 'right',
@@ -128,7 +138,7 @@ function Caro(props: ObjectLiteral) {
           lineHeight: '100%',
           color: '#060606',
           marginTop: '20px',
-          fontFamily: 'Lato'
+          fontFamily: "'Lato', sans-serif"
         }}
       >
         {description}
@@ -149,12 +159,32 @@ const Projects = (props: ObjectLiteral) => {
 
   const items = [
     {
-      description: 'Commercial',
-      image: benchtop
+      description: 'Renovation',
+      image: caro1
     },
     {
-      description: 'Renovation',
-      image: fireplace
+      description: 'Fireplace',
+      image: caro2
+    },
+    {
+      description: 'Kitchen Benchtop',
+      image: caro3
+    },
+    {
+      description: 'Bathroom',
+      image: caro4
+    },
+    {
+      description: 'Kitchen Benchtop',
+      image: caro5
+    },
+    {
+      description: 'Kitchen Benchtop',
+      image: caro6
+    },
+    {
+      description: 'Kitchen Benchtop',
+      image: caro7
     }
   ];
 
@@ -165,23 +195,28 @@ const Projects = (props: ObjectLiteral) => {
           <div className={classes.projectsTitle}>
             <span>Our</span> Projects
           </div>
-          <Carousel
-            className={classes.projectsCarousel}
-            next={(next: ObjectLiteral, active: ObjectLiteral) =>
-              console.log(`we left ${active}, and are now at ${next}`)
-            }
-            prev={(prev: ObjectLiteral, active: ObjectLiteral) =>
-              console.log(`we left ${active}, and are now at ${prev}`)
-            }
-            autoPlay={false}
-          >
-            {items.map((item) => (
-              <Caro item={item} />
-            ))}
-          </Carousel>
+          <div className={classes.caroHolder}>
+            <Carousel
+              className={classes.projectsCarousel}
+              next={(next: ObjectLiteral, active: ObjectLiteral) =>
+                console.log(`we left ${active}, and are now at ${next}`)
+              }
+              prev={(prev: ObjectLiteral, active: ObjectLiteral) =>
+                console.log(`we left ${active}, and are now at ${prev}`)
+              }
+            >
+              {items.map((item) => (
+                <Caro item={item} />
+              ))}
+            </Carousel>
+          </div>
         </div>
         <div className={classes.projectRight}>
-          <a href="#!" target="_blank" rel="noopener noreferrer">
+          <a
+            href="https://www.instagram.com/edelweissstone/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             <img
               className={classes.instagramBanner}
               src={instagram}

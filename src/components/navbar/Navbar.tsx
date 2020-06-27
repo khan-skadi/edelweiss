@@ -61,13 +61,13 @@ const useStyles = makeStyles((theme) => ({
     }
   },
   navSocial: {
-    margin: theme.spacing(0.3),
+    margin: theme.spacing(0.2),
     marginTop: '4px',
     fontSize: '1.8rem',
     color: theme.palette.primary.main
   },
   socialLink: {
-    margin: theme.spacing(0.3),
+    margin: theme.spacing(0.2),
     marginTop: '4px',
     padding: 0,
     border: 0

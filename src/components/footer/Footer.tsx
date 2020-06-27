@@ -532,11 +532,11 @@ const Footer = (props: ObjectLiteral) => {
             <ul className={classes.days}>
               <li>
                 Mon - Fri
-                <span>7:30am to 4:30pm</span>
+                <span>7:30 am to 4:30 pm</span>
               </li>
               <li>
                 Saturdays
-                <span>9:00am to 1:00pm</span>
+                <span>9:00 am to 1:00 pm</span>
               </li>
               <li>
                 Sundays
