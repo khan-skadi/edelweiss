@@ -87,7 +87,7 @@ const Header = () => {
 
   return (
     <>
-      <div className={classes.heroContainer}></div>
+      <div id="home" className={classes.heroContainer}></div>
       <div className={classes.heroCaption}>
         <div className={classes.container}>
           <div className={classes.heroText}>

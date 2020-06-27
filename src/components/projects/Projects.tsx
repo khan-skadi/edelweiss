@@ -161,7 +161,7 @@ const Projects = (props: ObjectLiteral) => {
   return (
     <section className={classes.sectionProjects}>
       <Box className={classes.container} component="div">
-        <div className={classes.projectLeft}>
+        <div id="projects" className={classes.projectLeft}>
           <div className={classes.projectsTitle}>
             <span>Our</span> Projects
           </div>

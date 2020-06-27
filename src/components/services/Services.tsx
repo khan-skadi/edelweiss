@@ -100,7 +100,7 @@ const Services = (props: ObjectLiteral) => {
   return (
     <section className={classes.sectionServices}>
       <div className={classes.container}>
-        <ul className={classes.servicesUl}>
+        <ul id="services" className={classes.servicesUl}>
           <li>
             {/* Kitchen. First Column, 1st Row */}
             <div className={classes.servicesFirstDiv}>

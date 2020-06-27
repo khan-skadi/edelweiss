@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { Link } from 'react-scroll';
 import { makeStyles } from '@material-ui/core/styles';
 import { AppBar, Toolbar, Typography, Avatar, Button } from '@material-ui/core';
 
@@ -10,8 +11,9 @@ import logo from '../../assets/logo/logo400.png';
 
 const useStyles = makeStyles((theme) => ({
   appBar: {
-    position: 'absolute',
-    background: 'transparent',
+    // position: 'absolute',
+    // background: 'transparent',
+    background: '#000',
     boxShadow: 'none',
     WebkitTransition: 'all 0.5s ease-in-out 0s',
     top: 0,
@@ -23,7 +25,10 @@ const useStyles = makeStyles((theme) => ({
   toolbar: {
     minHeight: '110px',
     background:
-      'linear-gradient(to bottom, rgba(0, 0, 0, 1.0) 30%, rgba(0, 0, 0, 0.0) 100%)'
+      'linear-gradient(to bottom, rgba(0, 0, 0, 1.0) 30%, rgba(0, 0, 0, 0.0) 100%)',
+    '& > .active': {
+      borderBottom: '2px solid #26a69a'
+    }
   },
   logo: {
     minWidth: '83px',
@@ -44,6 +49,15 @@ const useStyles = makeStyles((theme) => ({
     },
     '&:hover': {
       color: theme.palette.primary.main
+    },
+    '&:disabled': {
+      color: '#9c9c9c'
+    },
+    '& > span > p': {
+      fontSize: '18px',
+      lineHeight: '100%',
+      fontWeight: 400,
+      fontFamily: "'Lato', sans-serif"
     }
   },
   navSocial: {
@@ -63,55 +77,103 @@ const useStyles = makeStyles((theme) => ({
 const Navbar = () => {
   const classes = useStyles();
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
-    <>
-      <AppBar position="static" className={classes.appBar}>
-        <Toolbar className={classes.toolbar}>
-          <Avatar
-            className={classes.logo}
-            src={logo}
-            alt="Edelweiss Stone logo"
-          />
-          <Typography className={classes.title}>
-            <span style={{ fontWeight: 'bold' }}>Edelweiss</span> Stone
-          </Typography>
-          <Button variant="text" color="inherit" className={classes.navLinks}>
-            <Typography variant="h6">Home</Typography>
+    <AppBar className={classes.appBar} position="sticky">
+      <Toolbar className={classes.toolbar}>
+        <Avatar
+          className={classes.logo}
+          src={logo}
+          alt="Edelweiss Stone logo"
+        />
+        <Typography className={classes.title}>
+          <span style={{ fontWeight: 'bold' }}>Edelweiss</span> Stone
+        </Typography>
+        <Link
+          activeClass="active"
+          to="home"
+          spy={true}
+          smooth={true}
+          offset={-140}
+          duration={500}
+        >
+          <Button className={classes.navLinks} variant="text" color="inherit">
+            <Typography variant="body1">Home</Typography>
           </Button>
-          <Button variant="text" color="inherit" className={classes.navLinks}>
-            <Typography variant="h6">About us</Typography>
+        </Link>
+        <Button
+          className={classes.navLinks}
+          variant="text"
+          color="inherit"
+          disabled
+        >
+          <Typography variant="body1">About Us</Typography>
+        </Button>
+        <Link
+          activeClass="active"
+          to="services"
+          spy={true}
+          smooth={true}
+          offset={-140}
+          duration={500}
+        >
+          <Button className={classes.navLinks} variant="text" color="inherit">
+            <Typography variant="body1">Services</Typography>
           </Button>
-          <Button variant="text" color="inherit" className={classes.navLinks}>
-            <Typography variant="h6">Services</Typography>
+        </Link>
+        <Link
+          activeClass="active"
+          to="projects"
+          spy={true}
+          smooth={true}
+          offset={-140}
+          duration={500}
+        >
+          <Button className={classes.navLinks} variant="text" color="inherit">
+            <Typography variant="body1">Projects</Typography>
           </Button>
-          <Button variant="text" color="inherit" className={classes.navLinks}>
-            <Typography variant="h6">Stones</Typography>
+        </Link>
+        <Button
+          className={classes.navLinks}
+          variant="text"
+          color="inherit"
+          disabled
+        >
+          <Typography variant="body1">Testimonials</Typography>
+        </Button>
+        <Link
+          activeClass="active"
+          to="contact"
+          spy={true}
+          smooth={true}
+          offset={-120}
+          duration={500}
+        >
+          <Button className={classes.navLinks} variant="text" color="inherit">
+            <Typography variant="body1">Contact</Typography>
           </Button>
-          <Button variant="text" color="inherit" className={classes.navLinks}>
-            <Typography variant="h6">Testimonials</Typography>
-          </Button>
-          <Button variant="text" color="inherit" className={classes.navLinks}>
-            <Typography variant="h6">Contact</Typography>
-          </Button>
-          <a
-            href="#!"
-            target="_blank"
-            rel="noopener noreferrer"
-            className={classes.socialLink}
-          >
-            <Icon className={classes.navSocial} component={InstagramIcon} />
-          </a>
-          <a
-            href="#!"
-            target="_blank"
-            rel="noopener noreferrer"
-            className={classes.socialLink}
-          >
-            <Icon className={classes.navSocial} component={FacebookIcon} />
-          </a>
-        </Toolbar>
-      </AppBar>
-    </>
+        </Link>
+        <a
+          className={classes.socialLink}
+          href="https://www.instagram.com/edelweissstone/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <Icon className={classes.navSocial} component={InstagramIcon} />
+        </a>
+        <a
+          className={classes.socialLink}
+          href="https://www.facebook.com/Edelweiss-stone-495239060955229/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <Icon className={classes.navSocial} component={FacebookIcon} />
+        </a>
+      </Toolbar>
+    </AppBar>
   );
 };
 

@@ -326,7 +326,7 @@ const Contact = (props: ObjectLiteral) => {
   };
 
   return (
-    <section className={classes.sectionContact}>
+    <section id="contact" className={classes.sectionContact}>
       {/* Title */}
       <div className={classes.titleBorder}>
         <div className={classes.container}>
