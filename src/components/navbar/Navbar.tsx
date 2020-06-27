@@ -6,7 +6,7 @@ import Icon from '@material-ui/core/Icon';
 import InstagramIcon from '@material-ui/icons/Instagram';
 import FacebookIcon from '@material-ui/icons/Facebook';
 
-import eyeOfSkadi from '../../assets/logo/logo400.png';
+import logo from '../../assets/logo/logo400.png';
 
 const useStyles = makeStyles((theme) => ({
   appBar: {
@@ -25,7 +25,6 @@ const useStyles = makeStyles((theme) => ({
     background:
       'linear-gradient(to bottom, rgba(0, 0, 0, 1.0) 30%, rgba(0, 0, 0, 0.0) 100%)'
   },
-
   logo: {
     minWidth: '83px',
     minHeight: '83px'
@@ -48,9 +47,16 @@ const useStyles = makeStyles((theme) => ({
     }
   },
   navSocial: {
-    margin: '2px',
+    margin: theme.spacing(0.3),
+    marginTop: '4px',
     fontSize: '1.8rem',
     color: theme.palette.primary.main
+  },
+  socialLink: {
+    margin: theme.spacing(0.3),
+    marginTop: '4px',
+    padding: 0,
+    border: 0
   }
 }));
 
@@ -61,7 +67,11 @@ const Navbar = () => {
     <>
       <AppBar position="static" className={classes.appBar}>
         <Toolbar className={classes.toolbar}>
-          <Avatar className={classes.logo} src={eyeOfSkadi} alt="avatar" />
+          <Avatar
+            className={classes.logo}
+            src={logo}
+            alt="Edelweiss Stone logo"
+          />
           <Typography className={classes.title}>
             <span style={{ fontWeight: 'bold' }}>Edelweiss</span> Stone
           </Typography>
@@ -83,8 +93,22 @@ const Navbar = () => {
           <Button variant="text" color="inherit" className={classes.navLinks}>
             <Typography variant="h6">Contact</Typography>
           </Button>
-          <Icon className={classes.navSocial} component={InstagramIcon} />
-          <Icon className={classes.navSocial} component={FacebookIcon} />
+          <a
+            href="#!"
+            target="_blank"
+            rel="noopener noreferrer"
+            className={classes.socialLink}
+          >
+            <Icon className={classes.navSocial} component={InstagramIcon} />
+          </a>
+          <a
+            href="#!"
+            target="_blank"
+            rel="noopener noreferrer"
+            className={classes.socialLink}
+          >
+            <Icon className={classes.navSocial} component={FacebookIcon} />
+          </a>
         </Toolbar>
       </AppBar>
     </>
