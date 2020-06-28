@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { Map, GoogleApiWrapper, Marker } from 'google-maps-react';
 
@@ -188,48 +188,6 @@ const useStyles = makeStyles((theme) => ({
 const Contact = (props: ObjectLiteral) => {
   const classes = useStyles();
 
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [phone, setPhone] = useState('');
-  const [suburb, setSuburb] = useState('');
-  const [image, setImage] = useState(null);
-  const [message, setMessage] = useState('');
-
-  const handleName = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setName(e.target.value);
-    console.log(name);
-  };
-
-  const handleEmail = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setEmail(e.target.value);
-    console.log(email);
-  };
-
-  const handlePhone = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setPhone(e.target.value);
-    console.log(phone);
-  };
-
-  const handleSuburb = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setSuburb(e.target.value);
-    console.log(suburb);
-  };
-
-  const handleMessage = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setMessage(e.target.value);
-    console.log(message);
-  };
-
-  const handleImage = (e: React.ChangeEvent<HTMLInputElement>) => {
-    console.log(image);
-  };
-
-  const handleAttachFile = () => {};
-
-  const handleMouseDownFile = (event: React.MouseEvent<HTMLButtonElement>) => {
-    event.preventDefault();
-  };
-
   return (
     <section id="contact" className={classes.sectionContact}>
       {/* Title */}
@@ -315,7 +273,7 @@ const Contact = (props: ObjectLiteral) => {
             padding: 0,
             verticalAlign: 'baseline',
             boxSizing: 'border-box',
-            borderBottom: '10px solid #26a69a',
+            borderBottom: '10px solid #158d43',
             position: 'relative'
           }}
           initialCenter={{ lat: -33.858258, lng: 150.959442 }}

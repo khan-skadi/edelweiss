@@ -115,7 +115,7 @@ function Caro(props: ObjectLiteral) {
     <Paper style={{ boxShadow: 'none', backgroundColor: '#f1f5f6' }}>
       <div
         style={{
-          borderBottom: '10px solid #26a69a',
+          borderBottom: '10px solid #158d43',
           marginBottom: '-10px',
           display: 'inline-block',
           position: 'relative'
