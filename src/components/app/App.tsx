@@ -1,13 +1,12 @@
 import React from 'react';
-import { BrowserRouter } from 'react-router-dom';
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
 // import { makeStyles } from '@material-ui/core/styles';
 
 import Navbar from '../navbar/Navbar';
-import Header from '../header/Header';
-import Services from '../services/Services';
-import Projects from '../projects/Projects';
-import Contact from '../contact/Contact';
+import LandingPage from '../landingPage/LandingPage';
 import Footer from '../footer/Footer';
+
+import RequestQuote from '../requestQuote/RequestQuote';
 
 // const useStyles = makeStyles((theme) => ({
 //   test: {
@@ -21,10 +20,10 @@ const App = () => {
   return (
     <BrowserRouter>
       <Navbar />
-      <Header />
-      <Services />
-      <Projects />
-      <Contact />
+      <Switch>
+        <Route exact path="/" component={LandingPage} />
+        <Route path="/request-quote" component={RequestQuote} />
+      </Switch>
       <Footer />
     </BrowserRouter>
   );

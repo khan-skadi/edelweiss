@@ -71,6 +71,21 @@ const useStyles = makeStyles((theme) => ({
     marginTop: '4px',
     padding: 0,
     border: 0
+  },
+  logoLink: {
+    textDecoration: 'none',
+    flexGrow: 1,
+    margin: 0,
+    padding: 0,
+    verticalAlign: 'baseline',
+    '& > p': {
+      flexGrow: 1,
+      marginLeft: '5px',
+      fontSize: '2.3rem',
+      fontFamily: 'Barlow',
+      textTransform: 'uppercase',
+      color: '#fff'
+    }
   }
 }));
 
@@ -84,14 +99,18 @@ const Navbar = () => {
   return (
     <AppBar className={classes.appBar} position="sticky">
       <Toolbar className={classes.toolbar}>
-        <Avatar
-          className={classes.logo}
-          src={logo}
-          alt="Edelweiss Stone logo"
-        />
-        <Typography className={classes.title}>
-          <span style={{ fontWeight: 'bold' }}>Edelweiss</span> Stone
-        </Typography>
+        <a href="/">
+          <Avatar
+            className={classes.logo}
+            src={logo}
+            alt="Edelweiss Stone logo"
+          />
+        </a>
+        <a href="/" className={classes.logoLink}>
+          <Typography className={classes.title}>
+            <span style={{ fontWeight: 'bold' }}>Edelweiss</span> Stone
+          </Typography>
+        </a>
         <Link
           activeClass="active"
           to="home"

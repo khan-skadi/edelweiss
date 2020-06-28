@@ -1,14 +1,17 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
-import { Typography } from '@material-ui/core';
+import { Typography, Button, Icon } from '@material-ui/core';
 
 import stoneKitchen from '../../assets/images/stoneKitchen.jpg';
 
+import DescriptionIcon from '@material-ui/icons/DescriptionOutlined';
+
 const useStyles = makeStyles((theme) => ({
   heroContainer: {
-    height: '97vh',
+    height: '90vh',
     backgroundImage: `url(${stoneKitchen})`,
-    backgroundPosition: 'center',
+    backgroundPosition: 'center center',
     backgroundRepeat: 'no-repeat',
     backgroundSize: 'cover',
     backgroundAttachment: 'fixed',
@@ -44,7 +47,8 @@ const useStyles = makeStyles((theme) => ({
   heroText: {
     display: 'table',
     width: '100%',
-    height: '100%'
+    height: '100%',
+    fontFamily: "'Lato', sans-serif"
   },
   heroTextCell: {
     paddingLeft: '30px',
@@ -56,14 +60,18 @@ const useStyles = makeStyles((theme) => ({
     lineHeight: '60px',
     color: '#fff',
     paddingBottom: '5px',
-    '& > p': {
-      color: theme.palette.primary.main,
+    '& > span': {
       fontWeight: 'bolder'
+    },
+    '& > span:nth-of-type(2)': {
+      fontWeight: 400,
+      fontSize: '50px'
     }
   },
   heroTextCell_p: {
-    fontSize: '27px',
+    fontSize: '25px',
     lineHeight: '36px',
+    fontWeight: 400,
     color: '#fff'
   },
   p_grTxt: {
@@ -75,10 +83,32 @@ const useStyles = makeStyles((theme) => ({
   strokedText: {
     fontSize: '60px',
     lineHeight: '60px',
-    textTransform: 'uppercase',
-    WebkitTextStroke: '2px #26a69a',
-    color: 'transparent',
-    fontWeight: 'bold'
+    textTransform: 'capitalize',
+    color: theme.palette.primary.main
+  },
+  callToAction: {
+    marginTop: '20px',
+    backgroundColor: '#525252',
+    color: '#fff',
+    borderRadius: 0,
+    border: 0,
+    height: '48px',
+    lineHeight: '100%',
+    margin: 0,
+    verticalAlign: 'baseline',
+    width: '300px',
+    fontSize: '20px',
+    fontWeight: 400,
+    fontFamily: "'Lato', sans-serif",
+    textTransform: 'none',
+    '& > span > svg': {
+      marginLeft: '-15px',
+      marginRight: '15px'
+    }
+  },
+  actionLink: {
+    textDecoration: 'none',
+    cursor: 'pointer'
   }
 }));
 
@@ -93,15 +123,24 @@ const Header = () => {
           <div className={classes.heroText}>
             <div className={classes.heroTextCell}>
               <div className={classes.heroHead}>
-                <span className={classes.strokedText}>We</span>{' '}
-                <span className={classes.heroHead}>Specialize in</span>
+                <span className={classes.strokedText}>We Install</span>
+                <br />
+                <span>All Kinds of Stone</span>
               </div>
               <Typography variant="body1" className={classes.heroTextCell_p}>
-                Marble, Granite & Reconstituted stone
+                Granite - Marble - Sandstone - Limestone - Quartz Surfaces
               </Typography>
-              <Typography variant="body1" className={classes.p_grTxt}>
-                Talk to us about the 24 months interest-free options!
-              </Typography>
+              <Link to="/request-quote" className={classes.actionLink}>
+                <Button
+                  className={classes.callToAction}
+                  variant="contained"
+                  color="primary"
+                  disableElevation
+                >
+                  <Icon component={DescriptionIcon} />
+                  Request a Quote
+                </Button>
+              </Link>
             </div>
           </div>
         </div>
