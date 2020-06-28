@@ -27,7 +27,7 @@ const useStyles = makeStyles((theme) => ({
     background:
       'linear-gradient(to bottom, rgba(0, 0, 0, 1.0) 30%, rgba(0, 0, 0, 0.0) 100%)',
     '& > .active': {
-      borderBottom: '2px solid #26a69a'
+      borderBottom: `2px solid ${theme.palette.primary.main}`
     }
   },
   logo: {
@@ -37,8 +37,8 @@ const useStyles = makeStyles((theme) => ({
   title: {
     flexGrow: 1,
     marginLeft: '5px',
-    fontSize: '2.3rem',
-    fontFamily: 'Barlow',
+    fontSize: '2rem !important',
+    fontFamily: "'Lato', sans-serif",
     textTransform: 'uppercase'
   },
   navLinks: {
@@ -82,7 +82,7 @@ const useStyles = makeStyles((theme) => ({
       flexGrow: 1,
       marginLeft: '5px',
       fontSize: '2.3rem',
-      fontFamily: 'Barlow',
+      fontFamily: "'Lato', sans-serif",
       textTransform: 'uppercase',
       color: '#fff'
     }
