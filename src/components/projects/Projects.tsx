@@ -196,15 +196,7 @@ const Projects = (props: ObjectLiteral) => {
             <span>Our</span> Projects
           </div>
           <div className={classes.caroHolder}>
-            <Carousel
-              className={classes.projectsCarousel}
-              next={(next: ObjectLiteral, active: ObjectLiteral) =>
-                console.log(`we left ${active}, and are now at ${next}`)
-              }
-              prev={(prev: ObjectLiteral, active: ObjectLiteral) =>
-                console.log(`we left ${active}, and are now at ${prev}`)
-              }
-            >
+            <Carousel className={classes.projectsCarousel}>
               {items.map((item) => (
                 <Caro item={item} />
               ))}
