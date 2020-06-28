@@ -42,7 +42,7 @@ const useStyles = makeStyles((theme) => ({
   footerMain: {
     background: `url(${footerBg}) no-repeat`,
     backgroundSize: 'cover',
-    borderTop: '6px solid #26a69a',
+    borderTop: '6px solid #158d43',
     margin: 0,
     padding: 0,
     border: 0,
@@ -87,7 +87,7 @@ const useStyles = makeStyles((theme) => ({
   leftTitle: {
     fontSize: '22px',
     lineHeight: '100%',
-    color: '#26a69a',
+    color: '#158d43',
     textTransform: 'capitalize',
     marginBottom: '20px',
     fontWeight: 500,
@@ -122,7 +122,7 @@ const useStyles = makeStyles((theme) => ({
           position: 'absolute',
           content: "''",
           left: 0,
-          background: '#26a69a',
+          background: '#158d43',
           top: '6px',
           width: '6px',
           height: '6px',
@@ -200,7 +200,7 @@ const useStyles = makeStyles((theme) => ({
       },
       '& > p': {
         lineHeight: '100%',
-        color: '#26a69a',
+        color: '#158d43',
         fontSize: '20px',
         marginBottom: '10px',
         display: 'block',
@@ -266,7 +266,7 @@ const useStyles = makeStyles((theme) => ({
       textDecoration: 'none',
       cursor: 'pointer',
       '&:before': {
-        background: '#26a69a',
+        background: '#158d43',
         position: 'absolute',
         content: "''",
         opacity: 0,
@@ -317,7 +317,7 @@ const useStyles = makeStyles((theme) => ({
   rightTitle: {
     fontSize: '22px',
     lineHeight: '100%',
-    color: '#26a69a',
+    color: '#158d43',
     textTransform: 'capitalize',
     marginBottom: '20px',
     fontWeight: 500,
@@ -356,7 +356,7 @@ const useStyles = makeStyles((theme) => ({
           position: 'absolute',
           content: "''",
           left: 0,
-          background: '#26a69a',
+          background: '#158d43',
           top: '6px',
           width: '6px',
           height: '6px',
@@ -378,7 +378,7 @@ const useStyles = makeStyles((theme) => ({
   hours: {
     display: 'inline-block',
     verticalAlign: 'middle',
-    color: '#26a69a',
+    color: '#158d43',
     fontWeight: 500,
     fontSize: '22px',
     lineHeight: '26px',
@@ -411,7 +411,7 @@ const useStyles = makeStyles((theme) => ({
     fontFamily: "'Lato', sans-serif",
     boxSizing: 'border-box',
     '& li': {
-      color: '#26a69a',
+      color: '#158d43',
       fontSize: '18px',
       lineHeight: '100%',
       display: 'inline-block',

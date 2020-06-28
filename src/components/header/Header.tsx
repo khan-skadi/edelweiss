@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link } from 'react-scroll';
 import { makeStyles } from '@material-ui/core/styles';
 import { Typography, Button, Icon } from '@material-ui/core';
 
@@ -130,7 +130,15 @@ const Header = () => {
               <Typography variant="body1" className={classes.heroTextCell_p}>
                 Granite - Marble - Sandstone - Limestone - Quartz Surfaces
               </Typography>
-              <Link to="/request-quote" className={classes.actionLink}>
+              <Link
+                to="contact"
+                activeClass="active"
+                spy={true}
+                smooth={true}
+                offset={-120}
+                duration={500}
+                className={classes.actionLink}
+              >
                 <Button
                   className={classes.callToAction}
                   variant="contained"
