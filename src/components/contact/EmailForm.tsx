@@ -8,7 +8,7 @@ import {
   TextField,
   // InputAdornment,
   // IconButton,
-  Theme
+  Button
 } from '@material-ui/core';
 import { ObjectLiteral } from '../../utils/interface/interface';
 
@@ -70,7 +70,10 @@ const styles = (theme: ObjectLiteral) => ({
     fontWeight: 400,
     fontSize: '16px',
     color: '#fff',
-    WebkitTransition: 'all .5s ease-in-out'
+    WebkitTransition: 'all .5s ease-in-out',
+    '& textarea': {
+      color: '#fff !important'
+    }
   },
   width50: {
     width: '50%',
@@ -112,6 +115,34 @@ const styles = (theme: ObjectLiteral) => ({
     margin: '-13px 0',
     padding: 0,
     '& > label': {} // save for reference
+  },
+  buttonContainer: {
+    textAlign: 'right',
+    margin: 0,
+    padding: 0,
+    border: 0,
+    verticalAlign: 'baseline',
+    boxSizing: 'border-box',
+    display: 'block',
+    marginTop: '40px'
+  },
+  submitButton: {
+    fontSize: '21px',
+    lineHeight: '100%',
+    textTransform: 'uppercase',
+    color: '#fff',
+    padding: '15px 42px',
+    borderRadius: 0,
+    fontFamily: "'Lato', sans-serif",
+    fontWeight: 600,
+    background: '#333',
+    border: 0,
+    cursor: 'pointer',
+    boxSizing: 'border-box',
+    '&:hover': {
+      backgroundColor: '#fff',
+      color: theme.palette.primary.main
+    }
   }
 });
 
@@ -129,9 +160,11 @@ interface EmailState {
 }
 
 interface TemplateVars {
-  message_html: string;
-  from_name: string;
-  reply_to: string;
+  message_html: string; // feedback
+  from_name: string; // name
+  reply_to: string; // senderEmail
+  from_phone: string; // phone
+  from_suburb: string; // suburb
 }
 
 class EmailForm extends Component<EmailProps, EmailState> {
@@ -150,6 +183,8 @@ class EmailForm extends Component<EmailProps, EmailState> {
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleName = this.handleName.bind(this);
     this.handleSenderEmail = this.handleSenderEmail.bind(this);
+    this.handlePhone = this.handlePhone.bind(this);
+    this.handleSuburb = this.handleSuburb.bind(this);
   }
 
   componentDidMount() {
@@ -162,91 +197,85 @@ class EmailForm extends Component<EmailProps, EmailState> {
     const { classes } = this.props;
 
     return (
-      <>
-        {/* Contact Box */}
-        <div className={classes.contactBox}>
-          <div className={classes.contactBoxTitle}>Get in touch</div>
-          <form className={classes.form} noValidate autoComplete="off">
-            {/* Name Input */}
-            <FormControl className={classes.formGroup}>
-              <InputLabel htmlFor="contact-name" color="secondary">
-                Name
+      <div className={classes.contactBox}>
+        <div className={classes.contactBoxTitle}>Get in touch</div>
+        <form className={classes.form} noValidate autoComplete="off">
+          {/* Name Input */}
+          <FormControl className={classes.formGroup}>
+            <InputLabel htmlFor="contact-name" color="secondary">
+              Name
+            </InputLabel>
+            <span className={classes.formControlWrap}>
+              <Input
+                className={classes.formControl}
+                id="contact-name"
+                value={this.state.name}
+                onChange={this.handleName}
+                color="secondary"
+              />
+            </span>
+          </FormControl>
+
+          <div className={classes.row}>
+            {/* Email Input */}
+            <FormControl className={`${classes.formGroup} ${classes.width50}`}>
+              <InputLabel
+                className={classes.inputLabel}
+                htmlFor="contact-email"
+                color="secondary"
+              >
+                Email
               </InputLabel>
               <span className={classes.formControlWrap}>
                 <Input
                   className={classes.formControl}
-                  id="contact-name"
-                  value={this.state.name}
-                  onChange={this.handleChange}
+                  id="contact-email"
+                  value={this.state.senderEmail}
+                  onChange={this.handleSenderEmail}
                   color="secondary"
                 />
               </span>
             </FormControl>
 
-            <div className={classes.row}>
-              {/* Email Input */}
-              <FormControl
-                className={`${classes.formGroup} ${classes.width50}`}
+            {/* Phone Input */}
+            <FormControl className={`${classes.formGroup} ${classes.width50}`}>
+              <InputLabel
+                className={classes.inputLabel}
+                htmlFor="contact-phone"
+                color="secondary"
               >
-                <InputLabel
-                  className={classes.inputLabel}
-                  htmlFor="contact-email"
-                  color="secondary"
-                >
-                  Email
-                </InputLabel>
-                <span className={classes.formControlWrap}>
-                  <Input
-                    className={classes.formControl}
-                    id="contact-email"
-                    value={this.state.senderEmail}
-                    onChange={this.handleSenderEmail}
-                    color="secondary"
-                  />
-                </span>
-              </FormControl>
-
-              {/* Phone Input */}
-              <FormControl
-                className={`${classes.formGroup} ${classes.width50}`}
-              >
-                <InputLabel
-                  className={classes.inputLabel}
-                  htmlFor="contact-phone"
-                  color="secondary"
-                >
-                  Phone
-                </InputLabel>
-                <span className={classes.formControlWrap}>
-                  <Input
-                    className={classes.formControl}
-                    id="contact-phone"
-                    value={this.state.phone}
-                    onChange={this.handlePhone}
-                    color="secondary"
-                  />
-                </span>
-              </FormControl>
-            </div>
-
-            {/* Suburb Input */}
-            <FormControl className={classes.formGroup}>
-              <InputLabel htmlFor="contact-suburb" color="secondary">
-                Name
+                Phone
               </InputLabel>
               <span className={classes.formControlWrap}>
                 <Input
                   className={classes.formControl}
-                  id="contact-suburb"
-                  value={this.state.suburb}
-                  onChange={this.handleSuburb}
+                  id="contact-phone"
+                  value={this.state.phone}
+                  onChange={this.handlePhone}
                   color="secondary"
                 />
               </span>
             </FormControl>
+          </div>
 
-            {/* Upload Image */}
-            {/* <FormControl className={classes.formGroup}>
+          {/* Suburb Input */}
+          <FormControl className={classes.formGroup}>
+            <InputLabel htmlFor="contact-suburb" color="secondary">
+              Suburb
+            </InputLabel>
+            <span className={classes.formControlWrap}>
+              <Input
+                className={classes.formControl}
+                id="contact-suburb"
+                value={this.state.suburb}
+                onChange={this.handleSuburb}
+                color="secondary"
+              />
+            </span>
+          </FormControl>
+
+          {/* Upload Image */}
+          {/* <FormControl className={classes.formGroup}>
               <InputLabel htmlFor="contact-image" color="secondary">
                 Upload Image
               </InputLabel>
@@ -272,78 +301,32 @@ class EmailForm extends Component<EmailProps, EmailState> {
               </span>
             </FormControl> */}
 
-            {/* Message */}
-            <FormControl className={classes.formGroup}>
-              <span className={classes.formControlWrap}>
-                <TextField
-                  label="Message"
-                  className={`${classes.formControl} ${classes.labelColor}`}
-                  id="contact-message"
-                  multiline
-                  color="secondary"
-                  rowsMax={4}
-                  value={this.state.feedback}
-                  onChange={this.handleChange}
-                />
-              </span>
-            </FormControl>
-          </form>
-        </div>
-        {/* -------------------------------------------------------- */}
-        <form id="contact-form" className="test-mailing">
-          <div className="form-group">
-            <div className="input-group input-lg">
-              <div className="input-group-prepend">
-                <span className="input-group-text">Icon</span>
-              </div>
-              <input
-                type="text"
-                className="form-control"
-                aria-label="Dollar amount (with dot and two decimal places)"
-                onChange={this.handleName}
-                value={this.state.name}
-              ></input>
-            </div>
-          </div>
-          <div className="form-group">
-            <div className="input-group input-lg">
-              <div className="input-group-prepend">
-                <span className="input-group-text">Icon</span>
-              </div>
-              <input
-                type="text"
-                className="form-control"
-                aria-label="emailHelp"
-                onChange={this.handleSenderEmail}
-                value={this.state.senderEmail}
-              ></input>
-            </div>
-          </div>
-          <div className="form-group">
-            <div className="textarea-container">
-              <textarea
-                id="test-mailing"
-                name="test-mailing"
-                cols={80}
-                rows={4}
-                onChange={this.handleChange}
-                className="form-control"
-                required
+          {/* Message */}
+          <FormControl className={classes.formGroup}>
+            <span className={classes.formControlWrap}>
+              <TextField
+                label="Message"
+                className={`${classes.formControl} ${classes.labelColor}`}
+                id="contact-message"
+                multiline
+                color="secondary"
+                rowsMax={4}
                 value={this.state.feedback}
+                onChange={this.handleChange}
               />
-            </div>
-            <div className="send-button">
-              <button
-                type="submit"
-                className="btn btn-submit btn-primary"
-                onClick={this.handleSubmit}
-              >
-                Submit
-              </button>
-            </div>
+            </span>
+          </FormControl>
+          <div className={classes.buttonContainer}>
+            <Button
+              className={`${classes.submitButton} ${classes.formControl}`}
+              type="submit"
+              onClick={this.handleSubmit}
+            >
+              Submit
+            </Button>
           </div>
         </form>
-      </>
+      </div>
     );
   }
 
@@ -374,13 +357,17 @@ class EmailForm extends Component<EmailProps, EmailState> {
     this.sendFeedback(templateId, {
       message_html: this.state.feedback,
       from_name: this.state.name,
-      reply_to: this.state.senderEmail
+      reply_to: this.state.senderEmail,
+      from_phone: this.state.phone,
+      from_suburb: this.state.suburb
     });
 
     this.setState({
       feedback: '',
       name: '',
-      senderEmail: ''
+      senderEmail: '',
+      phone: '',
+      suburb: ''
     });
   }
 

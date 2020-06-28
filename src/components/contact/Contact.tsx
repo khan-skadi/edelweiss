@@ -6,13 +6,13 @@ import EmailForm from './EmailForm';
 
 import { ObjectLiteral } from '../../utils/interface/interface';
 import {
-  Typography,
-  TextField,
-  FormControl,
-  InputLabel,
-  Input,
-  InputAdornment,
-  IconButton
+  Typography
+  // TextField,
+  // FormControl,
+  // InputLabel,
+  // Input,
+  // InputAdornment,
+  // IconButton
 } from '@material-ui/core';
 
 import benchtop from '../../assets/images/original/modified/1wide.jpg';
@@ -22,7 +22,7 @@ import AddressIcon from '@material-ui/icons/Room';
 import MailIcon from '@material-ui/icons/Mail';
 import PhoneIcon from '@material-ui/icons/Phone';
 import FaxIcon from '@material-ui/icons/Print';
-import AttachFileIcon from '@material-ui/icons/AttachFile';
+// import AttachFileIcon from '@material-ui/icons/AttachFile';
 
 const useStyles = makeStyles((theme) => ({
   sectionContact: {
@@ -231,107 +231,104 @@ const Contact = (props: ObjectLiteral) => {
   };
 
   return (
-    <>
-      <EmailForm />
-      <section id="contact" className={classes.sectionContact}>
-        {/* Title */}
-        <div className={classes.titleBorder}>
-          <div className={classes.container}>
-            <Typography variant="h1" className={classes.contactBorderTitle}>
-              Contact <span>Us</span>
-            </Typography>
-          </div>
+    <section id="contact" className={classes.sectionContact}>
+      {/* Title */}
+      <div className={classes.titleBorder}>
+        <div className={classes.container}>
+          <Typography variant="h1" className={classes.contactBorderTitle}>
+            Contact <span>Us</span>
+          </Typography>
         </div>
-        {/* Contact Main */}
-        <div className={classes.contactMain}>
-          <div className={classes.container}>
-            <div className={classes.contactLeft}>
-              <ul className={classes.contactInfo}>
-                <li>
-                  <div className={classes.contactListInfo}>
-                    <div className={classes.infoIcon}>
-                      <Icon className={classes.icon} component={AddressIcon} />
-                    </div>
-                    <div className={classes.infoText}>
-                      <p>Address</p>
-                      <span>
-                        <span>4/3 Dursley Rd, Yennora, NSW 2161</span>
-                      </span>
-                    </div>
+      </div>
+      {/* Contact Main */}
+      <div className={classes.contactMain}>
+        <div className={classes.container}>
+          <div className={classes.contactLeft}>
+            <ul className={classes.contactInfo}>
+              <li>
+                <div className={classes.contactListInfo}>
+                  <div className={classes.infoIcon}>
+                    <Icon className={classes.icon} component={AddressIcon} />
                   </div>
-                </li>
-                <li>
-                  <div className={classes.contactListInfo}>
-                    <div className={classes.infoIcon}>
-                      <Icon className={classes.icon} component={MailIcon} />
-                    </div>
-                    <div className={classes.infoText}>
-                      <p>Email</p>
-                      <a href="mailto:info@edelweissstone.com.au">
-                        info@edelweissstone.com.au
-                      </a>
-                    </div>
+                  <div className={classes.infoText}>
+                    <p>Address</p>
+                    <span>
+                      <span>4/3 Dursley Rd, Yennora, NSW 2161</span>
+                    </span>
                   </div>
-                </li>
-                <li>
-                  <div className={classes.contactListInfo}>
-                    <div className={classes.infoIcon}>
-                      <Icon className={classes.icon} component={PhoneIcon} />
-                    </div>
-                    <div className={classes.infoText}>
-                      <p>Phone</p>
-                      <a href="tel:(02) 0431 703 388">(02) 0431 703 388</a>
-                    </div>
+                </div>
+              </li>
+              <li>
+                <div className={classes.contactListInfo}>
+                  <div className={classes.infoIcon}>
+                    <Icon className={classes.icon} component={MailIcon} />
                   </div>
-                </li>
-                <li>
-                  <div className={classes.contactListInfo}>
-                    <div className={classes.infoIcon}>
-                      <Icon className={classes.icon} component={FaxIcon} />
-                    </div>
-                    <div className={classes.infoText}>
-                      <p>Fax</p>
-                      <span>(02) 9826 8008</span>
-                    </div>
+                  <div className={classes.infoText}>
+                    <p>Email</p>
+                    <a href="mailto:info@edelweissstone.com.au">
+                      info@edelweissstone.com.au
+                    </a>
                   </div>
-                </li>
-              </ul>
-            </div>
-            {/* ------------------------------------------------------------- */}
+                </div>
+              </li>
+              <li>
+                <div className={classes.contactListInfo}>
+                  <div className={classes.infoIcon}>
+                    <Icon className={classes.icon} component={PhoneIcon} />
+                  </div>
+                  <div className={classes.infoText}>
+                    <p>Phone</p>
+                    <a href="tel:(02) 0431 703 388">(02) 0431 703 388</a>
+                  </div>
+                </div>
+              </li>
+              <li>
+                <div className={classes.contactListInfo}>
+                  <div className={classes.infoIcon}>
+                    <Icon className={classes.icon} component={FaxIcon} />
+                  </div>
+                  <div className={classes.infoText}>
+                    <p>Fax</p>
+                    <span>(02) 9826 8008</span>
+                  </div>
+                </div>
+              </li>
+            </ul>
           </div>
+          <EmailForm />
         </div>
-        <div className={classes.contactImage}>
-          <img
-            className={classes.contactPicture}
-            alt="kitchen benchtop"
-            src={benchtop}
+      </div>
+      <div className={classes.contactImage}>
+        <img
+          className={classes.contactPicture}
+          alt="kitchen benchtop"
+          src={benchtop}
+        />
+      </div>
+      <div>
+        <Map
+          google={props.google}
+          style={{
+            width: '100%',
+            height: '450px',
+            margin: 0,
+            padding: 0,
+            verticalAlign: 'baseline',
+            boxSizing: 'border-box',
+            borderBottom: '10px solid #26a69a',
+            position: 'relative'
+          }}
+          initialCenter={{ lat: -33.858258, lng: 150.959442 }}
+          zoom={18}
+        >
+          <Marker
+            position={{ lat: -33.858258, lng: 150.959442 }}
+            mapCenter={{ lat: -33.858258, lng: 150.959442 }}
+            title={'Edelweiss Stone'}
           />
-        </div>
-        <div>
-          <Map
-            google={props.google}
-            style={{
-              width: '100%',
-              height: '450px',
-              margin: 0,
-              padding: 0,
-              verticalAlign: 'baseline',
-              boxSizing: 'border-box',
-              borderBottom: '10px solid #26a69a',
-              position: 'relative'
-            }}
-            initialCenter={{ lat: -33.858258, lng: 150.959442 }}
-            zoom={18}
-          >
-            <Marker
-              position={{ lat: -33.858258, lng: 150.959442 }}
-              mapCenter={{ lat: -33.858258, lng: 150.959442 }}
-              title={'Edelweiss Stone'}
-            />
-          </Map>
-        </div>
-      </section>
-    </>
+        </Map>
+      </div>
+    </section>
   );
 };
 
