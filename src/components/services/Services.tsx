@@ -8,9 +8,12 @@ import { ObjectLiteral } from '../../utils/interface/interface';
 import benchtop from '../../assets/images/kitchen/benchtop2.jpg';
 import bathroom from '../../assets/images/bathroom/bathroom.jpg';
 import renovations from '../../assets/images/renovations/renovations.jpg';
-import stoneSplashbacks from '../../assets/images/stoneSplashbacks/stoneSplashbacks.jpg';
 import fireplace from '../../assets/images/fireplace/fireplace.jpg';
-import stoneTable from '../../assets/images/stoneTable/stoneTable.jpg';
+import stoneStaircases from '../../assets/images/staircases/stoneStaircases.png';
+import monument from '../../assets/images/monuments/stoneMonument.png';
+import stoneFloor from '../../assets/images/floors/stoneFloor.png';
+import stoneWall from '../../assets/images/walls/stoneWall.png';
+import stoneShopFronts from '../../assets/images/shopFronts/shopFronts.png';
 
 // SVG Icons
 import kitchenSvg from '../../assets/images/svg/kitchen.svg';
@@ -74,6 +77,16 @@ const styles = (theme: ObjectLiteral) => ({
       fontWeight: 600
     }
   },
+  servicesSeventhLinkBox: {
+    display: 'block',
+    position: 'relative',
+    marginTop: '30px'
+  },
+  servicesEightLinkBox: {
+    display: 'block',
+    position: 'relative',
+    marginTop: '30px'
+  },
   servicesSecondLinkBox: {
     display: 'block',
     position: 'relative'
@@ -93,6 +106,11 @@ const styles = (theme: ObjectLiteral) => ({
     position: 'relative'
   },
   servicesSixthLinkBox: {
+    display: 'block',
+    position: 'relative',
+    marginTop: '30px'
+  },
+  servicesNinthLinkBox: {
     display: 'block',
     position: 'relative',
     marginTop: '30px'
@@ -120,7 +138,7 @@ const Services = (props: ObjectLiteral) => {
         <a href="#!" className="lightbox-close"></a>
       </div>
       <div className="lightbox-target" id="servImg4">
-        <img src={stoneSplashbacks} alt="Stone Splashbacks" />
+        <img src={stoneShopFronts} alt="Stone Splashbacks" />
         {/* eslint-disable-next-line */}
         <a href="#!" className="lightbox-close"></a>
       </div>
@@ -130,7 +148,22 @@ const Services = (props: ObjectLiteral) => {
         <a href="#!" className="lightbox-close"></a>
       </div>
       <div className="lightbox-target" id="servImg6">
-        <img src={stoneTable} alt="Stone Tables" />
+        <img src={stoneStaircases} alt="Stone Staircases" />
+        {/* eslint-disable-next-line */}
+        <a href="#!" className="lightbox-close"></a>
+      </div>
+      <div className="lightbox-target" id="servImg7">
+        <img src={monument} alt="Stone Monuments" />
+        {/* eslint-disable-next-line */}
+        <a href="#!" className="lightbox-close"></a>
+      </div>
+      <div className="lightbox-target" id="servImg8">
+        <img src={stoneFloor} alt="Stone Floors" />
+        {/* eslint-disable-next-line */}
+        <a href="#!" className="lightbox-close"></a>
+      </div>
+      <div className="lightbox-target" id="servImg9">
+        <img src={stoneWall} alt="Stone Walls" />
         {/* eslint-disable-next-line */}
         <a href="#!" className="lightbox-close"></a>
       </div>
@@ -170,16 +203,64 @@ const Services = (props: ObjectLiteral) => {
                 <div className={classes.serviceDisc}>Gallery</div>
               </div>
             </a>
+            {/* Monuments. First Column, 2nd Row */}
+            <a href="#!" className={classes.servicesSeventhLinkBox}>
+              {/* <div className={classes.serviceImage}>
+                <img src={benchtop} alt="Monuments" />
+                </div> */}
+              <div className="service-image">
+                <a href="#servImg7" className="lightbox">
+                  <img src={monument} alt="Monuments" />
+                </a>
+              </div>
+              <div className={classes.serviceText}>
+                <div className={classes.serviceIcon}>
+                  <img
+                    className={classes.firstIcon}
+                    src={kitchenSvg}
+                    alt="Monuments"
+                    width="57"
+                    height="57"
+                  />
+                </div>
+                <div className={classes.serviceTitle}>Monuments</div>
+                <div className={classes.serviceDisc}>Gallery</div>
+              </div>
+            </a>
+            {/* Staircases. 1st Column, 3rd Row */}
+            <a href="#!" className={classes.servicesSixthLinkBox}>
+              {/* <div className={classes.serviceImage}>
+                <img src={stoneTable} alt="Stone Tables" />
+              </div> */}
+              <div className="service-image">
+                <a href="#servImg6" className="lightbox">
+                  <img src={stoneStaircases} alt="Staircases" />
+                </a>
+              </div>
+              <div className={classes.serviceText}>
+                <div className={classes.serviceIcon}>
+                  <img
+                    className={classes.firstIcon}
+                    src={stoneTableSvg}
+                    alt="Staircases"
+                    width="57"
+                    height="57"
+                  />
+                </div>
+                <div className={classes.serviceTitle}>Staircases</div>
+                <div className={classes.serviceDisc}>Gallery</div>
+              </div>
+            </a>
           </li>
           <li>
-            {/* Bathroom. 2nd Column, 1st Row */}
+            {/* Bathrooms. 2nd Column, 1st Row */}
             <a href="#!" className={classes.servicesSecondLinkBox}>
               {/* <div className={classes.serviceImage}>
                 <img src={bathroom} alt="Bathroom / Laundry vanities" />
               </div> */}
               <div className="service-image">
                 <a href="#servImg2" className="lightbox">
-                  <img src={bathroom} alt="Bathrooms / Laundry Vanities" />
+                  <img src={bathroom} alt="Bathrooms" />
                 </a>
               </div>
               <div className={classes.serviceText}>
@@ -187,25 +268,23 @@ const Services = (props: ObjectLiteral) => {
                   <img
                     className={classes.firstIcon}
                     src={laundrySvg}
-                    alt="Laundry, washing machine"
+                    alt="Bathroom"
                     width="57"
                     height="57"
                   />
                 </div>
-                <div className={classes.serviceTitle}>
-                  Bathroom / Laundry Vanities
-                </div>
+                <div className={classes.serviceTitle}>Bathrooms</div>
                 <div className={classes.serviceDisc}>Gallery</div>
               </div>
             </a>
-            {/* Renovations. 2nd Column, 2nd Row */}
+            {/* Vanities. 2nd Column, 2nd Row */}
             <a href="#!" className={classes.servicesThirdLinkBox}>
               {/* <div className={classes.serviceImage}>
                 <img src={renovations} alt="Renovations" />
               </div> */}
               <div className="service-image">
                 <a href="#servImg3" className="lightbox">
-                  <img src={renovations} alt="Renovations" />
+                  <img src={renovations} alt="Vanities" />
                 </a>
               </div>
               <div className={classes.serviceText}>
@@ -213,23 +292,23 @@ const Services = (props: ObjectLiteral) => {
                   <img
                     className={classes.firstIcon}
                     src={renovationsSvg}
-                    alt="Renovations"
+                    alt="Vanities"
                     width="57"
                     height="57"
                   />
                 </div>
-                <div className={classes.serviceTitle}>Renovations</div>
+                <div className={classes.serviceTitle}>Vanities</div>
                 <div className={classes.serviceDisc}>Gallery</div>
               </div>
             </a>
-            {/* Stone Splashbacks. 2nd Column, 3rd Row */}
+            {/* Shop Fronts. 2nd Column, 3rd Row */}
             <a href="#!" className={classes.servicesFourthLinkBox}>
               {/* <div className={classes.serviceImage}>
-                <img src={stoneSplashbacks} alt="Stone Splashbacks" />
+                <img src={stoneShopFronts} alt="Stone Splashbacks" />
               </div> */}
               <div className="service-image">
                 <a href="#servImg4" className="lightbox">
-                  <img src={stoneSplashbacks} alt="Stone Splashbacks" />
+                  <img src={stoneShopFronts} alt="Shop Fronts" />
                 </a>
               </div>
               <div className={classes.serviceText}>
@@ -237,12 +316,36 @@ const Services = (props: ObjectLiteral) => {
                   <img
                     className={classes.firstIcon}
                     src={refrigeratorSvg}
-                    alt="Stone Splashbacks"
+                    alt="Shop Fronts"
                     width="57"
                     height="57"
                   />
                 </div>
-                <div className={classes.serviceTitle}>Stone Splashbacks</div>
+                <div className={classes.serviceTitle}>Shop Fronts</div>
+                <div className={classes.serviceDisc}>Gallery</div>
+              </div>
+            </a>
+            {/* Walls. Second Column, 4th Row */}
+            <a href="#!" className={classes.servicesNinthLinkBox}>
+              {/* <div className={classes.serviceImage}>
+                <img src={stoneWall} alt="Walls" />
+                </div> */}
+              <div className="service-image">
+                <a href="#servImg9" className="lightbox">
+                  <img src={stoneWall} alt="Walls" />
+                </a>
+              </div>
+              <div className={classes.serviceText}>
+                <div className={classes.serviceIcon}>
+                  <img
+                    className={classes.firstIcon}
+                    src={kitchenSvg}
+                    alt="Walls"
+                    width="57"
+                    height="57"
+                  />
+                </div>
+                <div className={classes.serviceTitle}>Walls</div>
                 <div className={classes.serviceDisc}>Gallery</div>
               </div>
             </a>
@@ -272,27 +375,27 @@ const Services = (props: ObjectLiteral) => {
                 <div className={classes.serviceDisc}>Gallery</div>
               </div>
             </a>
-            {/* Stone Tables. 3rd Column, 2nd Row */}
-            <a href="#!" className={classes.servicesSixthLinkBox}>
+            {/* Floors. Third Column, 2nd Row */}
+            <a href="#!" className={classes.servicesEightLinkBox}>
               {/* <div className={classes.serviceImage}>
-                <img src={stoneTable} alt="Stone Tables" />
-              </div> */}
+                <img src={stoneFloor} alt="Floors" />
+                </div> */}
               <div className="service-image">
-                <a href="#servImg6" className="lightbox">
-                  <img src={stoneTable} alt="Stone Tables" />
+                <a href="#servImg8" className="lightbox">
+                  <img src={stoneFloor} alt="Floors" />
                 </a>
               </div>
               <div className={classes.serviceText}>
                 <div className={classes.serviceIcon}>
                   <img
                     className={classes.firstIcon}
-                    src={stoneTableSvg}
-                    alt="Stone Tables"
+                    src={kitchenSvg}
+                    alt="Floors"
                     width="57"
                     height="57"
                   />
                 </div>
-                <div className={classes.serviceTitle}>Stone Tables</div>
+                <div className={classes.serviceTitle}>Floors</div>
                 <div className={classes.serviceDisc}>Gallery</div>
               </div>
             </a>

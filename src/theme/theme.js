@@ -80,7 +80,8 @@ const createTheme = createMuiTheme({
       '& > p': {
         fontWeight: '400',
         fontSize: '16px',
-        lineHeight: '26p'
+        lineHeight: '26p',
+        cursor: 'default !important'
       }
     },
     ourServices: {
@@ -88,6 +89,7 @@ const createTheme = createMuiTheme({
       fontSize: '60px',
       lineHeight: '100%',
       position: 'relative',
+      cursor: 'default !important',
       '& > span': {
         fontWeight: '700'
       }
