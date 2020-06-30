@@ -54,7 +54,7 @@ const useStyles = makeStyles((theme) => ({
       color: '#9c9c9c'
     },
     '& > span > p': {
-      fontSize: '18px',
+      fontSize: '20px',
       lineHeight: '100%',
       fontWeight: 400,
       fontFamily: "'Lato', sans-serif"
@@ -63,7 +63,7 @@ const useStyles = makeStyles((theme) => ({
   navSocial: {
     margin: theme.spacing(0.2),
     marginTop: '4px',
-    fontSize: '1.8rem',
+    fontSize: '2rem',
     color: theme.palette.primary.main
   },
   socialLink: {
