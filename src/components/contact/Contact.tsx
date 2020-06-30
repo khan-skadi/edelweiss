@@ -1,10 +1,7 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
 import { Map, GoogleApiWrapper, Marker } from 'google-maps-react';
 
-import EmailForm from './EmailForm';
-
-import { ObjectLiteral } from '../../utils/interface/interface';
+import { makeStyles } from '@material-ui/core/styles';
 import {
   Typography
   // TextField,
@@ -15,7 +12,7 @@ import {
   // IconButton
 } from '@material-ui/core';
 
-import benchtop from '../../assets/images/original/modified/1wide.jpg';
+import { ObjectLiteral } from '../../utils/interface/interface';
 
 import Icon from '@material-ui/core/Icon';
 import AddressIcon from '@material-ui/icons/Room';
@@ -23,6 +20,10 @@ import MailIcon from '@material-ui/icons/Mail';
 import PhoneIcon from '@material-ui/icons/Phone';
 import FaxIcon from '@material-ui/icons/Print';
 // import AttachFileIcon from '@material-ui/icons/AttachFile';
+
+import EmailForm from './EmailForm';
+
+import benchtop from '../../assets/images/original/modified/1wide.jpg';
 
 const useStyles = makeStyles((theme) => ({
   sectionContact: {
