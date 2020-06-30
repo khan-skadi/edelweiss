@@ -526,8 +526,8 @@ const Footer = (props: ObjectLiteral) => {
         <div className={classes.footerBottom}>
           <div className={classes.container}>
             <div className={classes.hours}>
-              <Icon component={ClockIcon} /> Hours of
-              <br /> Operation
+              <Icon component={ClockIcon} /> Work
+              <br /> Hours
             </div>
             <ul className={classes.days}>
               <li>
