@@ -184,7 +184,7 @@ class EmailForm extends Component<EmailProps, EmailState> {
       email: 'kartalov.pt@gmail.com',
       phone: '',
       suburb: '',
-      open: true
+      open: false
     };
 
     this.handleChange = this.handleChange.bind(this);

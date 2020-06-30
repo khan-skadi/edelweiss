@@ -21,6 +21,8 @@ import refrigeratorSvg from '../../assets/images/svg/refrigerator.svg';
 import fireplaceSvg from '../../assets/images/svg/fireplace.svg';
 import stoneTableSvg from '../../assets/images/svg/stoneTable.svg';
 
+import './Services.css';
+
 const styles = (theme: ObjectLiteral) => ({
   ...theme.spreadThis,
   serviceIcon: {
@@ -100,6 +102,11 @@ const Services = (props: ObjectLiteral) => {
 
   return (
     <section className={classes.sectionServices}>
+      <div className="lightbox-target" id="dog">
+        <img src={benchtop} alt="123" />
+        {/* eslint-disable-next-line */}
+        <a href="#!" className="lightbox-close"></a>
+      </div>
       <div className={classes.container}>
         <ul id="services" className={classes.servicesUl}>
           <li>
@@ -112,10 +119,14 @@ const Services = (props: ObjectLiteral) => {
                 For more information and contact details visit our Contact Page
               </p>
             </div>
+
             <a href="#!" className={classes.servicesFirstLinkBox}>
-              <div className={classes.serviceImage}>
+              {/* <div className={classes.serviceImage}>
                 <img src={benchtop} alt="Kitchen Benchtop" />
-              </div>
+              </div> */}
+              <a href="#dog" className="lightbox">
+                <img src={benchtop} alt="123" />
+              </a>
               <div className={classes.serviceText}>
                 <div className={classes.serviceIcon}>
                   <img

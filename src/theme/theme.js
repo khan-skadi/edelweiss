@@ -127,7 +127,7 @@ const createTheme = createMuiTheme({
         background:
           'linear-gradient(to bottom, rgba(0, 0, 0, 1) 12%, rgba(0, 0, 0, 0) 100%)'
       },
-      '& > img': {
+      '& img': {
         verticalAlign: 'bottom',
         maxWidth: '100%'
       }
