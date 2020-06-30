@@ -67,7 +67,10 @@ const createTheme = createMuiTheme({
       '& > li': {
         padding: '0 10px',
         width: '33.3%',
-        float: 'left'
+        float: 'left',
+        '& *': {
+          cursor: 'zoom-in'
+        }
       }
     },
     servicesFirstDiv: {
@@ -93,8 +96,7 @@ const createTheme = createMuiTheme({
       display: 'block',
       position: 'relative',
       textDecoration: 'none',
-      webkitTransition: 'all .5s ease-in-out',
-      cursor: 'pointer',
+      transition: 'all .5s ease-in-out',
       '& > img': {
         border: 'none'
       }
@@ -143,6 +145,7 @@ const createTheme = createMuiTheme({
     serviceTitle: {
       transition: 'box-shadow .3s',
       color: '#fff',
+      cursor: 'default !important',
       textTransform: 'capitalize',
       fontWeight: 700,
       fontSize: '24px',
