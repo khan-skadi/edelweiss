@@ -1,114 +1,114 @@
-import React from 'react';
-import { Link } from 'react-scroll';
-import { makeStyles } from '@material-ui/core/styles';
-import { Typography, Button, Icon } from '@material-ui/core';
+import React from "react";
+import { Link } from "react-scroll";
+import { makeStyles } from "@material-ui/core/styles";
+import { Typography, Button, Icon } from "@material-ui/core";
 
-import stoneKitchen from '../../assets/images/stoneKitchen.jpg';
+import stoneKitchen from "../../assets/images/stoneKitchen.jpg";
 
-import DescriptionIcon from '@material-ui/icons/DescriptionOutlined';
+import DescriptionIcon from "@material-ui/icons/DescriptionOutlined";
 
 const useStyles = makeStyles((theme) => ({
   heroContainer: {
-    height: '90vh',
+    height: "90vh",
     backgroundImage: `url(${stoneKitchen})`,
-    backgroundPosition: 'center center',
-    backgroundRepeat: 'no-repeat',
-    backgroundSize: 'cover',
-    backgroundAttachment: 'fixed',
-    filter: 'brightness(25%)'
+    backgroundPosition: "center center",
+    backgroundRepeat: "no-repeat",
+    backgroundSize: "cover",
+    backgroundAttachment: "fixed",
+    filter: "brightness(25%)"
   },
   heroCaption: {
-    position: 'absolute',
+    position: "absolute",
     top: 0,
     left: 0,
     bottom: 0,
     right: 0,
-    verticalAlign: 'baseline'
+    verticalAlign: "baseline"
   },
   container: {
-    height: '100%',
-    maxWidth: '1850px',
-    paddingRight: '15px',
-    paddingLeft: '15px',
-    marginRight: 'auto',
-    marginLeft: 'auto',
-    position: 'relative',
-    '&:before': {
-      display: 'table',
+    height: "100%",
+    maxWidth: "1850px",
+    paddingRight: "15px",
+    paddingLeft: "15px",
+    marginRight: "auto",
+    marginLeft: "auto",
+    position: "relative",
+    "&:before": {
+      display: "table",
       content: "''",
-      boxSizing: 'border-box'
+      boxSizing: "border-box"
     },
-    '&:after': {
-      clear: 'both',
-      display: 'table',
+    "&:after": {
+      clear: "both",
+      display: "table",
       content: "''"
     }
   },
   heroText: {
-    display: 'table',
-    width: '100%',
-    height: '100%',
+    display: "table",
+    width: "100%",
+    height: "100%",
     fontFamily: "'Lato', sans-serif"
   },
   heroTextCell: {
-    paddingLeft: '30px',
-    display: 'table-cell',
-    verticalAlign: 'middle'
+    paddingLeft: "30px",
+    display: "table-cell",
+    verticalAlign: "middle"
   },
   heroHead: {
-    fontSize: '60px',
-    lineHeight: '60px',
-    color: '#fff',
-    paddingBottom: '5px',
-    '& > span': {
-      fontWeight: 'bolder'
+    fontSize: "60px",
+    lineHeight: "60px",
+    color: "#fff",
+    paddingBottom: "5px",
+    "& > span": {
+      fontWeight: "bolder"
     },
-    '& > span:nth-of-type(2)': {
+    "& > span:nth-of-type(2)": {
       fontWeight: 400,
-      fontSize: '50px'
+      fontSize: "50px"
     }
   },
   heroTextCell_p: {
-    fontSize: '25px',
-    lineHeight: '36px',
+    fontSize: "25px",
+    lineHeight: "36px",
     fontWeight: 400,
-    color: '#fff'
+    color: "#fff"
   },
   p_grTxt: {
-    fontSize: '22px',
-    lineHeight: '36px',
+    fontSize: "22px",
+    lineHeight: "36px",
     color: theme.palette.primary.main,
-    fontWeight: 'bold'
+    fontWeight: "bold"
   },
   strokedText: {
-    fontSize: '60px',
-    lineHeight: '60px',
-    textTransform: 'capitalize',
+    fontSize: "60px",
+    lineHeight: "60px",
+    textTransform: "capitalize",
     color: theme.palette.primary.main
   },
   callToAction: {
-    marginTop: '20px',
-    backgroundColor: '#525252',
-    color: '#fff',
+    marginTop: "20px",
+    backgroundColor: "#525252",
+    color: "#fff",
     borderRadius: 0,
     border: 0,
-    height: '48px',
-    lineHeight: '100%',
+    height: "48px",
+    lineHeight: "100%",
     margin: 0,
-    verticalAlign: 'baseline',
-    width: '300px',
-    fontSize: '20px',
+    verticalAlign: "baseline",
+    width: "300px",
+    fontSize: "20px",
     fontWeight: 400,
     fontFamily: "'Lato', sans-serif",
-    textTransform: 'none',
-    '& > span > svg': {
-      marginLeft: '-15px',
-      marginRight: '15px'
+    textTransform: "none",
+    "& > span > svg": {
+      marginLeft: "-15px",
+      marginRight: "15px"
     }
   },
   actionLink: {
-    textDecoration: 'none',
-    cursor: 'pointer'
+    textDecoration: "none",
+    cursor: "pointer"
   }
 }));
 
