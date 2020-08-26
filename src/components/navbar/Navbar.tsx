@@ -100,6 +100,14 @@ const useStyles = makeStyles((theme: Theme) =>
         width: "20ch"
       }
     },
+    navList: {
+      margin: 0,
+      padding: 0,
+      listStyle: "none",
+      "& li": {
+        display: "inline"
+      }
+    },
     navLinks: {
       margin: theme.spacing(1),
       textTransform: "capitalize",
@@ -119,15 +127,14 @@ const useStyles = makeStyles((theme: Theme) =>
         fontFamily: "'Lato', sans-serif"
       }
     },
-    navSocial: {
+    navSocialIcon: {
       margin: theme.spacing(0.2),
-      marginTop: "4px",
-      // fontSize: "2rem",
+      fontSize: "2rem",
       color: theme.palette.primary.main
     },
     socialLink: {
       margin: theme.spacing(0.2),
-      marginTop: "4px",
+      marginTop: "10px",
       padding: 0,
       border: 0
     },
@@ -281,6 +288,7 @@ const Navbar = () => {
                   <Typography variant="body1">Home</Typography>
                 </Button>
               </Link>
+
               <Link to="/">
                 <Button
                   className={classes.navLinks}
@@ -291,6 +299,7 @@ const Navbar = () => {
                   <Typography variant="body1">About Us</Typography>
                 </Button>
               </Link>
+
               <Link
                 activeClass="active"
                 to="services"
@@ -307,6 +316,7 @@ const Navbar = () => {
                   <Typography variant="body1">Services</Typography>
                 </Button>
               </Link>
+
               <Link
                 activeClass="active"
                 to="projects"
@@ -323,6 +333,7 @@ const Navbar = () => {
                   <Typography variant="body1">Projects</Typography>
                 </Button>
               </Link>
+
               <Link to="/">
                 <Button
                   className={classes.navLinks}
@@ -333,6 +344,7 @@ const Navbar = () => {
                   <Typography variant="body1">Testimonials</Typography>
                 </Button>
               </Link>
+
               <Link
                 activeClass="active"
                 to="contact"
@@ -349,13 +361,17 @@ const Navbar = () => {
                   <Typography variant="body1">Contact</Typography>
                 </Button>
               </Link>
+
               <a
                 className={classes.socialLink}
                 href="https://www.instagram.com/edelweissstone/"
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <Icon className={classes.navSocial} component={InstagramIcon} />
+                <Icon
+                  className={classes.navSocialIcon}
+                  component={InstagramIcon}
+                />
               </a>
               <a
                 className={classes.socialLink}
@@ -363,7 +379,10 @@ const Navbar = () => {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <Icon className={classes.navSocial} component={FacebookIcon} />
+                <Icon
+                  className={classes.navSocialIcon}
+                  component={FacebookIcon}
+                />
               </a>
             </div>
           </Toolbar>
