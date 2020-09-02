@@ -148,10 +148,10 @@ function Caro(props: ObjectLiteral) {
 }
 
 // Instagram API
-const appId = "637025016892275";
-const redirectUri = "https://edelweissstone.com.au"; // /auth
+// const appId = "637025016892275";
+// const redirectUri = "https://edelweissstone.com.au"; // /auth
 
-const fetchIg = `https://api.instagram.com/oauth/authorize?client_id=${appId}&redirect_uri=${redirectUri}&scope=user_profile,user_media&response_type=code`;
+// const fetchIg = `https://api.instagram.com/oauth/authorize?client_id=${appId}&redirect_uri=${redirectUri}&scope=user_profile,user_media&response_type=code`;
 
 // Projects Component
 const Projects = (props: ObjectLiteral) => {
@@ -198,7 +198,7 @@ const Projects = (props: ObjectLiteral) => {
           <div className={classes.caroHolder}>
             <Carousel className={classes.projectsCarousel}>
               {items.map((item) => (
-                <Caro item={item} />
+                <Caro item={item} key={item.image.toString()} />
               ))}
             </Carousel>
           </div>

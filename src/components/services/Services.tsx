@@ -1,119 +1,119 @@
-import React from 'react';
-import withStyles from '@material-ui/core/styles/withStyles';
+import React from "react";
+import withStyles from "@material-ui/core/styles/withStyles";
 
-import { ObjectLiteral } from '../../utils/interface/interface';
+import { ObjectLiteral } from "../../utils/interface/interface";
 
 // Images
 // import benchtop3 from '../../assets/images/kitchen/benchtop3.jpg';
-import benchtop from '../../assets/images/kitchen/benchtop2.jpg';
-import bathroom from '../../assets/images/bathroom/bathroom.jpg';
-import renovations from '../../assets/images/renovations/renovations.jpg';
-import fireplace from '../../assets/images/fireplace/fireplace.jpg';
-import stoneStaircases from '../../assets/images/staircases/stoneStaircases.png';
-import monument from '../../assets/images/monuments/stoneMonument.png';
-import stoneFloor from '../../assets/images/floors/stoneFloor.png';
-import stoneWall from '../../assets/images/walls/stoneWall.png';
-import stoneShopFronts from '../../assets/images/shopFronts/shopFronts.png';
+import benchtop from "../../assets/images/kitchen/benchtop2.jpg";
+import bathroom from "../../assets/images/bathroom/bathroom.jpg";
+import renovations from "../../assets/images/renovations/renovations.jpg";
+import fireplace from "../../assets/images/fireplace/fireplace.jpg";
+import stoneStaircases from "../../assets/images/staircases/stoneStaircases.png";
+import monument from "../../assets/images/monuments/stoneMonument.png";
+import stoneFloor from "../../assets/images/floors/stoneFloor.png";
+import stoneWall from "../../assets/images/walls/stoneWall.png";
+import stoneShopFronts from "../../assets/images/shopFronts/shopFronts.png";
 
 // SVG Icons
-import kitchenSvg from '../../assets/images/svg/kitchen.svg';
-import rightArrowSvg from '../../assets/images/svg/send.svg';
-import laundrySvg from '../../assets/images/svg/laundry.svg';
-import renovationsSvg from '../../assets/images/svg/renovations.svg';
-import refrigeratorSvg from '../../assets/images/svg/refrigerator.svg';
-import fireplaceSvg from '../../assets/images/svg/fireplace.svg';
-import stoneTableSvg from '../../assets/images/svg/stoneTable.svg';
+import kitchenSvg from "../../assets/images/svg/kitchen.svg";
+import rightArrowSvg from "../../assets/images/svg/send.svg";
+import laundrySvg from "../../assets/images/svg/laundry.svg";
+import renovationsSvg from "../../assets/images/svg/renovations.svg";
+import refrigeratorSvg from "../../assets/images/svg/refrigerator.svg";
+import fireplaceSvg from "../../assets/images/svg/fireplace.svg";
+import stoneTableSvg from "../../assets/images/svg/stoneTable.svg";
 
-import './Services.css';
+import "./Services.css";
 
 const styles = (theme: ObjectLiteral) => ({
   ...theme.spreadThis,
   serviceIcon: {
-    display: 'inline-block',
-    verticalAlign: 'middle',
-    width: '68px',
-    position: 'relative',
-    overflow: 'hidden',
-    height: '66px'
+    display: "inline-block",
+    verticalAlign: "middle",
+    width: "68px",
+    position: "relative",
+    overflow: "hidden",
+    height: "66px"
   },
   firstIcon: {
-    webkitTransition: 'all .5s ease-in-out',
-    position: 'absolute',
+    webkitTransition: "all .5s ease-in-out",
+    position: "absolute",
     left: 0,
     top: 0,
     bottom: 0,
-    cursor: 'default !important',
-    margin: 'auto',
+    cursor: "default !important",
+    margin: "auto",
     right: 0,
     filter:
-      'invert(99%) sepia(4%) saturate(1101%) hue-rotate(201deg) brightness(119%) contrast(100%)',
-    '&:hover': {
+      "invert(99%) sepia(4%) saturate(1101%) hue-rotate(201deg) brightness(119%) contrast(100%)",
+    "&:hover": {
       filter:
-        'invert(59%) sepia(13%) saturate(2144%) hue-rotate(125deg) brightness(90%) contrast(88%)'
+        "invert(59%) sepia(13%) saturate(2144%) hue-rotate(125deg) brightness(90%) contrast(88%)"
     }
   },
   serviceDisc: {
-    color: '#fff',
+    color: "#fff",
     fontWeight: 400,
-    fontSize: '16px',
-    lineHeight: '28px',
-    position: 'relative',
-    paddingLeft: '50px',
-    margin: '20px 0 0 10px',
-    cursor: 'default !important',
-    transition: 'box-shadow .3s',
-    '&:before': {
-      position: 'absolute',
+    fontSize: "16px",
+    lineHeight: "28px",
+    position: "relative",
+    paddingLeft: "50px",
+    margin: "20px 0 0 10px",
+    cursor: "default !important",
+    transition: "box-shadow .3s",
+    "&:before": {
+      position: "absolute",
       content: "''",
       background: `url(${rightArrowSvg}) no-repeat`,
       filter:
-        'invert(99%) sepia(4%) saturate(1101%) hue-rotate(201deg) brightness(119%) contrast(100%)',
-      width: '47px',
-      height: '27px',
+        "invert(99%) sepia(4%) saturate(1101%) hue-rotate(201deg) brightness(119%) contrast(100%)",
+      width: "47px",
+      height: "27px",
       left: 0
     },
-    '&:hover': {
-      color: '#26a69a',
+    "&:hover": {
+      color: "#26a69a",
       fontWeight: 600
     }
   },
   servicesSeventhLinkBox: {
-    display: 'block',
-    position: 'relative',
-    marginTop: '30px'
+    display: "block",
+    position: "relative",
+    marginTop: "30px"
   },
   servicesEightLinkBox: {
-    display: 'block',
-    position: 'relative',
-    marginTop: '30px'
+    display: "block",
+    position: "relative",
+    marginTop: "30px"
   },
   servicesSecondLinkBox: {
-    display: 'block',
-    position: 'relative'
+    display: "block",
+    position: "relative"
   },
   servicesThirdLinkBox: {
-    display: 'block',
-    position: 'relative',
-    marginTop: '30px'
+    display: "block",
+    position: "relative",
+    marginTop: "30px"
   },
   servicesFourthLinkBox: {
-    display: 'block',
-    position: 'relative',
-    marginTop: '30px'
+    display: "block",
+    position: "relative",
+    marginTop: "30px"
   },
   servicesFifthLinkBox: {
-    display: 'block',
-    position: 'relative'
+    display: "block",
+    position: "relative"
   },
   servicesSixthLinkBox: {
-    display: 'block',
-    position: 'relative',
-    marginTop: '30px'
+    display: "block",
+    position: "relative",
+    marginTop: "30px"
   },
   servicesNinthLinkBox: {
-    display: 'block',
-    position: 'relative',
-    marginTop: '30px'
+    display: "block",
+    position: "relative",
+    marginTop: "30px"
   }
 });
 
@@ -180,7 +180,7 @@ const Services = (props: ObjectLiteral) => {
               </p>
             </div>
 
-            <a href="#!" className={classes.servicesFirstLinkBox}>
+            <a className={classes.servicesFirstLinkBox}>
               {/* <div className={classes.serviceImage}>
                 <img src={benchtop} alt="Kitchen Benchtop" />
                 </div> */}

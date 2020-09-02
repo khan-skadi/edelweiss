@@ -11,7 +11,7 @@ const LandingPage = () => {
     <section className="section_landing-page">
       <Header />
       {/* <Gallery /> */}
-      <Services />
+      {/* <Services /> */}
       <Projects />
       <Contact />
     </section>

@@ -1,34 +1,23 @@
-import React from "react";
-import {
-  fade,
-  makeStyles,
-  Theme,
-  createStyles
-} from "@material-ui/core/styles";
+import React, { useState } from "react";
+import { makeStyles, Theme, createStyles } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import IconButton from "@material-ui/core/IconButton";
 import Typography from "@material-ui/core/Typography";
-import InputBase from "@material-ui/core/InputBase";
-import Badge from "@material-ui/core/Badge";
 import MenuItem from "@material-ui/core/MenuItem";
 import Menu from "@material-ui/core/Menu";
-import MenuIcon from "@material-ui/icons/Menu";
-import SearchIcon from "@material-ui/icons/Search";
-import AccountCircle from "@material-ui/icons/AccountCircle";
-import MailIcon from "@material-ui/icons/Mail";
-import NotificationsIcon from "@material-ui/icons/Notifications";
-import MoreIcon from "@material-ui/icons/MoreVert";
 import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
+
+// Icons
 import Icon from "@material-ui/core/Icon";
+import MenuIcon from "@material-ui/icons/Menu";
 import InstagramIcon from "@material-ui/icons/Instagram";
 import FacebookIcon from "@material-ui/icons/Facebook";
 
-import { Link } from "react-scroll";
-
 import logo from "../../assets/logo/logo400.png";
 
+import { Link } from "react-scroll";
 import ScrollToColor from "./ScrollToColor";
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -48,64 +37,23 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     logo: {
       maxWidth: "83px",
-      maxHeight: "83px"
+      maxHeight: "83px",
+      [theme.breakpoints.up("sm")]: {
+        minWidth: "84px",
+        minHeight: "84px"
+      }
     },
     title: {
-      display: "none",
-      [theme.breakpoints.up("sm")]: {
-        display: "block",
-        marginLeft: "5px",
-        // fontSize: "2rem !important",
-        fontFamily: "'Lato', sans-serif",
-        textTransform: "uppercase",
-        "& span": {
-          fontWeight: "bold"
-        }
-      }
-    },
-    search: {
-      position: "relative",
-      borderRadius: theme.shape.borderRadius,
-      backgroundColor: fade(theme.palette.common.white, 0.15),
-      "&:hover": {
-        backgroundColor: fade(theme.palette.common.white, 0.25)
+      display: "block",
+      marginLeft: "5px !important",
+      fontSize: "1.2rem",
+      fontFamily: "'Lato', sans-serif",
+      textTransform: "uppercase",
+      "& span": {
+        fontWeight: "bold"
       },
-      marginRight: theme.spacing(2),
-      marginLeft: 0,
-      width: "100%",
       [theme.breakpoints.up("sm")]: {
-        marginLeft: theme.spacing(3),
-        width: "auto"
-      }
-    },
-    searchIcon: {
-      padding: theme.spacing(0, 2),
-      height: "100%",
-      position: "absolute",
-      pointerEvents: "none",
-      display: "flex",
-      alignItems: "center",
-      justifyContent: "center"
-    },
-    inputRoot: {
-      color: "inherit"
-    },
-    inputInput: {
-      padding: theme.spacing(1, 1, 1, 0),
-      // vertical padding + font size from searchIcon
-      paddingLeft: `calc(1em + ${theme.spacing(4)}px)`,
-      transition: theme.transitions.create("width"),
-      width: "100%",
-      [theme.breakpoints.up("md")]: {
-        width: "20ch"
-      }
-    },
-    navList: {
-      margin: 0,
-      padding: 0,
-      listStyle: "none",
-      "& li": {
-        display: "inline"
+        fontSize: "2rem !important"
       }
     },
     navLinks: {
@@ -147,7 +95,6 @@ const useStyles = makeStyles((theme: Theme) =>
       "& > p": {
         flexGrow: 1,
         marginLeft: "5px",
-        // fontSize: "2.3rem",
         fontFamily: "'Lato', sans-serif",
         textTransform: "uppercase",
         color: "#fff"
@@ -164,17 +111,66 @@ const useStyles = makeStyles((theme: Theme) =>
       [theme.breakpoints.up("md")]: {
         display: "none"
       }
+    },
+    listRoot: {
+      width: "100%",
+      maxWidth: 360,
+      backgroundColor: theme.palette.background.paper
+    },
+    nested: {
+      paddingLeft: theme.spacing(4)
+    },
+    mobileMenu: {
+      "& > .MuiPaper-root": {
+        position: "relative",
+        width: "100%",
+        padding: "-20px",
+        maxWidth: "100%",
+        minWidth: 0,
+        top: "0 !important",
+        left: "0 !important",
+        right: "0 !important",
+        bottom: "0 !important",
+        borderRadius: 0,
+        backgroundColor: "#000",
+        color: "#fff",
+        boxShadow: `0px 21px 13px -8px ${theme.palette.primary.main}`,
+        // transition: "all 0.5s ease-in-out !important",
+        transition: "top 0.3s cubic-bezier(0.17, 0.04, 0.03, 0.94)",
+        transformOrigin: "top !important",
+        overflow: "hidden"
+      },
+      "& > .MuiPaper-root > ul > li": {
+        justifyContent: "center !important",
+        "& > p": {
+          fontSize: "1rem",
+          fontWeight: 500
+        },
+        "&:last-child": {
+          justifyContent: "center",
+          fontWeight: "bold",
+          color: "#fff",
+          borderTop: "1px solid #fff"
+        }
+      }
+    },
+    menuSocialLink: {
+      color: "#fff"
+    },
+    menuNavSocialIcon: {
+      margin: theme.spacing(0.2),
+      fontSize: "2rem"
     }
   })
 );
 
 const Navbar = () => {
   const classes = useStyles();
-  const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
+  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const [
     mobileMoreAnchorEl,
     setMobileMoreAnchorEl
-  ] = React.useState<null | HTMLElement>(null);
+  ] = useState<null | HTMLElement>(null);
 
   const isMenuOpen = Boolean(anchorEl);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
@@ -200,10 +196,10 @@ const Navbar = () => {
   const renderMenu = (
     <Menu
       anchorEl={anchorEl}
-      anchorOrigin={{ vertical: "top", horizontal: "right" }}
+      anchorOrigin={{ vertical: "top", horizontal: "left" }}
       id={menuId}
       keepMounted
-      transformOrigin={{ vertical: "top", horizontal: "right" }}
+      transformOrigin={{ vertical: "top", horizontal: "left" }}
       open={isMenuOpen}
       onClose={handleMenuClose}
     >
@@ -215,40 +211,129 @@ const Navbar = () => {
   const mobileMenuId = "primary-search-account-menu-mobile";
   const renderMobileMenu = (
     <Menu
+      className={classes.mobileMenu}
       anchorEl={mobileMoreAnchorEl}
-      anchorOrigin={{ vertical: "top", horizontal: "right" }}
+      anchorOrigin={{ vertical: "top", horizontal: "center" }}
       id={mobileMenuId}
       keepMounted
-      transformOrigin={{ vertical: "top", horizontal: "right" }}
+      transformOrigin={{ vertical: "top", horizontal: "center" }}
       open={isMobileMenuOpen}
       onClose={handleMobileMenuClose}
     >
       <MenuItem>
-        <IconButton aria-label="show 4 new mails" color="inherit">
-          <Badge badgeContent={4} color="secondary">
-            <MailIcon />
-          </Badge>
+        <a href="/">
+          <Avatar
+            className={classes.logo}
+            src={logo}
+            alt="Edelweiss Stone logo"
+          />
+        </a>
+        <a href="/" className={classes.logoLink}>
+          <Typography className={classes.title}>
+            <span>Edelweiss</span> Stone
+          </Typography>
+        </a>
+        <IconButton color="inherit" onClick={handleMobileMenuClose}>
+          <MenuIcon />
         </IconButton>
-        <p>Messages</p>
       </MenuItem>
       <MenuItem>
-        <IconButton aria-label="show 11 new notifications" color="inherit">
-          <Badge badgeContent={11} color="secondary">
-            <NotificationsIcon />
-          </Badge>
-        </IconButton>
-        <p>Notifications</p>
-      </MenuItem>
-      <MenuItem onClick={handleProfileMenuOpen}>
-        <IconButton
-          aria-label="account of current user"
-          aria-controls="primary-search-account-menu"
-          aria-haspopup="true"
-          color="inherit"
+        <Link
+          activeClass="active"
+          to="home"
+          spy={true}
+          smooth={true}
+          offset={-140}
+          duration={500}
+          onClick={handleMobileMenuClose}
         >
-          <AccountCircle />
-        </IconButton>
-        <p>Profile</p>
+          <p>Home</p>
+        </Link>
+      </MenuItem>
+      <MenuItem>
+        <Link
+          activeClass="active"
+          to="aboutUs"
+          spy={true}
+          smooth={true}
+          offset={-140}
+          duration={500}
+          onClick={handleMobileMenuClose}
+        >
+          <p>About Us</p>
+        </Link>
+      </MenuItem>
+      <MenuItem>
+        <Link
+          activeClass="active"
+          to="services"
+          spy={true}
+          smooth={true}
+          offset={-140}
+          duration={500}
+          onClick={handleMobileMenuClose}
+        >
+          <p>Services</p>
+        </Link>
+      </MenuItem>
+      <MenuItem>
+        <Link
+          activeClass="active"
+          to="projects"
+          spy={true}
+          smooth={true}
+          offset={-140}
+          duration={500}
+          onClick={handleMobileMenuClose}
+        >
+          <p>Projects</p>
+        </Link>
+      </MenuItem>
+      <MenuItem>
+        <Link
+          activeClass="active"
+          to="testimonials"
+          spy={true}
+          smooth={true}
+          offset={-140}
+          duration={500}
+          onClick={handleMobileMenuClose}
+        >
+          <p>Testimonials</p>
+        </Link>
+      </MenuItem>
+      <MenuItem>
+        <Link
+          activeClass="active"
+          to="contact"
+          spy={true}
+          smooth={true}
+          offset={-140}
+          duration={500}
+          onClick={handleMobileMenuClose}
+        >
+          <p>Contact</p>
+        </Link>
+      </MenuItem>
+      <MenuItem>
+        <a
+          className={classes.menuSocialLink}
+          href="https://www.instagram.com/edelweissstone/"
+        >
+          <Icon
+            className={classes.menuNavSocialIcon}
+            component={InstagramIcon}
+          />
+        </a>
+        <a
+          className={classes.menuSocialLink}
+          href="https://www.facebook.com/Edelweiss-stone-495239060955229/"
+        >
+          <Icon
+            className={classes.menuNavSocialIcon}
+            component={FacebookIcon}
+          />
+        </a>
       </MenuItem>
     </Menu>
   );
@@ -384,6 +469,17 @@ const Navbar = () => {
                   component={FacebookIcon}
                 />
               </a>
+            </div>
+            <div className={classes.sectionMobile}>
+              <IconButton
+                aria-label="show more"
+                aria-controls={mobileMenuId}
+                aria-haspopup="true"
+                onClick={handleMobileMenuOpen}
+                color="inherit"
+              >
+                <MenuIcon />
+              </IconButton>
             </div>
           </Toolbar>
         </AppBar>
