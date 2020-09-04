@@ -4,7 +4,6 @@ import useStyles from "./SectionDesktop.styles";
 import { ObjectLiteral } from "../../utils/interface/interface";
 
 // Images
-// import benchtop3 from '../../assets/images/kitchen/benchtop3.jpg';
 import benchtop from "../../assets/images/kitchen/benchtop2.jpg";
 import bathroom from "../../assets/images/bathroom/bathroom.jpg";
 import renovations from "../../assets/images/renovations/renovations.jpg";
@@ -108,9 +107,6 @@ const SectionDesktop = (props: ObjectLiteral) => {
             </div>
 
             <a className={servicesFirstLinkBox}>
-              {/* <div className={serviceImage}>
-                    <img src={benchtop} alt="Kitchen Benchtop" />
-                    </div> */}
               <div className="service-image">
                 <a href="#servImg1" className="lightbox">
                   <img src={benchtop} alt="Kitchen Benchtop" />
@@ -132,9 +128,6 @@ const SectionDesktop = (props: ObjectLiteral) => {
             </a>
             {/* Monuments. First Column, 2nd Row */}
             <a href="#!" className={servicesSeventhLinkBox}>
-              {/* <div className={serviceImage}>
-                    <img src={benchtop} alt="Monuments" />
-                    </div> */}
               <div className="service-image">
                 <a href="#servImg7" className="lightbox">
                   <img src={monument} alt="Monuments" />
@@ -156,9 +149,6 @@ const SectionDesktop = (props: ObjectLiteral) => {
             </a>
             {/* Staircases. 1st Column, 3rd Row */}
             <a href="#!" className={servicesSixthLinkBox}>
-              {/* <div className={serviceImage}>
-                    <img src={stoneTable} alt="Stone Tables" />
-                  </div> */}
               <div className="service-image">
                 <a href="#servImg6" className="lightbox">
                   <img src={stoneStaircases} alt="Staircases" />
@@ -182,9 +172,6 @@ const SectionDesktop = (props: ObjectLiteral) => {
           <li>
             {/* Bathrooms. 2nd Column, 1st Row */}
             <a href="#!" className={servicesSecondLinkBox}>
-              {/* <div className={serviceImage}>
-                    <img src={bathroom} alt="Bathroom / Laundry vanities" />
-                  </div> */}
               <div className="service-image">
                 <a href="#servImg2" className="lightbox">
                   <img src={bathroom} alt="Bathrooms" />
@@ -206,9 +193,6 @@ const SectionDesktop = (props: ObjectLiteral) => {
             </a>
             {/* Vanities. 2nd Column, 2nd Row */}
             <a href="#!" className={servicesThirdLinkBox}>
-              {/* <div className={serviceImage}>
-                    <img src={renovations} alt="Renovations" />
-                  </div> */}
               <div className="service-image">
                 <a href="#servImg3" className="lightbox">
                   <img src={renovations} alt="Vanities" />
@@ -230,9 +214,6 @@ const SectionDesktop = (props: ObjectLiteral) => {
             </a>
             {/* Shop Fronts. 2nd Column, 3rd Row */}
             <a href="#!" className={servicesFourthLinkBox}>
-              {/* <div className={serviceImage}>
-                    <img src={stoneShopFronts} alt="Stone Splashbacks" />
-                  </div> */}
               <div className="service-image">
                 <a href="#servImg4" className="lightbox">
                   <img src={stoneShopFronts} alt="Shop Fronts" />
@@ -254,9 +235,6 @@ const SectionDesktop = (props: ObjectLiteral) => {
             </a>
             {/* Walls. Second Column, 4th Row */}
             <a href="#!" className={servicesNinthLinkBox}>
-              {/* <div className={serviceImage}>
-                    <img src={stoneWall} alt="Walls" />
-                    </div> */}
               <div className="service-image">
                 <a href="#servImg9" className="lightbox">
                   <img src={stoneWall} alt="Walls" />
@@ -280,9 +258,6 @@ const SectionDesktop = (props: ObjectLiteral) => {
           <li>
             {/* Fireplaces. 3rd Column, 1st Row */}
             <a href="#!" className={servicesFifthLinkBox}>
-              {/* <div className={serviceImage}>
-                    <img src={fireplace} alt="Fireplaces" />
-                  </div> */}
               <div className="service-image">
                 <a href="#servImg5" className="lightbox">
                   <img src={fireplace} alt="Fireplaces" />
@@ -304,9 +279,6 @@ const SectionDesktop = (props: ObjectLiteral) => {
             </a>
             {/* Floors. Third Column, 2nd Row */}
             <a href="#!" className={servicesEightLinkBox}>
-              {/* <div className={serviceImage}>
-                    <img src={stoneFloor} alt="Floors" />
-                    </div> */}
               <div className="service-image">
                 <a href="#servImg8" className="lightbox">
                   <img src={stoneFloor} alt="Floors" />
