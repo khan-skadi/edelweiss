@@ -3,7 +3,6 @@ import SectionDesktop from "./SectionDesktop";
 import SectionMobile from "./SectionMobile";
 
 import useStyles from "./Services.styles";
-import { ObjectLiteral } from "../../utils/interface/interface";
 
 import "./Services.css";
 

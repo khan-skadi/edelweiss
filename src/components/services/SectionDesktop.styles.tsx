@@ -2,6 +2,27 @@ import { makeStyles, Theme } from "@material-ui/core/styles";
 import rightArrowSvg from "../../assets/images/svg/send.svg";
 
 const useStyles = makeStyles((theme: Theme) => ({
+  sectionProjects: {
+    display: "block",
+    backgroundColor: "#f1f5f6",
+    padding: "70px 0",
+    position: "relative",
+    borderTop: "1px solid #eaeaea",
+    marginBottom: "10px",
+    "&:before": {
+      position: "absolute",
+      content: "''",
+      right: "50px",
+      top: 0,
+      width: "1px",
+      height: "100%",
+      background: "#cbcecf",
+      boxSizing: "border-box"
+    },
+    "&:after": {
+      boxSizing: "border-box"
+    }
+  },
   container: {
     height: "100%",
     maxWidth: "1850px",
