@@ -1,4 +1,5 @@
 import React from "react";
+import dotenv from "dotenv";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 // import { makeStyles } from '@material-ui/core/styles';
 
@@ -14,6 +15,8 @@ import RequestQuote from "../requestQuote/RequestQuote";
 //     backgroundColor: theme.palette.primary.main
 //   }
 // }));
+
+dotenv.config();
 
 const App = () => {
   // const classes = useStyles();

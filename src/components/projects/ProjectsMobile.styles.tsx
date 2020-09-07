@@ -23,7 +23,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     background: "#f1f5f6",
     borderTop: "1px solid #eaeaea",
     position: "relative",
-    marginBottom: "10px",
+    // marginBottom: "-365px", // yea you should probably fix this from the footer component
     padding: "40px 0",
     display: "flex"
   },
