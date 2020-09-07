@@ -34,7 +34,7 @@ const mapStyle = {
   borderBottom: "10px solid #158d43",
   position: "relative"
 };
-// apiKey: `${process.env.REACT_APP_GOOGLE_MAP_API}`
+
 export default GoogleApiWrapper({
-  apiKey: "AIzaSyC1WHIhrCxXc_L5hi6XlqKchZ05Ac7ISH0"
+  apiKey: `${process.env.REACT_APP_GOOGLE_MAP_API}`
 })(MobileMap);

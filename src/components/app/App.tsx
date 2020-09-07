@@ -3,7 +3,6 @@ import dotenv from "dotenv";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 // import { makeStyles } from '@material-ui/core/styles';
 
-// import OldNavbar from "../navbar/OldNavbar";
 import LandingPage from "../landingPage/LandingPage";
 import Footer from "../footer/Footer";
 import Navbar from "../navbar/Navbar";
@@ -24,7 +23,6 @@ const App = () => {
   return (
     <BrowserRouter>
       <Navbar />
-      {/* <OldNavbar /> */}
       <Switch>
         <Route exact path="/" component={LandingPage} />
         <Route path="/request-quote" component={RequestQuote} />
