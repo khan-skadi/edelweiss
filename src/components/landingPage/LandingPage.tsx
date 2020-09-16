@@ -1,4 +1,6 @@
 import React from "react";
+import useStyles from "./LandingPage.styles";
+import clsx from "clsx";
 
 import Header from "../header/Header";
 // import Gallery from "../gallery/Gallery";
@@ -7,13 +9,11 @@ import Projects from "../projects/Projects";
 import Contact from "../contact/Contact";
 import MobileMap from "../footer/MobileMap";
 
-const apiKey = process.env.REACT_APP_GOOGLE_MAP_API;
-console.log("apiKey: ", apiKey);
-console.log("Google key: ", process.env.REACT_APP_GOOGLE_MAP_API);
-
 const LandingPage = () => {
+  const { sectionLandingPage, sectionDesktop, sectionMobile } = useStyles();
+
   return (
-    <section className="section_landing-page">
+    <section className={sectionLandingPage}>
       <Header />
       {/* <Gallery /> */}
       <Services />

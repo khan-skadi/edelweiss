@@ -51,7 +51,6 @@ const useStyles = makeStyles((theme) => ({
     fontFamily: "'Lato', sans-serif"
   },
   heroTextCell: {
-    paddingLeft: "30px",
     display: "table-cell",
     verticalAlign: "middle"
   },
@@ -88,15 +87,16 @@ const useStyles = makeStyles((theme) => ({
   },
   callToAction: {
     marginTop: "20px",
+    margin: 0,
     backgroundColor: "#525252",
     color: "#fff",
     borderRadius: 0,
     border: 0,
     height: "48px",
     lineHeight: "100%",
-    margin: 0,
     verticalAlign: "baseline",
-    width: "300px",
+    width: "100%",
+    maxWidth: "300px",
     fontSize: "20px",
     fontWeight: 400,
     fontFamily: "'Lato', sans-serif",

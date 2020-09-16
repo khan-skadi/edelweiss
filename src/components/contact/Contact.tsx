@@ -2,15 +2,7 @@ import React from "react";
 import { Map, GoogleApiWrapper, Marker } from "google-maps-react";
 
 import { makeStyles } from "@material-ui/core/styles";
-import {
-  Typography
-  // TextField,
-  // FormControl,
-  // InputLabel,
-  // Input,
-  // InputAdornment,
-  // IconButton
-} from "@material-ui/core";
+import { Typography } from "@material-ui/core";
 
 import { ObjectLiteral } from "../../utils/interface/interface";
 
@@ -19,7 +11,6 @@ import AddressIcon from "@material-ui/icons/Room";
 import MailIcon from "@material-ui/icons/Mail";
 import PhoneIcon from "@material-ui/icons/Phone";
 import FaxIcon from "@material-ui/icons/Print";
-// import AttachFileIcon from '@material-ui/icons/AttachFile';
 
 import EmailForm from "./EmailForm";
 
@@ -27,7 +18,9 @@ import benchtop from "../../assets/images/original/modified/1wide.jpg";
 
 const useStyles = makeStyles((theme) => ({
   sectionContact: {
-    padding: "70px 0",
+    // padding: 0,
+    // margin: 0,
+    // paddingTop: "140px",
     position: "relative",
     display: "block",
     "&:before": {
@@ -45,7 +38,7 @@ const useStyles = makeStyles((theme) => ({
   },
   container: {
     height: "100%",
-    maxWidth: "1650px",
+    maxWidth: "1850px",
     paddingRight: "15px",
     paddingLeft: "15px",
     marginRight: "auto",
@@ -71,13 +64,7 @@ const useStyles = makeStyles((theme) => ({
     fontFamily: "'Lato', sans-serif",
     fontWeight: 700,
     fontSize: "60px",
-    "&:-webkit-any h1": {
-      marginBlockStart: "0.83em",
-      marginBlockEnd: "0.83em"
-    },
     display: "block",
-    marginInlineStart: "0px",
-    marginInlineEnd: "0px",
     "& > span": {
       fontWeight: 100
     }
@@ -183,9 +170,10 @@ const useStyles = makeStyles((theme) => ({
     maxWidth: "100%",
     verticalAlign: "bottom"
   },
-  mapStyles: {
+  mapContainer: {
+    position: "relative",
     width: "100%",
-    height: "100%"
+    height: "450px"
   }
 }));
 
@@ -267,7 +255,7 @@ const Contact = (props: ObjectLiteral) => {
           src={benchtop}
         />
       </div>
-      <div>
+      <div className={classes.mapContainer}>
         <Map
           google={props.google}
           style={mapStyle}
@@ -290,7 +278,7 @@ const mapStyle = {
   height: "450px",
   margin: 0,
   padding: 0,
-  verticalAlign: "baseline",
+  // verticalAlign: "baseline",
   boxSizing: "border-box",
   borderBottom: "10px solid #158d43",
   position: "relative"
