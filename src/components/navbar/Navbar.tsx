@@ -340,8 +340,8 @@ const Navbar = () => {
 
   return (
     <div className={classes.grow}>
-      <ScrollToColor>
-        <AppBar position="fixed" className={classes.navbar}>
+      <AppBar position="fixed" className={classes.navbar}>
+        <ScrollToColor>
           <Toolbar>
             <a href="/">
               <Avatar
@@ -482,8 +482,8 @@ const Navbar = () => {
               </IconButton>
             </div>
           </Toolbar>
-        </AppBar>
-      </ScrollToColor>
+        </ScrollToColor>
+      </AppBar>
       {renderMobileMenu}
       {renderMenu}
     </div>
