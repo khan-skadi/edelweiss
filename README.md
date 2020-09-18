@@ -5,3 +5,7 @@ Edelweiss Stone Australia
 In the project directory, you can run:
 
 ### `npm start`
+
+## Icons
+
+- SVG Icons from https://flaticon.com

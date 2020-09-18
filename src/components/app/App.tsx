@@ -1,18 +1,21 @@
-import React from 'react';
-import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import React from "react";
+import dotenv from "dotenv";
+import { BrowserRouter, Switch, Route } from "react-router-dom";
 // import { makeStyles } from '@material-ui/core/styles';
 
-import Navbar from '../navbar/Navbar';
-import LandingPage from '../landingPage/LandingPage';
-import Footer from '../footer/Footer';
+import LandingPage from "../landingPage/LandingPage";
+import Footer from "../footer/Footer";
+import Navbar from "../navbar/Navbar";
 
-import RequestQuote from '../requestQuote/RequestQuote';
+import RequestQuote from "../requestQuote/RequestQuote";
 
 // const useStyles = makeStyles((theme) => ({
 //   test: {
 //     backgroundColor: theme.palette.primary.main
 //   }
 // }));
+
+dotenv.config();
 
 const App = () => {
   // const classes = useStyles();
