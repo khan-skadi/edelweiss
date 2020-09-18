@@ -14,6 +14,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     backgroundSize: "cover",
     margin: 0,
     padding: 0,
+    width: "100%",
     border: 0,
     verticalAlign: "baseline",
     display: "block",

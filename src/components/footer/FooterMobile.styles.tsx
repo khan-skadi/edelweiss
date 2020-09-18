@@ -69,26 +69,43 @@ const useStyles = makeStyles((theme: Theme) => ({
     padding: 0,
     border: 0,
     "& li": {
-      [theme.breakpoints.down("md")]: {
-        width: "100%",
-        marginBottom: "15px",
-        float: "left",
-        lineHeight: "100%"
+      width: "100%",
+      marginBottom: "15px",
+      float: "left",
+      lineHeight: "100%",
+      "& > a": {
+        paddingLeft: "13px",
+        fontSize: "16px",
+        lineHeight: "100%",
+        display: "inline-block",
+        color: "#fff",
+        position: "relative",
+        textDecoration: "none",
+        cursor: "pointer",
+        "&:before": {
+          position: "absolute",
+          content: "''",
+          left: 0,
+          background: theme.palette.primary.main,
+          top: "6px",
+          width: "6px",
+          height: "6px",
+          borderRadius: "50%",
+          boxSizing: "border-box"
+        }
       }
     }
   },
   footerMiddle: {
-    [theme.breakpoints.down("md")]: {
-      borderBottom: "1px solid rgba(255, 255, 255, .1)",
-      borderTop: "1px solid rgba(255, 255, 255, .1)",
-      padding: "25px 0",
-      margin: "20px 0",
-      width: "100%",
-      float: "none",
-      overflow: "hidden",
-      textAlign: "center",
-      border: 0
-    }
+    borderBottom: "1px solid rgba(255, 255, 255, .1)",
+    borderTop: "1px solid rgba(255, 255, 255, .1)",
+    padding: "25px 0",
+    margin: "20px 0",
+    width: "100%",
+    float: "none",
+    overflow: "hidden",
+    textAlign: "center",
+    border: 0
   },
   footerLogo: {
     margin: "0 auto 20px",
@@ -115,21 +132,29 @@ const useStyles = makeStyles((theme: Theme) => ({
       width: "50%",
       borderRight: "1px solid rgba(255, 255, 255, .2)"
     },
-    "& > li:first-child": {
+    "& li:first-child": {
       width: "100%",
       border: 0
     },
-    "& > li:last-child": {
+    "& li:last-child": {
       width: "100%",
       border: 0
     },
-    "& > li > p": {
+    "& li:nth-child(3)": {
+      border: 0
+    },
+    "& li p": {
       lineHeight: "100%",
       color: theme.palette.primary.main,
       fontSize: "20px",
       marginBottom: "10px"
     },
-    "& > li > a": {
+    "& li span": {
+      fontSize: "18px",
+      display: "inline-block",
+      color: "#fff"
+    },
+    "& li a": {
       fontSize: "18px",
       display: "inline-block",
       color: "#fff",
@@ -168,7 +193,11 @@ const useStyles = makeStyles((theme: Theme) => ({
       fontSize: "16px",
       margin: "0 10px",
       textDecoration: "none",
-      cursor: "pointer"
+      cursor: "pointer",
+      "& > svg": {
+        fontSize: "30px",
+        margin: "4px auto"
+      }
     }
   },
   socialFb: {
@@ -226,7 +255,18 @@ const useStyles = makeStyles((theme: Theme) => ({
         WebkitTransition: "all .5s ease-in-out",
         margin: 0,
         padding: 0,
-        border: 0
+        border: 0,
+        "&:before": {
+          position: "absolute",
+          content: "''",
+          left: 0,
+          background: theme.palette.primary.main,
+          top: "6px",
+          width: "6px",
+          height: "6px",
+          borderRadius: "50%",
+          boxSizing: "border-box"
+        }
       }
     }
   },
@@ -248,12 +288,12 @@ const useStyles = makeStyles((theme: Theme) => ({
     color: theme.palette.primary.main,
     fontWeight: 500,
     position: "relative",
-    textAlign: "left",
+    textAlign: "center",
     padding: 0,
     border: 0,
-    "& > img": {
+    "& > svg": {
       position: "absolute",
-      left: 0,
+      left: "20px",
       top: "8px",
       verticalAlign: "bottom",
       maxWidth: "100%",

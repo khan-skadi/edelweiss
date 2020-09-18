@@ -54,7 +54,7 @@ const FooterMobile = () => {
           </div>
           <div className={footerMiddle}>
             <div className={footerLogo}>
-              <a href="#!">
+              <a href="/">
                 <img src={logo} alt="Edelweiss Stone Logo" />
               </a>
             </div>
@@ -69,7 +69,7 @@ const FooterMobile = () => {
               </li>
               <li>
                 <p>Fax</p>
-                <span>(02) 9826 8008</span>
+                <span>9826 8008</span>
               </li>
               <li>
                 <p>Email</p>
@@ -82,17 +82,13 @@ const FooterMobile = () => {
               <p>Follow Us On</p>
               <a
                 className={socialFb}
-                href="#!"
-                target="_blank"
-                rel="noopener noreferrer"
+                href="https://www.facebook.com/Edelweiss-stone-495239060955229"
               >
                 <Icon className={icon} component={FacebookIcon} />
               </a>
               <a
                 className={socialInsta}
-                href="#!"
-                target="_blank"
-                rel="noopener noreferrer"
+                href="https://www.instagram.com/edelweissstone/"
               >
                 <Icon className={icon} component={InstagramIcon} />
               </a>
@@ -126,11 +122,11 @@ const FooterMobile = () => {
           <ul className={hoursList}>
             <li>
               Mon - Fri
-              <span>7:30 am to 4:30 pm</span>
+              <span>7:30 to 16:30</span>
             </li>
             <li>
               Saturdays
-              <span>9:00 am to 1:00 pm</span>
+              <span>9:00 to 13:00</span>
             </li>
             <li>
               Sundays

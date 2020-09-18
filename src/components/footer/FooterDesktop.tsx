@@ -84,7 +84,7 @@ const FooterDesktop = () => {
               <p>Follow Us On</p>
               <a
                 className={socialFb}
-                href="#!"
+                href="https://www.facebook.com/Edelweiss-stone-495239060955229"
                 target="_blank"
                 rel="noopener noreferrer"
               >
@@ -92,7 +92,7 @@ const FooterDesktop = () => {
               </a>
               <a
                 className={socialInsta}
-                href="#!"
+                href="https://www.instagram.com/edelweissstone/"
                 target="_blank"
                 rel="noopener noreferrer"
               >
