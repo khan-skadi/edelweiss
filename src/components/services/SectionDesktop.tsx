@@ -21,6 +21,9 @@ import renovationsSvg from "../../assets/images/svg/renovations.svg";
 import refrigeratorSvg from "../../assets/images/svg/refrigerator.svg";
 import fireplaceSvg from "../../assets/images/svg/fireplace.svg";
 import stoneTableSvg from "../../assets/images/svg/stoneTable.svg";
+import monumentSvg from "../../assets/images/svg/monument.svg";
+import stoneFloorSvg from "../../assets/images/svg/stoneFloor.svg";
+import stoneWallSvg from "../../assets/images/svg/stoneWall.svg";
 
 import "./Services.css";
 
@@ -137,7 +140,7 @@ const SectionDesktop = (props: ObjectLiteral) => {
                 <div className={serviceIcon}>
                   <img
                     className={firstIcon}
-                    src={kitchenSvg}
+                    src={monumentSvg}
                     alt="Monuments"
                     width="57"
                     height="57"
@@ -244,7 +247,7 @@ const SectionDesktop = (props: ObjectLiteral) => {
                 <div className={serviceIcon}>
                   <img
                     className={firstIcon}
-                    src={kitchenSvg}
+                    src={stoneWallSvg}
                     alt="Walls"
                     width="57"
                     height="57"
@@ -288,7 +291,7 @@ const SectionDesktop = (props: ObjectLiteral) => {
                 <div className={serviceIcon}>
                   <img
                     className={firstIcon}
-                    src={kitchenSvg}
+                    src={stoneFloorSvg}
                     alt="Floors"
                     width="57"
                     height="57"

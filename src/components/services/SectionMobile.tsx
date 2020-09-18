@@ -21,6 +21,9 @@ import renovationsSvg from "../../assets/images/svg/renovations.svg";
 import refrigeratorSvg from "../../assets/images/svg/refrigerator.svg";
 import fireplaceSvg from "../../assets/images/svg/fireplace.svg";
 import stoneTableSvg from "../../assets/images/svg/stoneTable.svg";
+import monumentSvg from "../../assets/images/svg/monument.svg";
+import stoneFloorSvg from "../../assets/images/svg/stoneFloor.svg";
+import stoneWallSvg from "../../assets/images/svg/stoneWall.svg";
 
 import "./Services.css";
 
@@ -78,7 +81,11 @@ const SectionMobile = (props: ObjectLiteral) => {
               </div>
               <div className={imageText}>
                 <div className={imageIcon}>
-                  <img className={firstIcon} src={kitchenSvg} alt="Monuments" />
+                  <img
+                    className={firstIcon}
+                    src={monumentSvg}
+                    alt="Monuments"
+                  />
                 </div>
                 <div className={imageTitle}>Monuments</div>
                 <div className={serviceDisc}>Gallery</div>
@@ -170,7 +177,7 @@ const SectionMobile = (props: ObjectLiteral) => {
               </div>
               <div className={imageText}>
                 <div className={imageIcon}>
-                  <img className={firstIcon} src={kitchenSvg} alt="Walls" />
+                  <img className={firstIcon} src={stoneWallSvg} alt="Walls" />
                 </div>
                 <div className={imageTitle}>Walls</div>
                 <div className={serviceDisc}>Gallery</div>
@@ -206,7 +213,7 @@ const SectionMobile = (props: ObjectLiteral) => {
               </div>
               <div className={imageText}>
                 <div className={imageIcon}>
-                  <img className={firstIcon} src={kitchenSvg} alt="Floors" />
+                  <img className={firstIcon} src={stoneFloorSvg} alt="Floors" />
                 </div>
                 <div className={imageTitle}>Floors</div>
                 <div className={serviceDisc}>Gallery</div>
