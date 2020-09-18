@@ -18,9 +18,7 @@ import benchtop from "../../assets/images/original/modified/1wide.jpg";
 
 const useStyles = makeStyles((theme) => ({
   sectionContact: {
-    // padding: 0,
-    // margin: 0,
-    // paddingTop: "140px",
+    paddingTop: "140px",
     position: "relative",
     display: "block",
     "&:before": {
