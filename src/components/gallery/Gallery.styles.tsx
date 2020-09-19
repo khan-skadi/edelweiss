@@ -129,7 +129,7 @@ const useStyles = makeStyles((theme: Theme) => ({
   loadMore: {
     display: "block",
     textAlign: "center",
-    margin: 0,
+    marginTop: "40px",
     padding: 0,
     border: 0,
     verticalAlign: "baseline",

@@ -6,7 +6,7 @@ import { BrowserRouter, Switch, Route } from "react-router-dom";
 import LandingPage from "../landingPage/LandingPage";
 import Footer from "../footer/Footer";
 import Navbar from "../navbar/Navbar";
-import Gallery from "../gallery/Gallery";
+import Gallery from "../gallery/GalleryMain";
 
 import RequestQuote from "../requestQuote/RequestQuote";
 
