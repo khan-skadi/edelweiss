@@ -1,5 +1,8 @@
 import React, { useState } from "react";
 import { makeStyles, Theme, createStyles } from "@material-ui/core/styles";
+import { Link as Jump } from "react-router-dom";
+
+// Mui
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import IconButton from "@material-ui/core/IconButton";
@@ -103,7 +106,11 @@ const useStyles = makeStyles((theme: Theme) =>
     sectionDesktop: {
       display: "none",
       [theme.breakpoints.up("md")]: {
-        display: "flex"
+        display: "flex",
+        "& a": {
+          color: "#fff",
+          textDecoration: "none"
+        }
       }
     },
     sectionMobile: {
@@ -418,6 +425,16 @@ const Navbar = () => {
                   <Typography variant="body1">Projects</Typography>
                 </Button>
               </Link>
+
+              <Jump to="/gallery">
+                <Button
+                  className={classes.navLinks}
+                  variant="text"
+                  color="inherit"
+                >
+                  <Typography variant="body1">Gallery</Typography>
+                </Button>
+              </Jump>
 
               <Link to="/">
                 <Button
