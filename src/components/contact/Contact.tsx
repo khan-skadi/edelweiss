@@ -1,29 +1,16 @@
 import React from "react";
 import { Map, GoogleApiWrapper, Marker } from "google-maps-react";
 
-<<<<<<< HEAD
-import { makeStyles } from '@material-ui/core/styles';
-import { Typography } from '@material-ui/core';
-=======
 import { makeStyles } from "@material-ui/core/styles";
 import { Typography } from "@material-ui/core";
->>>>>>> develop
 
 import { ObjectLiteral } from "../../utils/interface/interface";
 
-<<<<<<< HEAD
-import Icon from '@material-ui/core/Icon';
-import AddressIcon from '@material-ui/icons/Room';
-import MailIcon from '@material-ui/icons/Mail';
-import PhoneIcon from '@material-ui/icons/Phone';
-import FaxIcon from '@material-ui/icons/Print';
-=======
 import Icon from "@material-ui/core/Icon";
 import AddressIcon from "@material-ui/icons/Room";
 import MailIcon from "@material-ui/icons/Mail";
 import PhoneIcon from "@material-ui/icons/Phone";
 import FaxIcon from "@material-ui/icons/Print";
->>>>>>> develop
 
 import EmailForm from "./EmailForm";
 
@@ -31,35 +18,7 @@ import benchtop from "../../assets/images/original/modified/1wide.jpg";
 
 const useStyles = makeStyles((theme) => ({
   sectionContact: {
-<<<<<<< HEAD
-    paddingTop: '40px',
-    position: 'relative',
-    display: 'block',
-    '&:before': {
-      position: 'absolute',
-      content: "''",
-      top: 0,
-      borderLeft: '1px solid #ebebeb',
-      height: '100%',
-      left: '41px',
-      boxSizing: 'border-box'
-    },
-    [theme.breakpoints.down('md')]: {
-      display: 'none'
-    }
-  },
-  container: {
-    height: '100%',
-    maxWidth: '1850px',
-    paddingRight: '15px',
-    paddingLeft: '15px',
-    marginRight: 'auto',
-    marginLeft: 'auto',
-    position: 'relative',
-    '&:before': {
-      display: 'table',
-=======
-    paddingTop: "140px",
+    paddingTop: "40px",
     position: "relative",
     display: "block",
     "&:before": {
@@ -85,7 +44,6 @@ const useStyles = makeStyles((theme) => ({
     position: "relative",
     "&:before": {
       display: "table",
->>>>>>> develop
       content: "''"
     },
     "&:after": {
@@ -103,15 +61,9 @@ const useStyles = makeStyles((theme) => ({
     textTransform: "capitalize",
     fontFamily: "'Lato', sans-serif",
     fontWeight: 700,
-<<<<<<< HEAD
-    fontSize: '60px',
-    display: 'block',
-    '& > span': {
-=======
     fontSize: "60px",
     display: "block",
     "& > span": {
->>>>>>> develop
       fontWeight: 100
     }
   },
@@ -217,15 +169,9 @@ const useStyles = makeStyles((theme) => ({
     verticalAlign: "bottom"
   },
   mapContainer: {
-<<<<<<< HEAD
-    position: 'relative',
-    width: '100%',
-    height: '450px'
-=======
     position: "relative",
     width: "100%",
     height: "450px"
->>>>>>> develop
   }
 }));
 
@@ -326,16 +272,6 @@ const Contact = (props: ObjectLiteral) => {
 };
 
 const mapStyle = {
-<<<<<<< HEAD
-  width: '100%',
-  height: '450px',
-  margin: 0,
-  padding: 0,
-  // verticalAlign: "baseline",
-  boxSizing: 'border-box',
-  borderBottom: '10px solid #158d43',
-  position: 'relative'
-=======
   width: "100%",
   height: "450px",
   margin: 0,
@@ -344,7 +280,6 @@ const mapStyle = {
   boxSizing: "border-box",
   borderBottom: "10px solid #158d43",
   position: "relative"
->>>>>>> develop
 };
 
 export default GoogleApiWrapper({
