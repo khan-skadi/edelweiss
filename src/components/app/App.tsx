@@ -6,10 +6,6 @@ import { BrowserRouter, Switch, Route } from "react-router-dom";
 import LandingPage from "../landingPage/LandingPage";
 import Footer from "../footer/Footer";
 import Navbar from "../navbar/Navbar";
-<<<<<<< HEAD
-=======
-import Gallery from "../gallery/GalleryMain";
->>>>>>> develop
 
 import RequestQuote from "../requestQuote/RequestQuote";
 
@@ -30,7 +26,7 @@ const App = () => {
       <Switch>
         <Route exact path="/" component={LandingPage} />
         <Route path="/request-quote" component={RequestQuote} />
-        <Route path="/gallery" component={Gallery} />
+        {/* <Route path="/gallery" component={Gallery} /> */}
       </Switch>
       <Footer />
     </BrowserRouter>
