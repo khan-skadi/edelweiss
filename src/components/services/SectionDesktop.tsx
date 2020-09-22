@@ -48,6 +48,8 @@ const SectionDesktop = (props: ObjectLiteral) => {
     servicesSeventhLinkBox,
     servicesSecondLinkBox
   } = useStyles();
+  const { data } = props;
+  console.log("desktop data: ", data);
 
   return (
     <>
@@ -190,7 +192,7 @@ const SectionDesktop = (props: ObjectLiteral) => {
                     height="57"
                   />
                 </div>
-                <div className={serviceTitle}>Bathrooms</div>
+                <div className={serviceTitle}>{data && data[0].slug}</div>
                 <div className={serviceDisc}>Gallery</div>
               </div>
             </a>
