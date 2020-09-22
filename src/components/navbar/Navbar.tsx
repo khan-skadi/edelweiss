@@ -1,5 +1,11 @@
 import React, { useState } from "react";
 import { makeStyles, Theme, createStyles } from "@material-ui/core/styles";
+<<<<<<< HEAD
+=======
+import { Link as Jump } from "react-router-dom";
+
+// Mui
+>>>>>>> develop
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import IconButton from "@material-ui/core/IconButton";
@@ -24,10 +30,17 @@ const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     grow: {
       flexGrow: 1
+<<<<<<< HEAD
     },
     menuButton: {
       marginRight: theme.spacing(2)
     },
+=======
+    },
+    menuButton: {
+      marginRight: theme.spacing(2)
+    },
+>>>>>>> develop
     navbar: {
       background:
         "linear-gradient(to bottom, rgba(0, 0, 0, 1.0) 30%, rgba(0, 0, 0, 0.0) 100%)",
@@ -103,7 +116,15 @@ const useStyles = makeStyles((theme: Theme) =>
     sectionDesktop: {
       display: "none",
       [theme.breakpoints.up("md")]: {
+<<<<<<< HEAD
         display: "flex"
+=======
+        display: "flex",
+        "& a": {
+          color: "#fff",
+          textDecoration: "none"
+        }
+>>>>>>> develop
       }
     },
     sectionMobile: {
@@ -340,8 +361,13 @@ const Navbar = () => {
 
   return (
     <div className={classes.grow}>
+<<<<<<< HEAD
       <ScrollToColor>
         <AppBar position="fixed" className={classes.navbar}>
+=======
+      <AppBar position="fixed" className={classes.navbar}>
+        <ScrollToColor>
+>>>>>>> develop
           <Toolbar>
             <a href="/">
               <Avatar
@@ -419,6 +445,19 @@ const Navbar = () => {
                 </Button>
               </Link>
 
+<<<<<<< HEAD
+=======
+              <Jump to="/gallery">
+                <Button
+                  className={classes.navLinks}
+                  variant="text"
+                  color="inherit"
+                >
+                  <Typography variant="body1">Gallery</Typography>
+                </Button>
+              </Jump>
+
+>>>>>>> develop
               <Link to="/">
                 <Button
                   className={classes.navLinks}
@@ -482,8 +521,13 @@ const Navbar = () => {
               </IconButton>
             </div>
           </Toolbar>
+<<<<<<< HEAD
         </AppBar>
       </ScrollToColor>
+=======
+        </ScrollToColor>
+      </AppBar>
+>>>>>>> develop
       {renderMobileMenu}
       {renderMenu}
     </div>

@@ -25,6 +25,7 @@
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-fullscreen-image": "0.0.3",
+    "react-grid-gallery": "^0.5.5",
     "react-material-ui-carousel": "^1.6.0",
     "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.1",
