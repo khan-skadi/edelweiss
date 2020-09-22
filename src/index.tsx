@@ -17,9 +17,9 @@ import "./assets/fonts/TheFrontman.ttf";
 import "./assets/fonts/Barlow.ttf";
 
 axios.defaults.baseURL =
-  process.env.NODE_ENV === "development"
+  process.env.NODE_ENV === "production"
     ? "http://localhost:5000"
-    : "http://edelweissstone.com.au";
+    : "http://138.68.66.227";
 axios.defaults.headers.post["Content-Type"] = "application/json";
 
 ReactDOM.render(
