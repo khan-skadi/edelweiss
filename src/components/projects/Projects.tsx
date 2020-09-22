@@ -12,15 +12,22 @@ import { ObjectLiteral } from "../../utils/interface/interface";
 // const fetchIg = `https://api.instagram.com/oauth/authorize?client_id=${appId}&redirect_uri=${redirectUri}&scope=user_profile,user_media&response_type=code`;
 
 const Projects = (props: ObjectLiteral) => {
-  const { sectionProjects, projectsDesktop, projectsMobile } = useStyles();
+  const {
+    sectionProjects,
+    projectsDesktop,
+    projectsMobile,
+    container
+  } = useStyles();
 
   return (
     <section className={sectionProjects}>
-      <div className={projectsDesktop}>
-        <ProjectsDesktop />
-      </div>
-      <div className={projectsMobile}>
-        <ProjectsMobile />
+      <div className={container}>
+        <div className={projectsDesktop}>
+          <ProjectsDesktop />
+        </div>
+        <div className={projectsMobile}>
+          <ProjectsMobile />
+        </div>
       </div>
     </section>
   );

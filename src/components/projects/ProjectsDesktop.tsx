@@ -4,7 +4,7 @@ import useStyles from "./ProjectsDesktop.styles";
 import { ObjectLiteral } from "../../utils/interface/interface";
 
 import Carousel from "react-material-ui-carousel";
-import { Paper, Box } from "@material-ui/core";
+import { Paper } from "@material-ui/core";
 
 // Images
 import caro1 from "../../assets/images/carousel/caro1.jpg";
@@ -61,7 +61,6 @@ function Caro(props: ObjectLiteral) {
 
 const ProjectsDesktop = (props: ObjectLiteral) => {
   const {
-    container,
     projectsTitle,
     caroHolder,
     projectsCarousel,
@@ -104,50 +103,48 @@ const ProjectsDesktop = (props: ObjectLiteral) => {
   ];
 
   return (
-    <section>
-      <Box className={container} component="div">
-        <div id="projects" className={projectLeft}>
-          <div className={projectsTitle}>
-            <span>Our</span> Projects
-          </div>
-          <div className={caroHolder}>
-            <Carousel className={projectsCarousel}>
-              {items.map((item: ObjectLiteral) => (
-                <Caro item={item} key={item.image.toString()} />
-              ))}
-            </Carousel>
-          </div>
+    <>
+      <div id="projects" className={projectLeft}>
+        <div className={projectsTitle}>
+          <span>Our</span> Projects
         </div>
-        <div className={projectRight}>
-          <a
-            href="https://www.instagram.com/edelweissstone/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <img
-              className={instagramBanner}
-              src={instagram}
-              alt="instagram banner"
-            />
-          </a>
-          <div className={instagramContainer}>
-            <div
-              id="instagram"
-              className={instagram}
-              style={{
-                paddingBottom: "14px",
-                width: "355px",
-                margin: "0 auto",
-                padding: 0,
-                boxSizing: "border-box",
-                border: 0,
-                verticalAlign: "baseline"
-              }}
-            ></div>
-          </div>
+        <div className={caroHolder}>
+          <Carousel className={projectsCarousel}>
+            {items.map((item: ObjectLiteral) => (
+              <Caro item={item} key={item.image.toString()} />
+            ))}
+          </Carousel>
         </div>
-      </Box>
-    </section>
+      </div>
+      <div className={projectRight}>
+        <a
+          href="https://www.instagram.com/edelweissstone/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <img
+            className={instagramBanner}
+            src={instagram}
+            alt="instagram banner"
+          />
+        </a>
+        <div className={instagramContainer}>
+          <div
+            id="instagram"
+            className={instagram}
+            style={{
+              paddingBottom: "14px",
+              width: "355px",
+              margin: "0 auto",
+              padding: 0,
+              boxSizing: "border-box",
+              border: 0,
+              verticalAlign: "baseline"
+            }}
+          ></div>
+        </div>
+      </div>
+    </>
   );
 };
 
