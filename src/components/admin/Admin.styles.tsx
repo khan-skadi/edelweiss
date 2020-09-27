@@ -18,6 +18,9 @@ const useStyles = makeStyles((theme: Theme) => ({
       display: 'table',
       content: "''"
     }
+  },
+  adminTitle: {
+    textAlign: 'center'
   }
 }));
 
