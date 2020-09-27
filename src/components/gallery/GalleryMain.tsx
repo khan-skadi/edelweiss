@@ -79,9 +79,11 @@ const GalleryMain = () => {
     }
   ];
 
+  const renderHeader = window.location.href.includes('/admin');
+
   return (
     <>
-      <MiniHeader tab="Gallery" />
+      {!renderHeader && <MiniHeader tab="Gallery" />}
       <section className={sectionGallery}>
         <div className={titleMain}>
           <div className={container}>

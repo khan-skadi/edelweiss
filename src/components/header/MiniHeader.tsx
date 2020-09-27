@@ -10,13 +10,13 @@ function handleBreadcrumbClick(
   event: React.MouseEvent<HTMLAnchorElement, MouseEvent>
 ) {
   event.preventDefault();
+  window.location.assign('/'); // check this
 }
 
 const MiniHeader = (props: ObjectLiteral) => {
   const { sectionMiniHeader, innerHeader, container } = useStyles();
   const { tab } = props;
   const tabLocation = tab && tab.toLowerCase();
-  console.log('tabLocation: ', tabLocation);
 
   return (
     <div className={sectionMiniHeader}>
