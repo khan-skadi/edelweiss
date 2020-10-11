@@ -6,6 +6,8 @@ import GalleryMain from '../gallery/GalleryMain';
 import Gallery from 'react-grid-gallery';
 import AddImageModal from '../modals/AddImageModal';
 import { IMAGES } from '../gallery/GalleryMain';
+import { logoutUser } from '../../redux/actions/userActions';
+import { connect } from 'react-redux';
 
 // Mui
 import { useTheme } from '@material-ui/core/styles';
@@ -28,7 +30,7 @@ import MailIcon from '@material-ui/icons/Mail';
 import logo from '../../assets/logo/logo400.png';
 import { Button } from '@material-ui/core';
 
-const Admin = () => {
+const Admin = (props: any) => {
   const {
     root,
     appBarShift,
@@ -92,12 +94,15 @@ const Admin = () => {
     }
   };
 
+  const handleLogout = () => {
+    props.logoutUser();
+  };
+
   return (
     <>
       <AddImageModal
         modalIsOpen={modalIsOpen}
         handleModalClose={handleModalClose}
-        handleModalOpen={handleModalOpen}
       />
       <MiniHeader tab="Admin" />
       <div className={root}>
@@ -107,7 +112,12 @@ const Admin = () => {
             [appBarShift]: open
           })}
         >
-          <Toolbar>
+          <Toolbar
+            style={{
+              display: 'flex',
+              justifyContent: 'space-between'
+            }}
+          >
             <IconButton
               color="inherit"
               aria-label="open drawer"
@@ -125,6 +135,12 @@ const Admin = () => {
                 </IconButton>
               }{' '}
               {state}
+            </Typography>
+
+            <Typography variant="h6">
+              <Button variant="contained" onClick={handleLogout}>
+                Logout
+              </Button>
             </Typography>
           </Toolbar>
         </AppBar>
@@ -272,4 +288,15 @@ const Admin = () => {
   );
 };
 
-export default Admin;
+//this map the states to our props in this functional component
+const mapStateToProps = (state: any) => ({
+  user: state.user,
+  UI: state.UI
+});
+
+//this map actions to our props in this functional component
+const mapActionsToProps = {
+  logoutUser
+};
+
+export default connect(mapStateToProps, mapActionsToProps)(Admin);
