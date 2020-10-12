@@ -1,10 +1,10 @@
-import React, { SyntheticEvent, useState } from 'react';
+import React, { useState } from 'react';
 import clsx from 'clsx';
 import useStyles from './Admin.styles';
 import MiniHeader from '../header/MiniHeader';
-import GalleryMain from '../gallery/GalleryMain';
 import Gallery from 'react-grid-gallery';
-import AddImageModal from '../modals/AddImageModal';
+// import AddImageModal from '../modals/AddImageModal';
+import AddImageModal from '../modals/AddImageModal.js';
 import { IMAGES } from '../gallery/GalleryMain';
 import { logoutUser } from '../../redux/actions/userActions';
 import { connect } from 'react-redux';
