@@ -1,5 +1,6 @@
-import React, { useState, useEffect, ChangeEvent } from 'react';
-import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
+import React, { useState } from 'react';
+import { createStyles, makeStyles } from '@material-ui/core/styles';
+import { useToast } from '../../utils/toast/ToastProvider';
 import axios from 'axios';
 
 // Mui
@@ -28,13 +29,9 @@ const useStyles = makeStyles((theme) =>
   })
 );
 
-// interface ModalProps {
-//   modalIsOpen: boolean;
-//   handleModalClose: () => void;
-// }
-
 const AddImageModal = (props) => {
   const { modalIsOpen, handleModalClose } = props;
+  const { addToast } = useToast();
   const classes = useStyles();
   const [value, setValue] = useState('');
   const [file, setFile] = useState('');
@@ -45,17 +42,6 @@ const AddImageModal = (props) => {
     setValue(event.target.value);
   };
 
-  useEffect(() => {
-    axios
-      .get('/api/v1/gallery', {
-        headers: {
-          'Access-Control-Allow-Origin': '*',
-          'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,PATCH,OPTIONS'
-        }
-      })
-      .then((res) => console.log(res));
-  }, []);
-
   const handleFileChange = (e) => {
     setFile(e.target.files[0]);
     setFileName(e.target.files[0].name);
@@ -63,6 +49,7 @@ const AddImageModal = (props) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
     const fd = new FormData();
     fd.append('file', file);
 
@@ -76,7 +63,8 @@ const AddImageModal = (props) => {
       const { fileName, filePath } = res.data;
 
       setUploadedFile({ fileName, filePath });
-      console.log('success');
+      addToast('vmro narodna');
+      handleModalClose();
     } catch (err) {
       if (err.response.status === 500) {
         console.log('There was a problem with the server');

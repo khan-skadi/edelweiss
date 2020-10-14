@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
-import dotenv from 'dotenv';
 import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
+import ToastProvider from '../../utils/toast/ToastProvider';
+import dotenv from 'dotenv';
 
 // views
 import LandingPage from '../landingPage/LandingPage';
@@ -30,18 +31,20 @@ const App = () => {
   return (
     <Provider store={store}>
       <BrowserRouter>
-        <Navbar />
-        <Switch>
-          <Route exact path="/" component={LandingPage} />
-          <Route path="/request-quote" component={RequestQuote} />
-          <Route path="/gallery" component={Gallery} />
-          <PrivateRoute path="/admin" component={Admin} />
-          <GuestRoute path="/login" component={Login} />
-          <Route path="/test" component={Test} />
-          <Route path="/404" component={NotFoundPage} />
-          <Redirect to="/404" />
-        </Switch>
-        <Footer />
+        <ToastProvider>
+          <Navbar />
+          <Switch>
+            <Route exact path="/" component={LandingPage} />
+            <Route path="/request-quote" component={RequestQuote} />
+            <Route path="/gallery" component={Gallery} />
+            <PrivateRoute path="/admin" component={Admin} />
+            <GuestRoute path="/login" component={Login} />
+            <Route path="/test" component={Test} />
+            <Route path="/404" component={NotFoundPage} />
+            <Redirect to="/404" />
+          </Switch>
+          <Footer />
+        </ToastProvider>
       </BrowserRouter>
     </Provider>
   );

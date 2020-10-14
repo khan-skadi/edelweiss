@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
+import { connect } from 'react-redux';
+import { toastOpen } from '../../redux/actions/uiActions';
+import { logoutUser } from '../../redux/actions/userActions';
 import clsx from 'clsx';
 import useStyles from './Admin.styles';
 import MiniHeader from '../header/MiniHeader';
 import Gallery from 'react-grid-gallery';
-// import AddImageModal from '../modals/AddImageModal';
 import AddImageModal from '../modals/AddImageModal.js';
 import { IMAGES } from '../gallery/GalleryMain';
-import { logoutUser } from '../../redux/actions/userActions';
-import { connect } from 'react-redux';
 
 // Mui
 import { useTheme } from '@material-ui/core/styles';
@@ -144,6 +144,7 @@ const Admin = (props: any) => {
             </Typography>
           </Toolbar>
         </AppBar>
+
         <Drawer
           className={drawer}
           variant="persistent"
@@ -197,6 +198,7 @@ const Admin = (props: any) => {
             ))}
           </List>
         </Drawer>
+
         <main
           className={clsx(content, {
             [contentShift]: open
@@ -296,7 +298,8 @@ const mapStateToProps = (state: any) => ({
 
 //this map actions to our props in this functional component
 const mapActionsToProps = {
-  logoutUser
+  logoutUser,
+  toastOpen
 };
 
 export default connect(mapStateToProps, mapActionsToProps)(Admin);
