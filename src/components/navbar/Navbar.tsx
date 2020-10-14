@@ -1,6 +1,10 @@
 import React, { useState } from 'react';
-import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
+import { Link } from 'react-scroll';
 import { Link as Jump } from 'react-router-dom';
+import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
+import ScrollToColor from '../../utils/ScrollToColor';
+
+// Mui
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
@@ -18,8 +22,7 @@ import FacebookIcon from '@material-ui/icons/Facebook';
 
 import logo from '../../assets/logo/logo400.png';
 
-import { Link } from 'react-scroll';
-import ScrollToColor from './ScrollToColor';
+const location = window.location.pathname;
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -31,10 +34,13 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     navbar: {
       background:
-        'linear-gradient(to bottom, rgba(0, 0, 0, 1.0) 30%, rgba(0, 0, 0, 0.0) 100%)',
+        location === '/admin'
+          ? '#000000'
+          : 'linear-gradient(to bottom, rgba(0, 0, 0, 1.0) 30%, rgba(0, 0, 0, 0.0) 100%)',
       boxShadow: 'none',
       width: '100%',
-      lineHeight: '10vh'
+      lineHeight: '10vh',
+      zIndex: 5555
     },
     logo: {
       maxWidth: '83px',
@@ -344,7 +350,10 @@ const Navbar = () => {
 
   return (
     <div className={classes.grow}>
-      <AppBar position="fixed" className={classes.navbar}>
+      <AppBar
+        position={location === '/admin' ? 'relative' : 'fixed'}
+        className={classes.navbar}
+      >
         <ScrollToColor>
           <Toolbar>
             <a href="/">

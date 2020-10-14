@@ -2,33 +2,33 @@ import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { toastOpen } from '../../redux/actions/uiActions';
 import { logoutUser } from '../../redux/actions/userActions';
+import { useTheme } from '@material-ui/core/styles';
+import { IMAGES } from '../gallery/GalleryMain';
 import clsx from 'clsx';
 import useStyles from './Admin.styles';
 import MiniHeader from '../header/MiniHeader';
 import Gallery from 'react-grid-gallery';
 import AddImageModal from '../modals/AddImageModal.js';
-import { IMAGES } from '../gallery/GalleryMain';
 
 // Mui
-import { useTheme } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
-import List from '@material-ui/core/List';
+import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
 import IconButton from '@material-ui/core/IconButton';
+import ListItemIcon from '@material-ui/core/ListItemIcon';
+import ListItemText from '@material-ui/core/ListItemText';
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
 import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItemText from '@material-ui/core/ListItemText';
 import InboxIcon from '@material-ui/icons/MoveToInbox';
 import MailIcon from '@material-ui/icons/Mail';
 
 import logo from '../../assets/logo/logo400.png';
-import { Button } from '@material-ui/core';
 
 const Admin = (props: any) => {
   const {
