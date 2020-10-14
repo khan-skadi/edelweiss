@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
 import ToastProvider from '../../utils/toast/ToastProvider';
+import ScrollToTop from '../../utils/ScrollToTop';
 import dotenv from 'dotenv';
 
 // views
@@ -31,6 +32,7 @@ const App = () => {
   return (
     <Provider store={store}>
       <BrowserRouter>
+        <ScrollToTop />
         <ToastProvider>
           <Navbar />
           <Switch>
