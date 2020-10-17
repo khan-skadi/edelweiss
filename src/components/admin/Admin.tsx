@@ -217,7 +217,7 @@ const Admin = (props: any) => {
                 <div className={container}>
                   <div className={galleryInner}>
                     <div className={gridList}>
-                      <Gallery images={IMAGES} />
+                      {/* <Gallery images={IMAGES} /> */}
                     </div>
                     <div style={{ clear: 'both' }} />
                     <div className={loadMore}>

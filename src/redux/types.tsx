@@ -10,3 +10,6 @@ export const LOADING_UI = 'LOADING_UI';
 export const CLEAR_ERRORS = 'CLEAR_ERRORS';
 export const SET_TOAST_OPEN = 'SET_TOAST_OPEN';
 export const SET_TOAST_CLOSE = 'SET_TOAST_CLOSE';
+
+// admin reducer types
+export const ADD_IMAGE = 'ADD_IMAGE';

@@ -1,6 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { connect } from 'react-redux';
 import { createStyles, makeStyles } from '@material-ui/core/styles';
 import { useToast } from '../../utils/toast/ToastProvider';
+import { addImage } from '../../redux/actions/adminActions';
 import axios from 'axios';
 
 // Mui
@@ -30,46 +32,80 @@ const useStyles = makeStyles((theme) =>
 );
 
 const AddImageModal = (props) => {
-  const { modalIsOpen, handleModalClose } = props;
+  const { modalIsOpen, handleModalClose, addImage } = props;
   const { addToast } = useToast();
   const classes = useStyles();
-  const [value, setValue] = useState('');
+  const [category, setCategory] = useState('');
   const [file, setFile] = useState('');
-  const [fileName, setFileName] = useState('Choose File');
+  //eslint-disable-next-line
+  const [fileName, setFileName] = useState(null);
+  //eslint-disable-next-line
   const [uploadedFile, setUploadedFile] = useState({});
+  const [selectedFile, setSelectedFile] = useState(null);
+  const [preview, setPreview] = useState(null);
 
-  const handleChange = (event) => {
-    setValue(event.target.value);
+  useEffect(() => {
+    if (selectedFile) {
+      const reader = new FileReader();
+      reader.onloadend = () => setPreview(reader.result);
+      reader.readAsDataURL(selectedFile);
+    }
+  }, [selectedFile]);
+
+  const handleCategoryChange = (event) => {
+    setCategory(event.target.value);
   };
 
-  const handleFileChange = (e) => {
-    setFile(e.target.files[0]);
-    setFileName(e.target.files[0].name);
+  const onFileSelected = (e) => {
+    if (e.target.files[0]) {
+      setSelectedFile(e.target.files[0]);
+      setFileName(e.target.files[0].name);
+    }
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const fd = new FormData();
-    fd.append('file', file);
-
     try {
-      const res = await axios.post('/api/v1/gallery', fd, {
-        headers: {
-          'Content-Type': 'multipart/form-data'
-        }
-      });
+      if (selectedFile !== '') {
+        let fileData = new FormData();
 
-      const { fileName, filePath } = res.data;
+        fileData.set(
+          'image',
+          selectedFile,
+          `${Date.now()}-${selectedFile.name}`
+        );
 
-      setUploadedFile({ fileName, filePath });
-      addToast('vmro narodna');
-      handleModalClose();
-    } catch (err) {
-      if (err.response.status === 500) {
-        console.log('There was a problem with the server');
+        const res = await axios.post('/api/v1/upload', fileData, {
+          headers: {
+            'Content-Type': 'multipart/form-data'
+          }
+        });
+        const { fileName, fileLocation } = res.data;
+        console.log(res);
+
+        const imageDetails = {
+          name: fileName,
+          description: category,
+          path: fileLocation,
+          createdAt: Date.now()
+        };
+
+        const updateDb = await axios.post('/api/v1/gallery', imageDetails);
+        console.log(updateDb);
+
+        addToast('Success');
+
+        setTimeout(() => {
+          setSelectedFile(null);
+          setPreview(null);
+          setFileName(null);
+          setCategory('');
+          handleModalClose();
+        });
       }
-      console.log(err.response.data.msg);
+    } catch (err) {
+      setFileName(null);
     }
   };
 
@@ -81,55 +117,60 @@ const AddImageModal = (props) => {
       maxWidth="md"
       fullWidth={true}
     >
-      <DialogTitle id="add-image-dialog">Add Images</DialogTitle>
-
-      <DialogContent>
-        <FormControl className={classes.formControl}>
-          <InputLabel id="category-select-label">Category</InputLabel>
-          <Select
-            labelId="category-select-label"
-            id="category-select"
-            value={value}
-            onChange={handleChange}
-          >
-            <MenuItem value="Kitchen Benchtops">Kitchen Benchtops</MenuItem>
-            <MenuItem value="Monuments">Monuments</MenuItem>
-            <MenuItem value="Staircases">Staircases</MenuItem>
-            <MenuItem value="Bathrooms">Bathrooms</MenuItem>
-            <MenuItem value="Vanities">Vanities</MenuItem>
-            <MenuItem value="Shop Fronts">Shop Fronts</MenuItem>
-            <MenuItem value="Walls">Walls</MenuItem>
-            <MenuItem value="Fireplaces">Fireplaces</MenuItem>
-            <MenuItem value="Floors">Floors</MenuItem>
-          </Select>
-        </FormControl>
-        <FormControl className={classes.formControlImage}>
-          <input
-            accept="image/*"
-            style={{ display: 'none' }}
-            id="upload-file-button"
-            multiple
-            type="file"
-            onChange={handleFileChange}
-          />
-          {/* The file will be on target.files */}
-          <label htmlFor="upload-file-button">
-            <Button variant="contained" component="span">
-              Upload
-            </Button>
-          </label>
-        </FormControl>
-      </DialogContent>
-      <DialogActions>
-        <Button onClick={handleModalClose} color="primary">
-          Cancel
-        </Button>
-        <Button onClick={handleSubmit} color="primary">
-          Add Image
-        </Button>
-      </DialogActions>
+      <form onSubmit={(e) => handleSubmit(e)}>
+        <DialogTitle id="add-image-dialog">Add Images</DialogTitle>
+        <DialogContent>
+          <FormControl className={classes.formControl}>
+            <InputLabel id="category-select-label">Category</InputLabel>
+            <Select
+              labelId="category-select-label"
+              id="category-select"
+              value={category}
+              onChange={handleCategoryChange}
+            >
+              <MenuItem value="Kitchen Benchtops">Kitchen Benchtops</MenuItem>
+              <MenuItem value="Monuments">Monuments</MenuItem>
+              <MenuItem value="Staircases">Staircases</MenuItem>
+              <MenuItem value="Bathrooms">Bathrooms</MenuItem>
+              <MenuItem value="Vanities">Vanities</MenuItem>
+              <MenuItem value="Shop Fronts">Shop Fronts</MenuItem>
+              <MenuItem value="Walls">Walls</MenuItem>
+              <MenuItem value="Fireplaces">Fireplaces</MenuItem>
+              <MenuItem value="Floors">Floors</MenuItem>
+            </Select>
+          </FormControl>
+          <FormControl className={classes.formControlImage}>
+            <input
+              accept="image/*"
+              style={{ display: 'none' }}
+              id="upload-file-button"
+              multiple
+              type="file"
+              onChange={onFileSelected}
+            />
+            {/* The file will be on target.files */}
+            <label htmlFor="upload-file-button">
+              <Button variant="contained" component="span">
+                Upload
+              </Button>
+            </label>
+          </FormControl>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleModalClose} color="primary">
+            Cancel
+          </Button>
+          <Button type="submit" color="primary">
+            Add Image
+          </Button>
+        </DialogActions>
+      </form>
     </Dialog>
   );
 };
 
-export default AddImageModal;
+const mapActionsToProps = {
+  addImage
+};
+
+export default connect(null, mapActionsToProps)(AddImageModal);
