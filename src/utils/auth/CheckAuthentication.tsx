@@ -1,9 +1,9 @@
-import { SET_AUTHENTICATED } from '../../redux/types';
 import { logoutUser, getUserData } from '../../redux/actions/userActions';
+import { bindActionCreators } from 'redux';
+import { ActionTypes } from '../../redux/types';
 import jwtDecode from 'jwt-decode';
 import store from '../../redux/store';
 import axios from 'axios';
-import { bindActionCreators } from 'redux';
 
 const boundActions = bindActionCreators(
   { logoutUser, getUserData },
@@ -19,7 +19,7 @@ export const CheckAuthentication = () => {
       boundActions.logoutUser();
     } else {
       store.dispatch({
-        type: SET_AUTHENTICATED
+        type: ActionTypes.setAuthenticated
       });
       axios.defaults.headers.common['Authorization'] = authToken;
       boundActions.getUserData();

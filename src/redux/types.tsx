@@ -10,6 +10,12 @@ import {
   AddImageAction,
   DeleteImageAction
 } from './actions/galleryActions';
+import {
+  LoadingUserAction,
+  SetUserAction,
+  SetAuthenticatedAction,
+  SetUnauthenticatedAction
+} from './actions/userActions';
 
 export const SET_AUTHENTICATED = 'SET_AUTHENTICATED';
 export const SET_USER = 'SET_USER';
@@ -29,7 +35,9 @@ export enum ActionTypes {
   clearErrors,
   setAuthenticated,
   setUnauthenticated,
-  loadingUi
+  loadingUi,
+  loadingUser,
+  setUser
 }
 
 export type Action =
@@ -40,4 +48,8 @@ export type Action =
   | ToastCloseAction
   | SetErrorsAction
   | ClearErrorsAction
-  | LoadingUiAction;
+  | LoadingUiAction
+  | LoadingUserAction
+  | SetUserAction
+  | SetAuthenticatedAction
+  | SetUnauthenticatedAction;

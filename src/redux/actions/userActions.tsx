@@ -1,31 +1,91 @@
-import axios from 'axios';
+import store from '../store';
+import axios, { AxiosResponse } from 'axios';
+import { Dispatch } from 'redux';
+import { bindActionCreators } from 'redux';
 import {
-  SET_USER,
-  SET_ERRORS,
-  LOADING_UI,
-  CLEAR_ERRORS,
-  SET_UNAUTHENTICATED,
-  LOADING_USER
-} from '../types';
+  LoadingUiAction,
+  ClearErrorsAction,
+  SetErrorsAction
+} from './uiActions';
+import { ActionTypes } from '../types';
 
-export const loginUser = (userData: any, history: any) => (dispatch: any) => {
-  dispatch({ type: LOADING_UI });
+export interface UserData {
+  createdAt: string;
+  email: string;
+  name: string;
+  role: string;
+  __v: number;
+  _id: string;
+}
+
+interface ResponseData {
+  data: UserData;
+  success: boolean;
+}
+
+export interface LoadingUserAction {
+  type: ActionTypes.loadingUser;
+}
+
+export interface SetUserAction {
+  type: ActionTypes.setUser;
+  payload: UserData;
+}
+
+export interface SetAuthenticatedAction {
+  type: ActionTypes.setAuthenticated;
+}
+
+export interface SetUnauthenticatedAction {
+  type: ActionTypes.setUnauthenticated;
+}
+
+export interface Credentials {
+  email: string;
+  password: string;
+}
+
+export const getUserData = () => (dispatch: Dispatch) => {
+  dispatch<LoadingUserAction>({ type: ActionTypes.loadingUser });
+  const url = '/api/v1/auth/me';
+
   axios
-    .post('/api/v1/auth/login', userData)
+    .get<ResponseData>(url)
+    .then((res: AxiosResponse<ResponseData>) => {
+      dispatch<SetUserAction>({
+        type: ActionTypes.setUser,
+        payload: res.data.data
+      });
+    })
+    .catch((err) => {
+      console.error(err);
+    });
+};
+
+const boundActions = bindActionCreators({ getUserData }, store.dispatch);
+
+export const loginUser = (credentials: Credentials, history: any) => (
+  dispatch: Dispatch
+) => {
+  dispatch<LoadingUiAction>({ type: ActionTypes.loadingUi });
+  const url = '/api/v1/auth/login';
+  axios
+    .post(url, credentials)
     .then((res) => {
       const token = `Bearer ${res.data.token}`;
       localStorage.setItem('token', `Bearer ${res.data.token}`);
       axios.defaults.headers.common['Authorization'] = token;
       console.log(getCookie('Token'));
-      dispatch(getUserData());
-      dispatch({ type: CLEAR_ERRORS });
-      console.log('success');
+      boundActions.getUserData();
+      dispatch<SetAuthenticatedAction>({ type: ActionTypes.setAuthenticated });
+      dispatch<ClearErrorsAction>({ type: ActionTypes.clearErrors });
+      console.log('successfully logged in');
       history.push('/admin');
     })
     .catch((err) => {
       console.log(err);
-      dispatch({
-        type: SET_ERRORS,
+      dispatch<SetErrorsAction>({
+        type: ActionTypes.setErrors,
         payload: err.response.data
       });
     });
@@ -42,28 +102,11 @@ function getCookie(cookieName: string) {
   }
 }
 
-// for fetching authenticated user information
-export const getUserData = () => (dispatch: any) => {
-  dispatch({ type: LOADING_USER });
-  axios
-    .get('/api/v1/auth/me')
-    .then((res) => {
-      console.log('user data', res.data);
-      dispatch({
-        type: SET_USER,
-        payload: res.data
-      });
-    })
-    .catch((err) => {
-      console.log(err);
-    });
-};
-
-export const logoutUser = () => (dispatch: any) => {
+export const logoutUser = () => (dispatch: Dispatch) => {
   localStorage.removeItem('token');
   delete axios.defaults.headers.common['Authorization'];
-  dispatch({
-    type: SET_UNAUTHENTICATED
+  dispatch<SetUnauthenticatedAction>({
+    type: ActionTypes.setUnauthenticated
   });
   window.location.href = '/login';
 };

@@ -1,42 +1,38 @@
 import { ObjectLiteral } from '../../utils/interface/interface';
-import {
-  SET_USER,
-  SET_AUTHENTICATED,
-  SET_UNAUTHENTICATED,
-  LOADING_USER
-} from '../types';
-
-export interface UserReducerInterface {
-  authenticated: boolean;
-  credentials: ObjectLiteral;
-  loading: boolean;
-}
+import { Action, ActionTypes } from '../../redux/types';
+import { UserData } from '../actions/userActions';
 
 const initialState = {
   authenticated: false,
-  credentials: {},
+  credentials: null,
   loading: false
 };
 
+export interface UserReducerInterface {
+  authenticated: boolean;
+  credentials: UserData | null;
+  loading: boolean;
+}
+
 export const userReducer = (
   state: UserReducerInterface = initialState,
-  action: any
+  action: Action
 ) => {
   switch (action.type) {
-    case SET_AUTHENTICATED:
+    case ActionTypes.setAuthenticated:
       return {
         ...state,
         authenticated: true
       };
-    case SET_UNAUTHENTICATED:
-      return initialState;
-    case SET_USER:
+    case ActionTypes.setUnauthenticated:
+      return state;
+    case ActionTypes.setUser:
       return {
         authenticated: true,
         loading: false,
-        ...action.payload
+        credentials: action.payload
       };
-    case LOADING_USER:
+    case ActionTypes.loadingUser:
       return {
         ...state,
         loading: true
