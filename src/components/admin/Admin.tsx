@@ -5,17 +5,15 @@ import { useTheme } from '@material-ui/core/styles';
 import clsx from 'clsx';
 import useStyles from './Admin.styles';
 
-// Props
-import { IGallery } from '../../redux/actions/galleryActions';
-import {
-  fetchGallery,
-  addImage,
-  deleteImage
-} from '../../redux/actions/galleryActions';
-import { StoreState } from '../../redux/store';
-
+// Components
 import MiniHeader from '../header/MiniHeader';
 import AddImageModal from '../modals/AddImageModal.js';
+
+// Props
+import { IGallery } from '../../redux/actions/galleryActions';
+import { fetchGallery } from '../../redux/actions/galleryActions';
+import { StoreState } from '../../redux/store';
+
 // Mui
 import Drawer from '@material-ui/core/Drawer';
 import AppBar from '@material-ui/core/AppBar';
@@ -34,20 +32,13 @@ import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import InboxIcon from '@material-ui/icons/MoveToInbox';
 import MailIcon from '@material-ui/icons/Mail';
 
-import { UserReducerInterface } from '../../redux/reducers/userReducer';
-import { UiReducerInterface } from '../../redux/reducers/uiReducer';
-
 interface AdminProps {
   gallery: IGallery[];
   fetchGallery: Function;
-  addImage: typeof addImage;
-  deleteImage: typeof deleteImage;
-  user: UserReducerInterface;
-  UI: UiReducerInterface;
   logoutUser: Function;
 }
 
-const Admin = (props: any) => {
+const Admin = (props: AdminProps) => {
   const {
     root,
     toolbar,
@@ -77,9 +68,10 @@ const Admin = (props: any) => {
   const [open, setOpen] = useState(false);
   const [state, setState] = useState('Gallery');
   const [modalIsOpen, setModalIsOpen] = useState(false);
+  const { gallery, fetchGallery, logoutUser } = props;
 
   useEffect(() => {
-    props.fetchGallery();
+    fetchGallery();
     //eslint-disable-next-line
   }, []);
 
@@ -119,7 +111,7 @@ const Admin = (props: any) => {
   };
 
   const handleLogout = () => {
-    props.logoutUser();
+    logoutUser();
   };
 
   return (
@@ -227,8 +219,8 @@ const Admin = (props: any) => {
                 <div className={container}>
                   <div className={galleryInner}>
                     <div className={gridList}>
-                      {props.gallery !== null &&
-                        props.gallery.map((item: IGallery) => (
+                      {gallery !== null &&
+                        gallery.map((item: IGallery) => (
                           <div key={item._id}>
                             <div>{item.category}</div>
                             <div>{item.name}</div>
@@ -309,8 +301,6 @@ const Admin = (props: any) => {
 };
 
 const mapStateToProps = (state: StoreState) => ({
-  user: state.user,
-  UI: state.UI,
   gallery: state.gallery.gallery
 });
 
