@@ -19,10 +19,11 @@ import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
 import TextField from '@material-ui/core/TextField';
 import Grid from '@material-ui/core/Grid';
+import Typography from '@material-ui/core/Typography';
 
 const useStyles = makeStyles((theme) =>
   createStyles({
-    main: {
+    root: {
       flexGrow: 1
     },
     formControl: {
@@ -33,9 +34,24 @@ const useStyles = makeStyles((theme) =>
     selectEmpty: {
       marginTop: theme.spacing(2)
     },
-    formControlImage: {
-      margin: theme.spacing(2.5)
+    formControlUpload: {
+      margin: theme.spacing(2.5),
+      alignSelf: 'center',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      '& > label > span': {
+        minWidth: '256px',
+        backgroundColor: theme.palette.secondary.main,
+        fontSize: '16px',
+        fontFamily: '"Lato", sans-serif',
+        fontWeight: 500
+      },
+      '& > input': {
+        display: 'none'
+      }
     },
+    uploadButton: {},
     textField: {
       margin: theme.spacing(1),
       width: '100%'
@@ -52,17 +68,29 @@ const useStyles = makeStyles((theme) =>
         transition: 'color 0.3s ease'
       }
     },
+    previewContainer: {
+      width: '100%',
+      height: '10vh',
+      marginBottom: theme.spacing(2),
+      padding: 0,
+      position: 'relative'
+    },
     preview: {
       position: 'absolute',
-      width: '10rem',
-      height: '10rem',
-      top: '50%',
-      left: '50%',
+      width: '200px',
+      height: '200px',
       transform: 'translate(-50%, -50%)',
+      top: 0,
+      left: '50%',
       '& > img': {
         width: '100%',
-        height: '100%'
+        height: '100%',
+        objectFit: 'cover',
+        objectPosition: '50% 50%'
       }
+    },
+    previewText: {
+      marginBottom: theme.spacing(4.5)
     },
     iconSuccess: {
       fontFamily: 'Icons',
@@ -110,10 +138,10 @@ const useStyles = makeStyles((theme) =>
     },
     filename: {
       position: 'absolute',
-      bottom: 0
+      top: '90%'
     },
     success: {
-      fontWeight: 'bold',
+      fontWeight: 'bold'
     },
     error: {}
   })
@@ -123,6 +151,7 @@ const AddImageModal = (props) => {
   const { modalIsOpen, handleModalClose } = props;
   const { addToast } = useToast();
   const classes = useStyles();
+  const [imageName, setImageName] = useState('');
   const [category, setCategory] = useState('');
   const [description, setDescription] = useState('');
   //eslint-disable-next-line
@@ -132,9 +161,9 @@ const AddImageModal = (props) => {
   const [selectedFile, setSelectedFile] = useState(null);
   const [preview, setPreview] = useState(null);
   const [isDisabled, setIsDisabled] = useState(true);
-  const [isError, setIsError] = useState(false)
-  const [isSuccess, setisSuccess] = useState(false)
-  const [isLoading, setIsLoading] = useState(false)
+  const [isError, setIsError] = useState(false);
+  const [isSuccess, setisSuccess] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     if (selectedFile) {
@@ -144,8 +173,16 @@ const AddImageModal = (props) => {
     }
   }, [selectedFile]);
 
-  const handleCategoryChange = (event) => {
-    setCategory(event.target.value);
+  const handleCategoryChange = (e) => {
+    setCategory(e.target.value);
+  };
+
+  const handleImageName = (e) => {
+    setImageName(e.target.value);
+  };
+
+  const handleDescriptionChange = (e) => {
+    setDescription(e.target.value);
   };
 
   const handleSelectedFile = (e) => {
@@ -184,8 +221,9 @@ const AddImageModal = (props) => {
 
         // Update Database with details
         const imageDetails = {
-          name: fileName,
-          description: category,
+          name: imageName ? imageName : fileName,
+          description,
+          category,
           path: fileLocation,
           createdAt: Date.now()
         };
@@ -200,6 +238,7 @@ const AddImageModal = (props) => {
           setPreview(null);
           setisSuccess(true);
           setFileName(null);
+          setImageName('');
           setCategory('');
           setDescription('');
           handleModalClose();
@@ -209,6 +248,7 @@ const AddImageModal = (props) => {
       setIsLoading(false);
       setIsError(true);
       setFileName(null);
+      setImageName('');
       setCategory('');
       setDescription('');
 
@@ -228,19 +268,21 @@ const AddImageModal = (props) => {
     >
       <form onSubmit={(e) => handleSubmit(e)}>
         <DialogTitle id="add-image-dialog">Add Images</DialogTitle>
-        <DialogContent>
+        <DialogContent style={{ overflowY: 'hidden' }}>
           <div className={classes.root}>
             <Grid container spacing={3}>
               <Grid item xs={7}>
                 <FormControl className={classes.formControl}>
-                  <InputLabel id="category-select-label">Category</InputLabel>
+                  <InputLabel id="category-label">Category</InputLabel>
                   <Select
-                    labelId="category-select-label"
-                    id="category-select"
+                    labelId="category-label"
+                    id="category"
                     value={category}
                     onChange={handleCategoryChange}
                   >
-                    <MenuItem value="Kitchen Benchtops">Kitchen Benchtops</MenuItem>
+                    <MenuItem value="Kitchen Benchtops">
+                      Kitchen Benchtops
+                    </MenuItem>
                     <MenuItem value="Monuments">Monuments</MenuItem>
                     <MenuItem value="Staircases">Staircases</MenuItem>
                     <MenuItem value="Bathrooms">Bathrooms</MenuItem>
@@ -250,57 +292,91 @@ const AddImageModal = (props) => {
                     <MenuItem value="Fireplaces">Fireplaces</MenuItem>
                     <MenuItem value="Floors">Floors</MenuItem>
                   </Select>
-                </FormControl>         
-                <TextField id="name" label="Name" className={classes.textField} />
-                <TextField id="description" label="Description" className={classes.textField} />
+                </FormControl>
+                <TextField
+                  className={classes.textField}
+                  id="name"
+                  label="Name (Optional)"
+                  value={imageName}
+                  onChange={handleImageName}
+                />
+                <TextField
+                  className={classes.textField}
+                  id="description"
+                  label="Description"
+                  value={description}
+                  onChange={handleDescriptionChange}
+                />
+                <FormControl className={classes.formControlUpload}>
+                  <input
+                    accept="image/*"
+                    id="upload-file-button"
+                    multiple
+                    type="file"
+                    onChange={handleSelectedFile}
+                  />
+                  <label htmlFor="upload-file-button">
+                    <Button variant="contained" component="span">
+                      Upload
+                    </Button>
+                  </label>
+                </FormControl>
+              </Grid>
+              <Grid item xs={5}>
+                <Typography
+                  className={classes.previewText}
+                  variant="h5"
+                  align="center"
+                >
+                  Preview
+                </Typography>
                 <div className={classes.upload}>
                   {isLoading ? (
                     <Spinner />
                   ) : (
                     <>
-                    {isError || isSuccess ? (
-                      <i className={isSuccess ? classes.iconSuccess : classes.iconError} />         
-                    ) : (
-                      <>
-                      {preview ? (
-                        <div className={classes.preview} style={{ background: `url(${preview})`, backgroundSize: 'cover', backgroundPosition: 'center center'}} />
-                      ) : (
-                        <i className={classes.iconUpload} />
-                      )}
-                      <FormControl className={classes.formControlImage}>
-                        <input
-                          accept="image/*"
-                          style={{ display: 'none' }}
-                          id="upload-file-button"
-                          multiple
-                          type="file"
-                          onChange={handleSelectedFile}
+                      {isError || isSuccess ? (
+                        <i
+                          className={
+                            isSuccess ? classes.iconSuccess : classes.iconError
+                          }
                         />
-                        <label htmlFor="upload-file-button">
-                          <Button variant="contained" component="span">
-                            Upload
-                          </Button>
-                        </label>
-                      </FormControl>
-                      </>
-                    )}
+                      ) : (
+                        <div className={classes.previewContainer}>
+                          {preview ? (
+                            <>
+                              <div className={classes.preview}>
+                                <img
+                                  src={preview}
+                                  alt="Preview of the file to be uploaded"
+                                />
+                              </div>
+                            </>
+                          ) : (
+                            <i className={classes.iconUpload} />
+                          )}
+                          {isError || isSuccess ? (
+                            <p
+                              className={
+                                isSuccess ? classes.success : classes.error
+                              }
+                            >
+                              {isSuccess
+                                ? 'Upload successful!'
+                                : 'Something went wrong..'}
+                            </p>
+                          ) : (
+                            <p className={classes.filename}>
+                              {fileName ? fileName : 'No file selected yet'}
+                            </p>
+                          )}
+                        </div>
+                      )}
                     </>
                   )}
                 </div>
-                {isError || isSuccess ? (
-                  <p className={isSuccess ? classes.success : classes.error}>
-                    {isSuccess ? 'Upload successful!' : 'Something went wrong..'}
-                  </p>
-                ) : (
-                  <p className={classes.filename}>
-                    {fileName ? fileName : 'No file selected yet'}
-                  </p>
-                )}
-          </Grid>
-          <Grid item xs={5}>
-            <p>VMRO NARODNA</p>
-          </Grid>
-          </Grid>
+              </Grid>
+            </Grid>
           </div>
         </DialogContent>
         <DialogActions>
