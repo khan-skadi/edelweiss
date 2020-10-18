@@ -62,6 +62,8 @@ const Admin = (props: AdminProps) => {
     galleryWrap,
     galleryInner,
     gridList,
+    imageContainer,
+    imageInner,
     loadMore
   } = useStyles();
   const theme = useTheme();
@@ -219,13 +221,28 @@ const Admin = (props: AdminProps) => {
                 <div className={container}>
                   <div className={galleryInner}>
                     <div className={gridList}>
-                      {gallery !== null &&
-                        gallery.map((item: IGallery) => (
-                          <div key={item._id}>
-                            <div>{item.category}</div>
-                            <div>{item.name}</div>
-                            <div>{item.description}</div>
-                            <div>{item.path}</div>
+                      {gallery &&
+                        gallery.map((image: IGallery) => (
+                          <div className={imageContainer} key={image._id}>
+                            <div className={imageInner}>
+                              <img src={image.path} alt={image.category} />
+
+                              {/* <Typography variant="body1">
+                                {image.name}
+                              </Typography>
+                              <a href={`${image.path}`}>
+                                <img src={image.path} alt={image.category} />
+                              </a>
+                              <Typography variant="subtitle2">
+                                <span>Description:</span> {image.description}
+                              </Typography>
+                              <Typography variant="subtitle2">
+                                <span>Category:</span> {image.category}
+                              </Typography>
+                              <Typography variant="subtitle2">
+                                <span>ID:</span> {image._id}
+                              </Typography> */}
+                            </div>
                           </div>
                         ))}
                     </div>

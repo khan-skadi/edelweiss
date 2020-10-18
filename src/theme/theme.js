@@ -25,6 +25,14 @@ const createTheme = createMuiTheme({
       color: '#fff'
     }
   },
+  typography: {
+    fontFamily: '"Lato", sans-serif',
+    fontSize: 16,
+    fontWeightLight: 300,
+    fontWeightRegular: 400,
+    fontWeightMedium: 500,
+    fontWeightBold: 600
+  },
   spreadThis: {
     sectionServices: {
       padding: '80px 0',

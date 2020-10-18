@@ -183,25 +183,48 @@ const useStyles = makeStyles((theme: Theme) => ({
     verticalAlign: 'baseline'
   },
   galleryInner: {
-    display: 'block',
     position: 'relative',
-    margin: '0 auto',
+    display: 'block',
     width: '100%',
     maxWidth: '1810px',
+    margin: '0 auto',
     marginTop: '50px !important',
     padding: 0,
     border: 0
   },
   gridList: {
-    display: 'block',
     position: 'relative',
+    display: 'flex',
+    flexWrap: 'wrap',
+    width: '91.5%',
     maxWidth: '100%',
     margin: '0 auto',
-    width: '96.5%',
-    // height: '' ?,
     padding: 0,
     border: 0,
     verticalALign: 'baseline'
+  },
+  imageContainer: {
+    display: 'flex',
+    flexDirection: 'column',
+    marginLeft: theme.spacing(0.5),
+    marginBottom: theme.spacing(0.5),
+    width: '240px',
+    height: '200px',
+    textAlign: 'center',
+    '& img': {
+      width: '240px',
+      height: '200px',
+      objectFit: 'cover',
+      objectPosition: '50% 50%'
+    }
+  },
+  imageInner: {
+    '& > .MuiTypography-root:nth-child(1)': {
+      marginBottom: theme.spacing(1)
+    },
+    '& > .MuiTypography-root > span': {
+      fontWeight: 700
+    }
   },
   loadMore: {
     display: 'flex',
