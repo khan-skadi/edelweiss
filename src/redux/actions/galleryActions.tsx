@@ -1,27 +1,28 @@
-import axios from 'axios';
+import axios, { AxiosResponse } from 'axios';
 import { Dispatch } from 'redux';
 import { ActionTypes } from '../types';
+import { toastr } from 'react-redux-toastr';
 
 const url = '/api/v1/gallery';
 
-export interface Gallery {
+export interface IGallery {
   category: string;
   createdAt: string;
   description: string;
   name: string;
   path: string;
   __v: number;
-  id: number;
+  _id: number;
 }
 
 export interface FetchGalleryAction {
   type: ActionTypes.fetchGallery;
-  payload: Gallery[];
+  payload: IGallery[];
 }
 
 export interface AddImageAction {
   type: ActionTypes.addImage;
-  payload: Gallery;
+  payload: IGallery;
 }
 
 export interface DeleteImageAction {
@@ -29,21 +30,27 @@ export interface DeleteImageAction {
   payload: number;
 }
 
-export const fetchGallery = () => {
-  return async (dispatch: Dispatch) => {
-    const response = await axios.get<Gallery[]>(url);
+interface ResponseData {
+  data: IGallery[];
+  count: number;
+  success: boolean;
+}
 
+export const fetchGallery = () => (dispatch: Dispatch) => {
+  axios.get<ResponseData>(url).then((res: AxiosResponse<ResponseData>) => {
     dispatch<FetchGalleryAction>({
       type: ActionTypes.fetchGallery,
-      payload: response.data
+      payload: res.data.data
     });
-  };
+  });
 };
 
-export const addImage = (image: Gallery) => (dispatch: Dispatch) => {
+export const addImage = (image: IGallery) => (dispatch: Dispatch) => {
   dispatch<AddImageAction>({ type: ActionTypes.addImage, payload: image });
+  toastr.success('Success !', 'Image added successfully');
 };
 
 export const deleteImage = (id: number) => (dispatch: Dispatch) => {
   dispatch<DeleteImageAction>({ type: ActionTypes.deleteImage, payload: id });
+  toastr.success('Success !', 'Image deleted successfully');
 };

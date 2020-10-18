@@ -14,7 +14,6 @@ export const CheckAuthentication = () => {
   const authToken = localStorage.token;
   if (authToken) {
     const decodedToken: any = jwtDecode(authToken);
-    console.log(decodedToken.iss);
     if (decodedToken.exp * 1000 < Date.now()) {
       boundActions.logoutUser();
     } else {

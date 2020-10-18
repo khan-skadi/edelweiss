@@ -1,4 +1,4 @@
-import { Gallery } from '../actions/galleryActions';
+import { IGallery } from '../actions/galleryActions';
 import { Action, ActionTypes } from '../types';
 
 const initialState = {
@@ -6,7 +6,7 @@ const initialState = {
 };
 
 export interface GalleryReducerInterface {
-  gallery: Gallery[];
+  gallery: IGallery[];
 }
 
 export const galleryReducer = (
@@ -26,7 +26,7 @@ export const galleryReducer = (
     case ActionTypes.deleteImage:
       return {
         gallery: state.gallery.filter(
-          (image: Gallery) => image.id !== action.payload
+          (image: IGallery) => image._id !== action.payload
         )
       };
     default:

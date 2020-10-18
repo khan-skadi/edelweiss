@@ -1,4 +1,6 @@
 import { makeStyles, Theme } from '@material-ui/core/styles';
+import logo from '../../assets/logo/logo400.png';
+
 const drawerWidth = 240;
 
 const useStyles = makeStyles((theme: Theme) => ({
@@ -82,6 +84,12 @@ const useStyles = makeStyles((theme: Theme) => ({
     // necessary for content to be below app bar
     ...theme.mixins.toolbar,
     justifyContent: 'flex-end'
+  },
+  drawerLogo: {
+    backgroundImage: `url(${logo})`,
+    backgroundSize: 'contain',
+    backgroundRepeat: 'no-repeat',
+    backgroundPosition: 'left center'
   },
   content: {
     flexGrow: 1,

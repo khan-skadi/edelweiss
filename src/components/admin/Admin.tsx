@@ -1,14 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
-import { toastOpen } from '../../redux/actions/uiActions';
 import { logoutUser } from '../../redux/actions/userActions';
 import { useTheme } from '@material-ui/core/styles';
 import clsx from 'clsx';
-import axios from 'axios';
 import useStyles from './Admin.styles';
 
 // Props
-import { Gallery } from '../../redux/actions/galleryActions';
+import { IGallery } from '../../redux/actions/galleryActions';
 import {
   fetchGallery,
   addImage,
@@ -36,26 +34,17 @@ import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import InboxIcon from '@material-ui/icons/MoveToInbox';
 import MailIcon from '@material-ui/icons/Mail';
 
-import logo from '../../assets/logo/logo400.png';
+import { UserReducerInterface } from '../../redux/reducers/userReducer';
+import { UiReducerInterface } from '../../redux/reducers/uiReducer';
 
 interface AdminProps {
-  gallery: Gallery[];
+  gallery: IGallery[];
   fetchGallery: Function;
   addImage: typeof addImage;
   deleteImage: typeof deleteImage;
-  user: typeof toastOpen;
-  // UI: ;
-  // logoutUser: ;
-  // toastOpen: ;
-}
-
-export interface InterfaceGallery {
-  name: string;
-  category: string;
-  _id: string;
-  __v: number;
-  description: string;
-  path: string;
+  user: UserReducerInterface;
+  UI: UiReducerInterface;
+  logoutUser: Function;
 }
 
 const Admin = (props: any) => {
@@ -66,10 +55,11 @@ const Admin = (props: any) => {
     menuButton,
     hide,
     appBar,
+    content,
     drawer,
     drawerPaper,
     drawerHeader,
-    content,
+    drawerLogo,
     contentShift,
     drawerTitle,
     drawerList,
@@ -87,13 +77,10 @@ const Admin = (props: any) => {
   const [open, setOpen] = useState(false);
   const [state, setState] = useState('Gallery');
   const [modalIsOpen, setModalIsOpen] = useState(false);
-  const [data, setData] = useState<InterfaceGallery[]>([]);
 
   useEffect(() => {
-    axios.get<InterfaceGallery[]>('/api/v1/gallery').then((res) => {
-      console.log(res.data);
-      setData(res.data);
-    });
+    props.fetchGallery();
+    //eslint-disable-next-line
   }, []);
 
   const handleModalOpen = (): void => {
@@ -186,15 +173,7 @@ const Admin = (props: any) => {
             paper: drawerPaper
           }}
         >
-          <div
-            className={drawerHeader}
-            style={{
-              backgroundImage: `url(${logo})`,
-              backgroundSize: 'contain',
-              backgroundRepeat: 'no-repeat',
-              backgroundPosition: 'left center'
-            }}
-          >
+          <div className={clsx(drawerHeader, drawerLogo)}>
             <Typography variant="body1" className={drawerTitle}>
               Aco <br />
               Stamenkovski
@@ -248,14 +227,14 @@ const Admin = (props: any) => {
                 <div className={container}>
                   <div className={galleryInner}>
                     <div className={gridList}>
-                      {data.length > 0 &&
-                        data.map((item) => (
-                          <>
+                      {props.gallery !== null &&
+                        props.gallery.map((item: IGallery) => (
+                          <div key={item._id}>
                             <div>{item.category}</div>
                             <div>{item.name}</div>
                             <div>{item.description}</div>
                             <div>{item.path}</div>
-                          </>
+                          </div>
                         ))}
                     </div>
                     <div style={{ clear: 'both' }} />
@@ -329,16 +308,15 @@ const Admin = (props: any) => {
   );
 };
 
-//this map the states to our props in this functional component
-const mapStateToProps = (state: any) => ({
+const mapStateToProps = (state: StoreState) => ({
   user: state.user,
-  UI: state.UI
+  UI: state.UI,
+  gallery: state.gallery.gallery
 });
 
-//this map actions to our props in this functional component
 const mapActionsToProps = {
-  logoutUser,
-  toastOpen
+  fetchGallery,
+  logoutUser
 };
 
 export default connect(mapStateToProps, mapActionsToProps)(Admin);

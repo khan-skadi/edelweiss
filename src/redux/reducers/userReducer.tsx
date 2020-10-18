@@ -1,4 +1,3 @@
-import { ObjectLiteral } from '../../utils/interface/interface';
 import { Action, ActionTypes } from '../../redux/types';
 import { UserData } from '../actions/userActions';
 

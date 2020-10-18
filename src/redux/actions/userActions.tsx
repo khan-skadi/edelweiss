@@ -81,7 +81,7 @@ export const loginUser = (credentials: Credentials, history: any) => (
       boundActions.getUserData();
       dispatch<SetAuthenticatedAction>({ type: ActionTypes.setAuthenticated });
       dispatch<ClearErrorsAction>({ type: ActionTypes.clearErrors });
-      toastr.success('Welcome !', 'Logged in successfully !');
+      toastr.success('Welcome !', 'Logged in successfully');
       history.push('/admin');
     })
     .catch((err) => {
