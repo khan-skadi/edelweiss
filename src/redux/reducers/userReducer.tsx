@@ -1,3 +1,4 @@
+import { ObjectLiteral } from '../../utils/interface/interface';
 import {
   SET_USER,
   SET_AUTHENTICATED,
@@ -5,13 +6,22 @@ import {
   LOADING_USER
 } from '../types';
 
+export interface UserReducerInterface {
+  authenticated: boolean;
+  credentials: ObjectLiteral;
+  loading: boolean;
+}
+
 const initialState = {
   authenticated: false,
   credentials: {},
   loading: false
 };
 
-export default function (state = initialState, action: any) {
+export const userReducer = (
+  state: UserReducerInterface = initialState,
+  action: any
+) => {
   switch (action.type) {
     case SET_AUTHENTICATED:
       return {
@@ -34,4 +44,4 @@ export default function (state = initialState, action: any) {
     default:
       return state;
   }
-}
+};

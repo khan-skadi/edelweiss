@@ -1,8 +1,13 @@
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
-import userReducer from './reducers/userReducer';
-import uiReducer from './reducers/uiReducer';
-import adminReducer from './reducers/adminReducer';
+
+import { userReducer } from './reducers/userReducer';
+import { uiReducer } from './reducers/uiReducer';
+import { galleryReducer } from './reducers/galleryReducer';
+
+import { UserReducerInterface } from './reducers/userReducer';
+import { UiReducerInterface } from './reducers/uiReducer';
+import { GalleryReducerInterface } from './reducers/galleryReducer';
 
 const initialState = {};
 const middleware = [thunk];
@@ -14,10 +19,16 @@ declare global {
   }
 }
 
-const reducer = combineReducers({
+export interface StoreState {
+  user: UserReducerInterface;
+  UI: UiReducerInterface;
+  gallery: GalleryReducerInterface;
+}
+
+const reducer = combineReducers<StoreState>({
   user: userReducer,
   UI: uiReducer,
-  admin: adminReducer
+  gallery: galleryReducer
 });
 
 const store = createStore(

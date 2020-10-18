@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { createStyles, makeStyles } from '@material-ui/core/styles';
 import { useToast } from '../../utils/toast/ToastProvider';
-import { addImage } from '../../redux/actions/adminActions';
+import { addImage } from '../../redux/actions/galleryActions';
 import axios from 'axios';
 
 import Spinner from '../../utils/spinner/Spinner';

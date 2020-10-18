@@ -42,6 +42,10 @@ const useStyles = makeStyles((theme: Theme) => ({
       content: "''"
     }
   },
+  toolbar: {
+    display: 'flex',
+    justifyContent: 'space-between'
+  },
   appBar: {
     transition: theme.transitions.create(['margin', 'width'], {
       easing: theme.transitions.easing.sharp,

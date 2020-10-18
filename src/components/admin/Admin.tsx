@@ -1,15 +1,23 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { toastOpen } from '../../redux/actions/uiActions';
 import { logoutUser } from '../../redux/actions/userActions';
 import { useTheme } from '@material-ui/core/styles';
-import { IMAGES } from '../gallery/GalleryMain';
 import clsx from 'clsx';
+import axios from 'axios';
 import useStyles from './Admin.styles';
-import MiniHeader from '../header/MiniHeader';
-import Gallery from 'react-grid-gallery';
-import AddImageModal from '../modals/AddImageModal.js';
 
+// Props
+import { Gallery } from '../../redux/actions/galleryActions';
+import {
+  fetchGallery,
+  addImage,
+  deleteImage
+} from '../../redux/actions/galleryActions';
+import { StoreState } from '../../redux/store';
+
+import MiniHeader from '../header/MiniHeader';
+import AddImageModal from '../modals/AddImageModal.js';
 // Mui
 import Drawer from '@material-ui/core/Drawer';
 import AppBar from '@material-ui/core/AppBar';
@@ -30,9 +38,30 @@ import MailIcon from '@material-ui/icons/Mail';
 
 import logo from '../../assets/logo/logo400.png';
 
+interface AdminProps {
+  gallery: Gallery[];
+  fetchGallery: Function;
+  addImage: typeof addImage;
+  deleteImage: typeof deleteImage;
+  user: typeof toastOpen;
+  // UI: ;
+  // logoutUser: ;
+  // toastOpen: ;
+}
+
+export interface InterfaceGallery {
+  name: string;
+  category: string;
+  _id: string;
+  __v: number;
+  description: string;
+  path: string;
+}
+
 const Admin = (props: any) => {
   const {
     root,
+    toolbar,
     appBarShift,
     menuButton,
     hide,
@@ -58,6 +87,14 @@ const Admin = (props: any) => {
   const [open, setOpen] = useState(false);
   const [state, setState] = useState('Gallery');
   const [modalIsOpen, setModalIsOpen] = useState(false);
+  const [data, setData] = useState<InterfaceGallery[]>([]);
+
+  useEffect(() => {
+    axios.get<InterfaceGallery[]>('/api/v1/gallery').then((res) => {
+      console.log(res.data);
+      setData(res.data);
+    });
+  }, []);
 
   const handleModalOpen = (): void => {
     setModalIsOpen(true);
@@ -112,12 +149,7 @@ const Admin = (props: any) => {
             [appBarShift]: open
           })}
         >
-          <Toolbar
-            style={{
-              display: 'flex',
-              justifyContent: 'space-between'
-            }}
-          >
+          <Toolbar className={toolbar}>
             <IconButton
               color="inherit"
               aria-label="open drawer"
@@ -207,7 +239,6 @@ const Admin = (props: any) => {
           {state === 'Gallery' && (
             <section className={sectionGallery}>
               <div className={drawerHeader} />
-              {/* <GalleryMain /> */}
               <div className={titleMain}>
                 <div className={container}>
                   <h1 className={title}>Gallery</h1>
@@ -217,7 +248,15 @@ const Admin = (props: any) => {
                 <div className={container}>
                   <div className={galleryInner}>
                     <div className={gridList}>
-                      {/* <Gallery images={IMAGES} /> */}
+                      {data.length > 0 &&
+                        data.map((item) => (
+                          <>
+                            <div>{item.category}</div>
+                            <div>{item.name}</div>
+                            <div>{item.description}</div>
+                            <div>{item.path}</div>
+                          </>
+                        ))}
                     </div>
                     <div style={{ clear: 'both' }} />
                     <div className={loadMore}>

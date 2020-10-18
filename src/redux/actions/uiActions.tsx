@@ -1,9 +1,32 @@
-import { SET_TOAST_OPEN, SET_TOAST_CLOSE } from '../types';
+import { Dispatch } from 'redux';
+import { ObjectLiteral } from '../../utils/interface/interface';
+import { ActionTypes } from '../types';
 
-export const toastOpen = () => (dispatch: any) => {
-  dispatch({ type: SET_TOAST_OPEN });
+export interface ToastOpenAction {
+  type: ActionTypes.toastOpen;
+}
+
+export interface ToastCloseAction {
+  type: ActionTypes.toastClose;
+}
+
+export interface SetErrorsAction {
+  type: ActionTypes.setErrors;
+  payload: ObjectLiteral;
+}
+
+export interface ClearErrorsAction {
+  type: ActionTypes.clearErrors;
+}
+
+export interface LoadingUiAction {
+  type: ActionTypes.loadingUi;
+}
+
+export const toastOpen = () => (dispatch: Dispatch) => {
+  dispatch<ToastOpenAction>({ type: ActionTypes.toastOpen });
 };
 
-export const toastClose = () => (dispatch: any) => {
-  dispatch({ type: SET_TOAST_CLOSE });
+export const toastClose = () => (dispatch: Dispatch) => {
+  dispatch<ToastCloseAction>({ type: ActionTypes.toastClose });
 };

@@ -1,10 +1,5 @@
-import {
-  SET_ERRORS,
-  LOADING_UI,
-  CLEAR_ERRORS,
-  SET_TOAST_OPEN,
-  SET_TOAST_CLOSE
-} from '../types';
+import { ObjectLiteral } from '../../utils/interface/interface';
+import { Action, ActionTypes } from '../types';
 
 const initialState = {
   loading: false,
@@ -12,31 +7,40 @@ const initialState = {
   errors: null
 };
 
-export default function (state = initialState, action: any) {
+export interface UiReducerInterface {
+  loading: boolean;
+  toastOpen: boolean;
+  errors: ObjectLiteral | null;
+}
+
+export const uiReducer = (
+  state: UiReducerInterface = initialState,
+  action: Action
+) => {
   switch (action.type) {
-    case SET_ERRORS:
+    case ActionTypes.setErrors:
       return {
         ...state,
         loading: false,
         errors: action.payload
       };
-    case CLEAR_ERRORS:
+    case ActionTypes.clearErrors:
       return {
         ...state,
         loading: false,
         errors: null
       };
-    case LOADING_UI:
+    case ActionTypes.loadingUi:
       return {
         ...state,
         loading: true
       };
-    case SET_TOAST_OPEN:
+    case ActionTypes.toastOpen:
       return {
         ...state,
         toastOpen: true
       };
-    case SET_TOAST_CLOSE:
+    case ActionTypes.toastClose:
       return {
         ...state,
         toastOpen: false
@@ -44,4 +48,4 @@ export default function (state = initialState, action: any) {
     default:
       return state;
   }
-}
+};
