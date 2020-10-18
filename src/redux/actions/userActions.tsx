@@ -8,6 +8,7 @@ import {
   SetErrorsAction
 } from './uiActions';
 import { ActionTypes } from '../types';
+import { toastr } from 'react-redux-toastr';
 
 export interface UserData {
   createdAt: string;
@@ -69,6 +70,7 @@ export const loginUser = (credentials: Credentials, history: any) => (
 ) => {
   dispatch<LoadingUiAction>({ type: ActionTypes.loadingUi });
   const url = '/api/v1/auth/login';
+
   axios
     .post(url, credentials)
     .then((res) => {
@@ -79,7 +81,7 @@ export const loginUser = (credentials: Credentials, history: any) => (
       boundActions.getUserData();
       dispatch<SetAuthenticatedAction>({ type: ActionTypes.setAuthenticated });
       dispatch<ClearErrorsAction>({ type: ActionTypes.clearErrors });
-      console.log('successfully logged in');
+      toastr.success('Welcome !', 'Logged in successfully !');
       history.push('/admin');
     })
     .catch((err) => {
@@ -88,6 +90,10 @@ export const loginUser = (credentials: Credentials, history: any) => (
         type: ActionTypes.setErrors,
         payload: err.response.data
       });
+      toastr.error(
+        'Invalid credentials',
+        'Something went wrong, please try again'
+      );
     });
 };
 

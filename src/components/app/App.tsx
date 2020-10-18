@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
+import ReduxToastr from 'react-redux-toastr';
 import ToastProvider from '../../utils/toast/ToastProvider';
 import ScrollToTop from '../../utils/ScrollToTop';
 import dotenv from 'dotenv';
@@ -33,6 +34,15 @@ const App = () => {
     <Provider store={store}>
       <BrowserRouter>
         <ScrollToTop />
+        <ReduxToastr
+          timeOut={4000}
+          newestOnTop={false}
+          preventDuplicates
+          position="top-right"
+          transitionIn="fadeIn"
+          transitionOut="fadeOut"
+          closeOnToastrClick
+        />
         <ToastProvider>
           <Navbar />
           <Switch>

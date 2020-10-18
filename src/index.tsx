@@ -9,6 +9,7 @@ import App from './components/app/App';
 
 import theme from './theme/theme';
 import './index.css';
+import 'react-redux-toastr/lib/css/react-redux-toastr.min.css';
 
 // fonts
 import './assets/fonts/BacktrackRegular.ttf';

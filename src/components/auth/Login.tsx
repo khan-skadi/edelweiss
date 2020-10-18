@@ -1,20 +1,26 @@
 import React, { useState, useEffect } from 'react';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import TextField from '@material-ui/core/TextField';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Checkbox from '@material-ui/core/Checkbox';
-import Grid from '@material-ui/core/Grid';
-import Typography from '@material-ui/core/Typography';
-import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
-import Container from '@material-ui/core/Container';
-import { Paper, Box } from '@material-ui/core';
-import Button from '@material-ui/core/Button';
-import { Link } from 'react-router-dom';
-import CircularProgress from '@material-ui/core/CircularProgress';
-//redux stuff
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { loginUser } from '../../redux/actions/userActions';
 import { ObjectLiteral } from '../../utils/interface/interface';
+import { Credentials } from '../../redux/actions/userActions';
+import { StoreState } from '../../redux/store';
+
+// Mui
+import CssBaseline from '@material-ui/core/CssBaseline';
+import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
+import {
+  Paper,
+  Box,
+  Checkbox,
+  Button,
+  CircularProgress,
+  Grid,
+  Typography,
+  Container,
+  FormControlLabel,
+  TextField
+} from '@material-ui/core';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -27,16 +33,11 @@ const useStyles = makeStyles((theme: Theme) =>
   })
 );
 
-interface userDataProps {
-  email: string;
-  password: string;
-}
-
 function Login(props: any) {
-  const [values, setValues] = useState({
+  const [values, setValues] = useState<Credentials>({
     email: '',
     password: ''
-  } as userDataProps);
+  });
   const [errors, setErrors] = useState({} as ObjectLiteral);
   const [loading, setLoading] = useState(false);
   const classes = useStyles();
@@ -51,8 +52,7 @@ function Login(props: any) {
   const handleSubmit = (e: any) => {
     e.preventDefault();
     setLoading(true);
-    // your client side validation here
-    // after success validation
+
     const userData = {
       email: values.email,
       password: values.password
@@ -156,13 +156,11 @@ function Login(props: any) {
   );
 }
 
-//this map the states to our props in this functional component
-const mapStateToProps = (state: any) => ({
+const mapStateToProps = (state: StoreState) => ({
   user: state.user,
   UI: state.UI
 });
 
-//this map actions to our props in this functional component
 const mapActionsToProps = {
   loginUser
 };

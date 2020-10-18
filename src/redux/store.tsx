@@ -1,6 +1,10 @@
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
 
+import {
+  reducer as toastrReducer,
+  ToastrState as ToasterReducer
+} from 'react-redux-toastr';
 import { userReducer } from './reducers/userReducer';
 import { uiReducer } from './reducers/uiReducer';
 import { galleryReducer } from './reducers/galleryReducer';
@@ -23,9 +27,11 @@ export interface StoreState {
   user: UserReducerInterface;
   UI: UiReducerInterface;
   gallery: GalleryReducerInterface;
+  toastr: ToasterReducer;
 }
 
 const reducer = combineReducers<StoreState>({
+  toastr: toastrReducer,
   user: userReducer,
   UI: uiReducer,
   gallery: galleryReducer
