@@ -151,13 +151,11 @@ const AddImageModal = (props) => {
   const { modalIsOpen, handleModalClose } = props;
   const { addToast } = useToast();
   const classes = useStyles();
+
   const [imageName, setImageName] = useState('');
   const [category, setCategory] = useState('');
   const [description, setDescription] = useState('');
-  //eslint-disable-next-line
   const [fileName, setFileName] = useState(null);
-  //eslint-disable-next-line
-  const [uploadedFile, setUploadedFile] = useState({});
   const [selectedFile, setSelectedFile] = useState(null);
   const [preview, setPreview] = useState(null);
   const [isDisabled, setIsDisabled] = useState(true);
@@ -217,7 +215,6 @@ const AddImageModal = (props) => {
         const { fileName, fileLocation } = res.data;
         setIsLoading(false);
         setisSuccess(true);
-        console.log(res);
 
         // Update Database with details
         const imageDetails = {
@@ -228,22 +225,21 @@ const AddImageModal = (props) => {
           createdAt: Date.now()
         };
 
-        const updateDb = await axios.post('/api/v1/gallery', imageDetails);
-        console.log(updateDb);
+        await axios.post('/api/v1/gallery', imageDetails);
 
         addToast('Success');
-
-        setTimeout(() => {
-          setSelectedFile(null);
-          setPreview(null);
-          setisSuccess(true);
-          setFileName(null);
-          setImageName('');
-          setCategory('');
-          setDescription('');
-          handleModalClose();
-        });
       }
+
+      setTimeout(() => {
+        setSelectedFile(null);
+        setPreview(null);
+        setisSuccess(false);
+        setFileName(null);
+        setImageName('');
+        setCategory('');
+        setDescription('');
+        handleModalClose();
+      }, 3000);
     } catch (err) {
       setIsLoading(false);
       setIsError(true);
