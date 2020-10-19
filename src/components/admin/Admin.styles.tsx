@@ -194,37 +194,15 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
   gridList: {
     position: 'relative',
-    display: 'flex',
-    flexWrap: 'wrap',
+    // display: 'flex',
+    // flexWrap: 'wrap',
+    display: 'block',
     width: '91.5%',
     maxWidth: '100%',
     margin: '0 auto',
     padding: 0,
     border: 0,
     verticalALign: 'baseline'
-  },
-  imageContainer: {
-    display: 'flex',
-    flexDirection: 'column',
-    marginLeft: theme.spacing(0.5),
-    marginBottom: theme.spacing(0.5),
-    width: '240px',
-    height: '200px',
-    textAlign: 'center',
-    '& img': {
-      width: '240px',
-      height: '200px',
-      objectFit: 'cover',
-      objectPosition: '50% 50%'
-    }
-  },
-  imageInner: {
-    '& > .MuiTypography-root:nth-child(1)': {
-      marginBottom: theme.spacing(1)
-    },
-    '& > .MuiTypography-root > span': {
-      fontWeight: 700
-    }
   },
   loadMore: {
     display: 'flex',

@@ -4,6 +4,7 @@ import { logoutUser } from '../../redux/actions/userActions';
 import { useTheme } from '@material-ui/core/styles';
 import clsx from 'clsx';
 import useStyles from './Admin.styles';
+import Gallery from 'react-grid-gallery';
 
 // Components
 import MiniHeader from '../header/MiniHeader';
@@ -62,8 +63,6 @@ const Admin = (props: AdminProps) => {
     galleryWrap,
     galleryInner,
     gridList,
-    imageContainer,
-    imageInner,
     loadMore
   } = useStyles();
   const theme = useTheme();
@@ -115,6 +114,17 @@ const Admin = (props: AdminProps) => {
   const handleLogout = () => {
     logoutUser();
   };
+
+  const galleryImages = gallery.map((image) => {
+    const captioned = `"${image.name}" - ${image.description}`;
+    return {
+      src: image.path,
+      caption: captioned,
+      thumbnail: image.path,
+      thumbnailWidth: 240,
+      thumbnailHeight: 200
+    };
+  });
 
   return (
     <>
@@ -221,30 +231,7 @@ const Admin = (props: AdminProps) => {
                 <div className={container}>
                   <div className={galleryInner}>
                     <div className={gridList}>
-                      {gallery &&
-                        gallery.map((image: IGallery) => (
-                          <div className={imageContainer} key={image._id}>
-                            <div className={imageInner}>
-                              <img src={image.path} alt={image.category} />
-
-                              {/* <Typography variant="body1">
-                                {image.name}
-                              </Typography>
-                              <a href={`${image.path}`}>
-                                <img src={image.path} alt={image.category} />
-                              </a>
-                              <Typography variant="subtitle2">
-                                <span>Description:</span> {image.description}
-                              </Typography>
-                              <Typography variant="subtitle2">
-                                <span>Category:</span> {image.category}
-                              </Typography>
-                              <Typography variant="subtitle2">
-                                <span>ID:</span> {image._id}
-                              </Typography> */}
-                            </div>
-                          </div>
-                        ))}
+                      {gallery && <Gallery images={galleryImages} />}
                     </div>
                     <div style={{ clear: 'both' }} />
                     <div className={loadMore}>
