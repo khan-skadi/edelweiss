@@ -1,4 +1,5 @@
 export const categories = [
+  'All',
   'Kitchen Benchtops',
   'Monuments',
   'Staircases',

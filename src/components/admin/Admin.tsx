@@ -68,7 +68,7 @@ const Admin = (props: GalleryProps) => {
   const [open, setOpen] = useState<boolean>(false);
   const [state, setState] = useState<string>('Gallery');
   const [modalIsOpen, setModalIsOpen] = useState<boolean>(false);
-  const [activeCategory, setActiveCategory] = useState<string>(categories[0]);
+  const [activeCategory, setActiveCategory] = useState<string>(categories[1]);
   const { gallery, fetchGallery, logoutUser } = props;
 
   useEffect(() => {
@@ -248,9 +248,9 @@ const Admin = (props: GalleryProps) => {
                                 catButton,
                                 cat === activeCategory ? currentButton : ''
                               )}
+                              onClick={() => handleCategoryClick(cat)}
                               variant="contained"
                               disableElevation
-                              onClick={() => handleCategoryClick(cat)}
                             >
                               {cat}
                             </Button>
@@ -259,7 +259,11 @@ const Admin = (props: GalleryProps) => {
                       </ul>
                     </div>
                     <div className={gridList}>
-                      <Gallery images={filteredImages} />
+                      {activeCategory !== 'All' ? (
+                        <Gallery images={filteredImages} />
+                      ) : (
+                        <Gallery images={galleryImages} />
+                      )}
                     </div>
                     <div style={{ clear: 'both' }} />
                     <div className={loadMore}>
