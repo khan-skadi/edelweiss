@@ -30,7 +30,7 @@ const GalleryMain = (props: GalleryProps) => {
     currentButton
   } = useStyles();
   const { gallery, fetchGallery } = props;
-  const [activeCategory, setActiveCategory] = useState<string>(categories[0]);
+  const [activeCategory, setActiveCategory] = useState<string>(categories[1]);
 
   useEffect(() => {
     fetchGallery();
@@ -91,7 +91,11 @@ const GalleryMain = (props: GalleryProps) => {
                 </ul>
               </div>
               <div className={gridList}>
-                <Gallery images={filteredImages} />
+                {activeCategory !== 'All' ? (
+                  <Gallery images={filteredImages} />
+                ) : (
+                  <Gallery images={galleryImages} />
+                )}
               </div>
               <div style={{ clear: 'both' }}></div>
               <div className={loadMore}>

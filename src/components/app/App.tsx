@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
 import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
 import ReduxToastr from 'react-redux-toastr';
-import ToastProvider from '../../utils/toast/ToastProvider';
 import ScrollToTop from '../../utils/ScrollToTop';
 import dotenv from 'dotenv';
 
@@ -42,19 +41,17 @@ const App = () => {
           transitionOut="fadeOut"
           closeOnToastrClick
         />
-        <ToastProvider>
-          <Navbar />
-          <Switch>
-            <Route exact path="/" component={LandingPage} />
-            <Route path="/request-quote" component={RequestQuote} />
-            <Route path="/gallery" component={Gallery} />
-            <PrivateRoute path="/admin" component={Admin} />
-            <GuestRoute path="/login" component={Login} />
-            <Route path="/404" component={NotFoundPage} />
-            <Redirect to="/404" />
-          </Switch>
-          <Footer />
-        </ToastProvider>
+        <Navbar />
+        <Switch>
+          <Route exact path="/" component={LandingPage} />
+          <Route path="/request-quote" component={RequestQuote} />
+          <Route path="/gallery" component={Gallery} />
+          <PrivateRoute path="/admin" component={Admin} />
+          <GuestRoute path="/login" component={Login} />
+          <Route path="/404" component={NotFoundPage} />
+          <Redirect to="/404" />
+        </Switch>
+        <Footer />
       </BrowserRouter>
     </Provider>
   );
