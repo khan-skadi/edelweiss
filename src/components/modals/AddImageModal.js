@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { createStyles, makeStyles } from '@material-ui/core/styles';
-import { useToast } from '../../utils/toast/ToastProvider';
 import { addImage } from '../../redux/actions/galleryActions';
 import axios from 'axios';
 
@@ -149,7 +148,6 @@ const useStyles = makeStyles((theme) =>
 
 const AddImageModal = (props) => {
   const { addImage, modalIsOpen, handleModalClose } = props;
-  const { addToast } = useToast();
   const classes = useStyles();
 
   const [imageName, setImageName] = useState('');
