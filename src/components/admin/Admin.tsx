@@ -4,6 +4,7 @@ import { logoutUser } from '../../redux/actions/userActions';
 import { useTheme } from '@material-ui/core/styles';
 import clsx from 'clsx';
 import useStyles from './Admin.styles';
+import { categories } from '../../utils/constants';
 import Gallery from 'react-grid-gallery';
 
 // Components
@@ -57,12 +58,17 @@ const Admin = (props: GalleryProps) => {
     galleryWrap,
     galleryInner,
     gridList,
-    loadMore
+    loadMore,
+    tags,
+    tagsList,
+    catButton,
+    currentButton
   } = useStyles();
   const theme = useTheme();
-  const [open, setOpen] = useState(false);
-  const [state, setState] = useState('Gallery');
-  const [modalIsOpen, setModalIsOpen] = useState(false);
+  const [open, setOpen] = useState<boolean>(false);
+  const [state, setState] = useState<string>('Gallery');
+  const [modalIsOpen, setModalIsOpen] = useState<boolean>(false);
+  const [activeCategory, setActiveCategory] = useState<string>(categories[0]);
   const { gallery, fetchGallery, logoutUser } = props;
 
   useEffect(() => {
@@ -116,9 +122,18 @@ const Admin = (props: GalleryProps) => {
       caption: captioned,
       thumbnail: image.path,
       thumbnailWidth: 240,
-      thumbnailHeight: 200
+      thumbnailHeight: 200,
+      category: image.category
     };
   });
+
+  const filteredImages = galleryImages.filter(
+    (image) => image.category === activeCategory
+  );
+
+  const handleCategoryClick = (cat: string): void => {
+    setActiveCategory(cat);
+  };
 
   return (
     <>
@@ -224,8 +239,27 @@ const Admin = (props: GalleryProps) => {
               <div className={galleryWrap}>
                 <div className={container}>
                   <div className={galleryInner}>
+                    <div className={tags}>
+                      <ul className={tagsList}>
+                        {categories.map((cat, index) => (
+                          <li key={index}>
+                            <Button
+                              className={clsx(
+                                catButton,
+                                cat === activeCategory ? currentButton : ''
+                              )}
+                              variant="contained"
+                              disableElevation
+                              onClick={() => handleCategoryClick(cat)}
+                            >
+                              {cat}
+                            </Button>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
                     <div className={gridList}>
-                      {gallery && <Gallery images={galleryImages} />}
+                      <Gallery images={filteredImages} />
                     </div>
                     <div style={{ clear: 'both' }} />
                     <div className={loadMore}>

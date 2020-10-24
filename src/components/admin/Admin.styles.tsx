@@ -239,6 +239,56 @@ const useStyles = makeStyles((theme: Theme) => ({
         background: '#333333'
       }
     }
+  },
+  tags: {
+    width: '96.5%',
+    textAlign: 'center',
+    boxSizing: 'border-box',
+    display: 'block',
+    position: 'relative',
+    padding: 0,
+    margin: '0 auto',
+    border: 0
+  },
+  tagsList: {
+    listStyle: 'none',
+    letterSpacing: 'normal',
+    '& > li': {
+      display: 'inline'
+    }
+  },
+  catButton: {
+    border: 'none',
+    background: '#666',
+    color: '#fff',
+    padding: '15px 20px',
+    fontSize: '17px',
+    fontWeight: 600,
+    fontFamily: '"Barlow", sans-serif',
+    boxSizing: 'border-box',
+    cursor: 'pointer',
+    textAlign: 'center',
+    textDecoration: 'none',
+    textShadow: 'none',
+    whiteSpace: 'nowrap',
+    letterSpacing: '.3px',
+    textTransform: 'uppercase',
+    borderRadius: 0,
+    margin: '50px 6px 30px 0',
+    display: 'inline-block',
+    verticalAlign: 'baseline',
+    '&:active': {
+      background: theme.palette.primary.main
+    },
+    '&:hover': {
+      background: theme.palette.primary.light
+    },
+    '&:focus': {
+      background: theme.palette.primary.main
+    }
+  },
+  currentButton: {
+    background: theme.palette.primary.main
   }
 }));
 
