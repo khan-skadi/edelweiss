@@ -274,7 +274,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     letterSpacing: '.3px',
     textTransform: 'uppercase',
     borderRadius: 0,
-    margin: '50px 6px 30px 0',
+    margin: '15px 6px 15px 0',
     display: 'inline-block',
     verticalAlign: 'baseline',
     '&:active': {
