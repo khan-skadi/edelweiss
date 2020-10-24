@@ -11,7 +11,7 @@ import MiniHeader from '../header/MiniHeader';
 import AddImageModal from '../modals/AddImageModal.js';
 
 // Props
-import { IGallery } from '../../redux/actions/galleryActions';
+import { GalleryProps } from '../../utils/interface/interface';
 import { fetchGallery } from '../../redux/actions/galleryActions';
 import { StoreState } from '../../redux/store';
 
@@ -33,13 +33,7 @@ import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import InboxIcon from '@material-ui/icons/MoveToInbox';
 import MailIcon from '@material-ui/icons/Mail';
 
-interface AdminProps {
-  gallery: IGallery[];
-  fetchGallery: Function;
-  logoutUser: Function;
-}
-
-const Admin = (props: AdminProps) => {
+const Admin = (props: GalleryProps) => {
   const {
     root,
     toolbar,
@@ -112,7 +106,7 @@ const Admin = (props: AdminProps) => {
   };
 
   const handleLogout = () => {
-    logoutUser();
+    logoutUser && logoutUser();
   };
 
   const galleryImages = gallery.map((image) => {

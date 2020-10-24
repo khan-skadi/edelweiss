@@ -1,3 +1,5 @@
+import { IGallery } from '../../redux/actions/galleryActions';
+
 export interface ObjectLiteral {
   [key: string]: any;
 }
@@ -8,4 +10,10 @@ export interface TemplateVars {
   reply_to: string; // senderEmail
   from_phone: string; // phone
   from_suburb: string; // suburb
+}
+
+export interface GalleryProps {
+  gallery: IGallery[];
+  fetchGallery: Function;
+  logoutUser?: Function;
 }

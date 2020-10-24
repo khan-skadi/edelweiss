@@ -1,58 +1,20 @@
-import React from 'react';
-import MiniHeader from '../header/MiniHeader';
+import React, { useState, useEffect } from 'react';
+import { connect } from 'react-redux';
+import { categories } from '../../utils/constants';
+import clsx from 'clsx';
 import useStyles from './Gallery.styles';
+import MiniHeader from '../header/MiniHeader';
 import Gallery from 'react-grid-gallery';
 
 // Mui
 import { Button } from '@material-ui/core';
 
-export const IMAGES = [
-  {
-    src: 'https://c2.staticflickr.com/9/8817/28973449265_07e3aa5d2e_b.jpg',
-    thumbnail:
-      'https://c2.staticflickr.com/9/8817/28973449265_07e3aa5d2e_n.jpg',
-    thumbnailWidth: 320,
-    thumbnailHeight: 174
-  },
-  {
-    src: 'https://c2.staticflickr.com/9/8356/28897120681_3b2c0f43e0_b.jpg',
-    thumbnail:
-      'https://c2.staticflickr.com/9/8356/28897120681_3b2c0f43e0_n.jpg',
-    thumbnailWidth: 320,
-    thumbnailHeight: 212,
-    caption: 'Boats (Jeshu John - designerspics.com)'
-  },
-  {
-    src: 'https://c4.staticflickr.com/9/8887/28897124891_98c4fdd82b_b.jpg',
-    thumbnail:
-      'https://c4.staticflickr.com/9/8887/28897124891_98c4fdd82b_n.jpg',
-    thumbnailWidth: 320,
-    thumbnailHeight: 212
-  },
-  {
-    src: 'https://c4.staticflickr.com/9/8887/28897124891_98c4fdd82b_b.jpg',
-    thumbnail:
-      'https://c4.staticflickr.com/9/8887/28897124891_98c4fdd82b_n.jpg',
-    thumbnailWidth: 320,
-    thumbnailHeight: 212
-  },
-  {
-    src: 'https://c4.staticflickr.com/9/8887/28897124891_98c4fdd82b_b.jpg',
-    thumbnail:
-      'https://c4.staticflickr.com/9/8887/28897124891_98c4fdd82b_n.jpg',
-    thumbnailWidth: 320,
-    thumbnailHeight: 212
-  },
-  {
-    src: 'https://c4.staticflickr.com/9/8887/28897124891_98c4fdd82b_b.jpg',
-    thumbnail:
-      'https://c4.staticflickr.com/9/8887/28897124891_98c4fdd82b_n.jpg',
-    thumbnailWidth: 320,
-    thumbnailHeight: 212
-  }
-];
+// Props
+import { GalleryProps } from '../../utils/interface/interface';
+import { fetchGallery } from '../../redux/actions/galleryActions';
+import { StoreState } from '../../redux/store';
 
-const GalleryMain = () => {
+const GalleryMain = (props: GalleryProps) => {
   const {
     sectionGallery,
     titleMain,
@@ -64,26 +26,37 @@ const GalleryMain = () => {
     tagsList,
     catButton,
     gridList,
-    loadMore
+    loadMore,
+    currentButton
   } = useStyles();
+  const { gallery, fetchGallery } = props;
+  const [activeCategory, setActiveCategory] = useState<string>(categories[0]);
 
-  const categories = [
-    'Kitchen Benchtops',
-    'Monuments',
-    'Staircases',
-    'Bathrooms',
-    'Vanities',
-    'Shop Fronts',
-    'Walls',
-    'Fireplaces',
-    'Floors'
-  ];
+  useEffect(() => {
+    fetchGallery();
+    //eslint-disable-next-line
+  }, []);
 
-  const renderHeader = window.location.href.includes('/admin');
+  const isLocationAdmin = window.location.href.includes('/admin');
+
+  const galleryImages = gallery.map((image) => {
+    const captioned = `"${image.name}" - ${image.description}`;
+    return {
+      src: image.path,
+      caption: captioned,
+      thumbnail: image.path,
+      thumbnailWidth: 240,
+      thumbnailHeight: 200
+    };
+  });
+
+  const handleCategoryClick = (cat: string): void => {
+    setActiveCategory(cat);
+  };
 
   return (
     <>
-      {!renderHeader && <MiniHeader tab="Gallery" />}
+      {!isLocationAdmin && <MiniHeader tab="Gallery" />}
       <section className={sectionGallery}>
         <div className={titleMain}>
           <div className={container}>
@@ -95,21 +68,28 @@ const GalleryMain = () => {
             <div className={galleryInner}>
               <div className={tags}>
                 <ul className={tagsList}>
-                  {categories.map((cat) => (
-                    <li>
-                      <Button
-                        className={catButton}
-                        variant="contained"
-                        disableElevation
-                      >
-                        {cat}
-                      </Button>
-                    </li>
-                  ))}
+                  {categories.map((cat, index) => {
+                    console.log('category: ', cat);
+                    return (
+                      <li key={index}>
+                        <Button
+                          className={clsx(
+                            catButton,
+                            cat === activeCategory ? currentButton : ''
+                          )}
+                          variant="contained"
+                          disableElevation
+                          onClick={() => handleCategoryClick(cat)}
+                        >
+                          {cat}
+                        </Button>
+                      </li>
+                    );
+                  })}
                 </ul>
               </div>
               <div className={gridList}>
-                <Gallery images={IMAGES} />
+                <Gallery images={galleryImages} />
               </div>
               <div style={{ clear: 'both' }}></div>
               <div className={loadMore}>
@@ -125,4 +105,12 @@ const GalleryMain = () => {
   );
 };
 
-export default GalleryMain;
+const mapStateToProps = (state: StoreState) => ({
+  gallery: state.gallery.gallery
+});
+
+const mapActionsToProps = {
+  fetchGallery
+};
+
+export default connect(mapStateToProps, mapActionsToProps)(GalleryMain);
