@@ -148,7 +148,7 @@ const useStyles = makeStyles((theme) =>
 );
 
 const AddImageModal = (props) => {
-  const { modalIsOpen, handleModalClose } = props;
+  const { addImage, modalIsOpen, handleModalClose } = props;
   const { addToast } = useToast();
   const classes = useStyles();
 
@@ -225,9 +225,7 @@ const AddImageModal = (props) => {
           createdAt: Date.now()
         };
 
-        await axios.post('/api/v1/gallery', imageDetails);
-
-        addToast('Success');
+        addImage(imageDetails);
       }
 
       setTimeout(() => {

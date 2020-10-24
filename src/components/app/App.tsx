@@ -14,7 +14,6 @@ import RequestQuote from '../requestQuote/RequestQuote';
 import Admin from '../admin/Admin';
 import Login from '../auth/Login';
 import NotFoundPage from './NotFoundPage';
-import Test from '../test_react-admin/Test';
 
 // redux
 import { Provider } from 'react-redux';
@@ -51,7 +50,6 @@ const App = () => {
             <Route path="/gallery" component={Gallery} />
             <PrivateRoute path="/admin" component={Admin} />
             <GuestRoute path="/login" component={Login} />
-            <Route path="/test" component={Test} />
             <Route path="/404" component={NotFoundPage} />
             <Redirect to="/404" />
           </Switch>

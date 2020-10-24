@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { logoutUser } from '../../redux/actions/userActions';
+import { deleteImage } from '../../redux/actions/galleryActions';
 import { categories } from '../../utils/constants';
 import { useTheme } from '@material-ui/core/styles';
 import clsx from 'clsx';
@@ -10,6 +11,7 @@ import Gallery from 'react-grid-gallery';
 // Components
 import MiniHeader from '../header/MiniHeader';
 import AddImageModal from '../modals/AddImageModal.js';
+import DeleteImageModal from '../modals/DeleteImageModal';
 
 // Props
 import { GalleryProps } from '../../utils/interface/interface';
@@ -68,8 +70,11 @@ const Admin = (props: GalleryProps) => {
   const [open, setOpen] = useState<boolean>(false);
   const [state, setState] = useState<string>('Gallery');
   const [modalIsOpen, setModalIsOpen] = useState<boolean>(false);
+  const [deleteModalOpen, setDeleteModalOpen] = useState<boolean>(false);
   const [activeCategory, setActiveCategory] = useState<string>(categories[1]);
-  const { gallery, fetchGallery, logoutUser } = props;
+  const [currentImage, setCurrentImage] = useState<number>(0);
+  const [imageToDelete, setImageToDelete] = useState<number | null>(null);
+  const { gallery, fetchGallery, deleteImage, logoutUser } = props;
 
   useEffect(() => {
     fetchGallery();
@@ -84,11 +89,11 @@ const Admin = (props: GalleryProps) => {
     setModalIsOpen(false);
   };
 
-  const handleDrawerOpen = () => {
+  const handleDrawerOpen = (): void => {
     setOpen(true);
   };
 
-  const handleDrawerClose = () => {
+  const handleDrawerClose = (): void => {
     setOpen(false);
   };
 
@@ -111,8 +116,33 @@ const Admin = (props: GalleryProps) => {
     }
   };
 
-  const handleLogout = () => {
+  const onCurrentImageChange = (index: number): void => {
+    setCurrentImage(index);
+  };
+
+  const handleLogout = (): void => {
     logoutUser && logoutUser();
+  };
+
+  const handleCategoryClick = (cat: string): void => {
+    setActiveCategory(cat);
+  };
+
+  const handleDeleteModalOpen = (id: number): void => {
+    setDeleteModalOpen(true);
+    const imageId = gallery.filter((image, index) => index === id);
+    setImageToDelete(imageId[0]._id);
+  };
+
+  const handleDeleteModalClose = (): void => {
+    setDeleteModalOpen(false);
+  };
+
+  const handleDeleteImage = (): void => {
+    deleteImage && deleteImage(imageToDelete);
+
+    handleDeleteModalClose();
+    setImageToDelete(null);
   };
 
   const galleryImages = gallery.map((image) => {
@@ -123,7 +153,8 @@ const Admin = (props: GalleryProps) => {
       thumbnail: image.path,
       thumbnailWidth: 240,
       thumbnailHeight: 200,
-      category: image.category
+      category: image.category,
+      id: image._id
     };
   });
 
@@ -131,19 +162,16 @@ const Admin = (props: GalleryProps) => {
     (image) => image.category === activeCategory
   );
 
-  const handleCategoryClick = (cat: string): void => {
-    setActiveCategory(cat);
-  };
-
-  const handleDeleteImage = () => {
-    console.log('Delete image');
-  };
-
   return (
     <>
       <AddImageModal
         modalIsOpen={modalIsOpen}
         handleModalClose={handleModalClose}
+      />
+      <DeleteImageModal
+        open={deleteModalOpen}
+        handleDeleteModalClose={handleDeleteModalClose}
+        handleDeleteImage={handleDeleteImage}
       />
       <MiniHeader tab="Admin" />
       <div className={root}>
@@ -264,9 +292,30 @@ const Admin = (props: GalleryProps) => {
                     </div>
                     <div className={gridList}>
                       {activeCategory !== 'All' ? (
-                        <Gallery images={filteredImages} />
+                        <Gallery
+                          images={filteredImages}
+                          currentImageWillChange={onCurrentImageChange}
+                        />
                       ) : (
-                        <Gallery images={galleryImages} />
+                        <Gallery
+                          images={galleryImages}
+                          currentImageWillChange={onCurrentImageChange}
+                          customControls={[
+                            <Button
+                              className={catButton}
+                              onClick={() =>
+                                handleDeleteModalOpen(currentImage)
+                              }
+                              style={{
+                                margin: 0,
+                                padding: '0 10px'
+                              }}
+                              key="deleteImage"
+                            >
+                              Delete Image
+                            </Button>
+                          ]}
+                        />
                       )}
                     </div>
                     <div style={{ clear: 'both' }} />
@@ -278,14 +327,6 @@ const Admin = (props: GalleryProps) => {
                         disableElevation
                       >
                         Add Images
-                      </Button>
-                      <Button
-                        className={addImageBtn}
-                        onClick={handleDeleteImage}
-                        variant="contained"
-                        disableElevation
-                      >
-                        Delete Images
                       </Button>
                     </div>
                   </div>
@@ -347,6 +388,7 @@ const mapStateToProps = (state: StoreState) => ({
 
 const mapActionsToProps = {
   fetchGallery,
+  deleteImage,
   logoutUser
 };
 

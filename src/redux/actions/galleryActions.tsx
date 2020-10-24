@@ -47,11 +47,16 @@ export const fetchGallery = () => (dispatch: Dispatch) => {
 };
 
 export const addImage = (image: IGallery) => (dispatch: Dispatch) => {
-  dispatch<AddImageAction>({ type: ActionTypes.addImage, payload: image });
+  axios.post<IGallery>(url, image).then(() => {
+    dispatch<AddImageAction>({ type: ActionTypes.addImage, payload: image });
+  });
   toastr.success('Success !', 'Image added successfully');
 };
 
 export const deleteImage = (id: number) => (dispatch: Dispatch) => {
-  dispatch<DeleteImageAction>({ type: ActionTypes.deleteImage, payload: id });
+  axios.delete(`${url}/${id}`).then(() => {
+    dispatch<DeleteImageAction>({ type: ActionTypes.deleteImage, payload: id });
+  });
+
   toastr.success('Success !', 'Image deleted successfully');
 };

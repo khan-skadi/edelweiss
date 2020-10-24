@@ -16,4 +16,5 @@ export interface GalleryProps {
   gallery: IGallery[];
   fetchGallery: Function;
   logoutUser?: Function;
+  deleteImage?: Function;
 }
