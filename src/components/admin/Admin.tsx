@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { logoutUser } from '../../redux/actions/userActions';
+import { categories } from '../../utils/constants';
 import { useTheme } from '@material-ui/core/styles';
 import clsx from 'clsx';
 import useStyles from './Admin.styles';
-import { categories } from '../../utils/constants';
 import Gallery from 'react-grid-gallery';
 
 // Components
@@ -133,6 +133,10 @@ const Admin = (props: GalleryProps) => {
 
   const handleCategoryClick = (cat: string): void => {
     setActiveCategory(cat);
+  };
+
+  const handleDeleteImage = () => {
+    console.log('Delete image');
   };
 
   return (
@@ -269,14 +273,15 @@ const Admin = (props: GalleryProps) => {
                     <div className={loadMore}>
                       <Button
                         className={addImageBtn}
+                        onClick={handleModalOpen}
                         variant="contained"
                         disableElevation
-                        onClick={handleModalOpen}
                       >
                         Add Images
                       </Button>
                       <Button
                         className={addImageBtn}
+                        onClick={handleDeleteImage}
                         variant="contained"
                         disableElevation
                       >
