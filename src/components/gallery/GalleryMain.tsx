@@ -46,9 +46,14 @@ const GalleryMain = (props: GalleryProps) => {
       caption: captioned,
       thumbnail: image.path,
       thumbnailWidth: 240,
-      thumbnailHeight: 200
+      thumbnailHeight: 200,
+      category: image.category
     };
   });
+
+  const filteredImages = galleryImages.filter(
+    (image) => image.category === activeCategory
+  );
 
   const handleCategoryClick = (cat: string): void => {
     setActiveCategory(cat);
@@ -68,28 +73,25 @@ const GalleryMain = (props: GalleryProps) => {
             <div className={galleryInner}>
               <div className={tags}>
                 <ul className={tagsList}>
-                  {categories.map((cat, index) => {
-                    console.log('category: ', cat);
-                    return (
-                      <li key={index}>
-                        <Button
-                          className={clsx(
-                            catButton,
-                            cat === activeCategory ? currentButton : ''
-                          )}
-                          variant="contained"
-                          disableElevation
-                          onClick={() => handleCategoryClick(cat)}
-                        >
-                          {cat}
-                        </Button>
-                      </li>
-                    );
-                  })}
+                  {categories.map((cat, index) => (
+                    <li key={index}>
+                      <Button
+                        className={clsx(
+                          catButton,
+                          cat === activeCategory ? currentButton : ''
+                        )}
+                        variant="contained"
+                        disableElevation
+                        onClick={() => handleCategoryClick(cat)}
+                      >
+                        {cat}
+                      </Button>
+                    </li>
+                  ))}
                 </ul>
               </div>
               <div className={gridList}>
-                <Gallery images={galleryImages} />
+                <Gallery images={filteredImages} />
               </div>
               <div style={{ clear: 'both' }}></div>
               <div className={loadMore}>

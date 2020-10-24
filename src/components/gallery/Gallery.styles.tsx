@@ -112,7 +112,6 @@ const useStyles = makeStyles((theme: Theme) => ({
       background: theme.palette.primary.light
     },
     '&:focus': {
-      // background: '#999'
       background: theme.palette.primary.main
     }
   },
@@ -125,7 +124,6 @@ const useStyles = makeStyles((theme: Theme) => ({
     maxWidth: '100%',
     margin: '0 auto',
     width: '96.5%',
-    // height: '' ?,
     padding: 0,
     border: 0,
     verticalALign: 'baseline'
