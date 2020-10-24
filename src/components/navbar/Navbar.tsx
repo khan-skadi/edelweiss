@@ -3,6 +3,7 @@ import { Link } from 'react-scroll';
 import { Link as Jump } from 'react-router-dom';
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 import ScrollToColor from '../../utils/ScrollToColor';
+import { links } from '../../utils/constants';
 
 // Mui
 import AppBar from '@material-ui/core/AppBar';
@@ -327,19 +328,13 @@ const Navbar = () => {
         </Link>
       </MenuItem>
       <MenuItem>
-        <a
-          className={classes.menuSocialLink}
-          href="https://www.instagram.com/edelweissstone/"
-        >
+        <a className={classes.menuSocialLink} href={links.instagram}>
           <Icon
             className={classes.menuNavSocialIcon}
             component={InstagramIcon}
           />
         </a>
-        <a
-          className={classes.menuSocialLink}
-          href="https://www.facebook.com/Edelweiss-stone-495239060955229/"
-        >
+        <a className={classes.menuSocialLink} href={links.facebook}>
           <Icon
             className={classes.menuNavSocialIcon}
             component={FacebookIcon}
@@ -473,7 +468,7 @@ const Navbar = () => {
 
               <a
                 className={classes.socialLink}
-                href="https://www.instagram.com/edelweissstone/"
+                href={links.instagram}
                 target="_blank"
                 rel="noopener noreferrer"
               >
@@ -484,7 +479,7 @@ const Navbar = () => {
               </a>
               <a
                 className={classes.socialLink}
-                href="https://www.facebook.com/Edelweiss-stone-495239060955229/"
+                href={links.facebook}
                 target="_blank"
                 rel="noopener noreferrer"
               >
