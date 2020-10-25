@@ -1,28 +1,32 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, MouseEvent, ChangeEvent } from 'react';
 import { connect } from 'react-redux';
 import { loginUser } from '../../redux/actions/userActions';
+
+// Typescript
 import { ObjectLiteral } from '../../utils/interface/interface';
 import { Credentials } from '../../redux/actions/userActions';
 import { StoreState } from '../../redux/store';
+import { History } from 'history';
+import { UiReducerInterface } from '../../redux/reducers/uiReducer';
+import { UserReducerInterface } from '../../redux/reducers/userReducer';
 
 // Mui
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import {
   Paper,
   Box,
-  Checkbox,
   Button,
   CircularProgress,
   Grid,
   Typography,
-  FormControlLabel,
   TextField
 } from '@material-ui/core';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
-      margin: '150px 0'
+      position: 'relative',
+      margin: '255px 0 150px 0'
     },
     paper: {
       maxWidth: '520px',
@@ -41,13 +45,20 @@ const useStyles = makeStyles((theme: Theme) =>
   })
 );
 
-function Login(props: any) {
+interface LoginProps {
+  user: UserReducerInterface;
+  UI: UiReducerInterface;
+  loginUser: (credentials: Credentials, history: History) => void;
+  history: History;
+}
+
+function Login(props: LoginProps) {
   const [values, setValues] = useState<Credentials>({
     email: '',
     password: ''
   });
-  const [errors, setErrors] = useState({} as ObjectLiteral);
-  const [loading, setLoading] = useState(false);
+  const [errors, setErrors] = useState<ObjectLiteral>({});
+  const [loading, setLoading] = useState<boolean>(false);
   const classes = useStyles();
 
   useEffect(() => {
@@ -57,7 +68,7 @@ function Login(props: any) {
     setLoading(props.UI.loading);
   }, [props.UI]);
 
-  const handleSubmit = (e: any) => {
+  const handleSubmit = (e: MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     setLoading(true);
 
@@ -68,7 +79,7 @@ function Login(props: any) {
     props.loginUser(userData, props.history);
   };
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     e.persist();
     setValues((values) => ({
       ...values,
@@ -111,14 +122,6 @@ function Login(props: any) {
               {errors.message && (
                 <Typography variant="body2">{errors.message}</Typography>
               )}
-              <Grid container>
-                <Grid item sm={6} md={6}>
-                  <FormControlLabel
-                    control={<Checkbox value="remember" color="primary" />}
-                    label="Remember me"
-                  />
-                </Grid>
-              </Grid>
               <Button
                 type="submit"
                 variant="contained"
