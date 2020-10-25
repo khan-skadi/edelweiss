@@ -1,35 +1,59 @@
-import React from "react";
-import dotenv from "dotenv";
-import { BrowserRouter, Switch, Route } from "react-router-dom";
-// import { makeStyles } from '@material-ui/core/styles';
+import React, { useEffect } from 'react';
+import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
+import ReduxToastr from 'react-redux-toastr';
+import ScrollToTop from '../../utils/ScrollToTop';
+import dotenv from 'dotenv';
 
-import LandingPage from "../landingPage/LandingPage";
-import Footer from "../footer/Footer";
-import Navbar from "../navbar/Navbar";
-import Gallery from "../gallery/GalleryMain";
-import RequestQuote from "../requestQuote/RequestQuote";
+// views
+import LandingPage from '../landingPage/LandingPage';
+import Footer from '../footer/Footer';
+import Navbar from '../navbar/Navbar';
+import Gallery from '../gallery/GalleryMain';
+import RequestQuote from '../requestQuote/RequestQuote';
+import Admin from '../admin/Admin';
+import Login from '../auth/Login';
+import NotFoundPage from './NotFoundPage';
 
-// const useStyles = makeStyles((theme) => ({
-//   test: {
-//     backgroundColor: theme.palette.primary.main
-//   }
-// }));
+// redux
+import { Provider } from 'react-redux';
+import { CheckAuthentication } from '../../utils/auth/CheckAuthentication';
+import store from '../../redux/store';
+import GuestRoute from '../../utils/auth/GuestRoute';
+import PrivateRoute from '../../utils/auth/PrivateRoute';
 
 dotenv.config();
 
 const App = () => {
-  // const classes = useStyles();
+  useEffect(() => {
+    CheckAuthentication();
+  }, []);
 
   return (
-    <BrowserRouter>
-      <Navbar />
-      <Switch>
-        <Route exact path="/" component={LandingPage} />
-        <Route path="/request-quote" component={RequestQuote} />
-        <Route path="/gallery" component={Gallery} />
-      </Switch>
-      <Footer />
-    </BrowserRouter>
+    <Provider store={store}>
+      <BrowserRouter>
+        <ScrollToTop />
+        <ReduxToastr
+          timeOut={4000}
+          newestOnTop={false}
+          preventDuplicates
+          position="top-right"
+          transitionIn="fadeIn"
+          transitionOut="fadeOut"
+          closeOnToastrClick
+        />
+        <Navbar />
+        <Switch>
+          <Route exact path="/" component={LandingPage} />
+          <Route path="/request-quote" component={RequestQuote} />
+          <Route path="/gallery" component={Gallery} />
+          <PrivateRoute path="/admin" component={Admin} />
+          <GuestRoute path="/login" component={Login} />
+          <Route path="/404" component={NotFoundPage} />
+          <Redirect to="/404" />
+        </Switch>
+        <Footer />
+      </BrowserRouter>
+    </Provider>
   );
 };
 

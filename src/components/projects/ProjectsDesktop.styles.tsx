@@ -58,6 +58,13 @@ const useStyles = makeStyles((theme: Theme) => ({
     maxWidth: "100%"
   },
   instagram: {
+    paddingBottom: '14px',
+    width: '355px',
+    margin: '0 auto',
+    padding: 0,
+    boxSizing: 'border-box',
+    border: 0,
+    verticalAlign: 'baseline',
     "&:before": {
       boxSizing: "border-box"
     },

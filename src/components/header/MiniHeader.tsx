@@ -1,19 +1,22 @@
-import React from "react";
-import useStyles from "./MiniHeader.styles";
+import React from 'react';
+import useStyles from './MiniHeader.styles';
 
 // Mui
-import { Breadcrumbs, Typography, Link } from "@material-ui/core";
-import NavigateNextIcon from "@material-ui/icons/NavigateNext";
+import { Breadcrumbs, Link } from '@material-ui/core';
+import NavigateNextIcon from '@material-ui/icons/NavigateNext';
+import { ObjectLiteral } from '../../utils/interface/interface';
 
 function handleBreadcrumbClick(
   event: React.MouseEvent<HTMLAnchorElement, MouseEvent>
 ) {
   event.preventDefault();
-  console.info("You clicked a breadcrumb.");
+  window.location.assign('/'); // check this
 }
 
-const MiniHeader = () => {
+const MiniHeader = (props: ObjectLiteral) => {
   const { sectionMiniHeader, innerHeader, container } = useStyles();
+  const { tab } = props;
+  const tabLocation = tab && tab.toLowerCase();
 
   return (
     <div className={sectionMiniHeader}>
@@ -26,8 +29,12 @@ const MiniHeader = () => {
             <Link color="inherit" href="/" onClick={handleBreadcrumbClick}>
               Home
             </Link>
-            <Link color="inherit" href="#!" onClick={handleBreadcrumbClick}>
-              Gallery
+            <Link
+              color="inherit"
+              href={`/${tabLocation}`}
+              onClick={handleBreadcrumbClick}
+            >
+              {tab}
             </Link>
           </Breadcrumbs>
         </div>

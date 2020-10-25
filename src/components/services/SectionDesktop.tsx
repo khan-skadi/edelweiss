@@ -1,31 +1,31 @@
-import React from "react";
-import useStyles from "./SectionDesktop.styles";
+import React from 'react';
+import useStyles from './SectionDesktop.styles';
 
-import { ObjectLiteral } from "../../utils/interface/interface";
+import { ObjectLiteral } from '../../utils/interface/interface';
 
 // Images
-import benchtop from "../../assets/images/kitchen/benchtop2.jpg";
-import bathroom from "../../assets/images/bathroom/bathroom.jpg";
-import renovations from "../../assets/images/renovations/renovations.jpg";
-import fireplace from "../../assets/images/fireplace/fireplace.jpg";
-import stoneStaircases from "../../assets/images/staircases/stoneStaircases.png";
-import monument from "../../assets/images/monuments/stoneMonument.png";
-import stoneFloor from "../../assets/images/floors/stoneFloor.png";
-import stoneWall from "../../assets/images/walls/stoneWall.png";
-import stoneShopFronts from "../../assets/images/shopFronts/shopFronts.png";
+import benchtop from '../../assets/images/kitchen/benchtop2.jpg';
+import bathroom from '../../assets/images/bathroom/bathroom.jpg';
+import renovations from '../../assets/images/renovations/renovations.jpg';
+import fireplace from '../../assets/images/fireplace/fireplace.jpg';
+import stoneStaircases from '../../assets/images/staircases/stoneStaircases.png';
+import monument from '../../assets/images/monuments/stoneMonument.png';
+import stoneFloor from '../../assets/images/floors/stoneFloor.png';
+import stoneWall from '../../assets/images/walls/stoneWall.png';
+import stoneShopFronts from '../../assets/images/shopFronts/shopFronts.png';
 
 // SVG Icons
-import kitchenSvg from "../../assets/images/svg/kitchen.svg";
-import laundrySvg from "../../assets/images/svg/laundry.svg";
-import renovationsSvg from "../../assets/images/svg/renovations.svg";
-import refrigeratorSvg from "../../assets/images/svg/refrigerator.svg";
-import fireplaceSvg from "../../assets/images/svg/fireplace.svg";
-import stoneTableSvg from "../../assets/images/svg/stoneTable.svg";
-import monumentSvg from "../../assets/images/svg/monument.svg";
-import stoneFloorSvg from "../../assets/images/svg/stoneFloor.svg";
-import stoneWallSvg from "../../assets/images/svg/stoneWall.svg";
+import kitchenSvg from '../../assets/images/svg/kitchen.svg';
+import laundrySvg from '../../assets/images/svg/laundry.svg';
+import renovationsSvg from '../../assets/images/svg/renovations.svg';
+import refrigeratorSvg from '../../assets/images/svg/refrigerator.svg';
+import fireplaceSvg from '../../assets/images/svg/fireplace.svg';
+import stoneTableSvg from '../../assets/images/svg/stoneTable.svg';
+import monumentSvg from '../../assets/images/svg/monument.svg';
+import stoneFloorSvg from '../../assets/images/svg/stoneFloor.svg';
+import stoneWallSvg from '../../assets/images/svg/stoneWall.svg';
 
-import "./Services.css";
+import './Services.css';
 
 const SectionDesktop = (props: ObjectLiteral) => {
   const {
@@ -49,7 +49,7 @@ const SectionDesktop = (props: ObjectLiteral) => {
     servicesSecondLinkBox
   } = useStyles();
   const { data } = props;
-  console.log("desktop data: ", data);
+  console.log('desktop data: ', data);
 
   return (
     <>
@@ -111,7 +111,7 @@ const SectionDesktop = (props: ObjectLiteral) => {
               </p>
             </div>
 
-            <a className={servicesFirstLinkBox}>
+            <a href="#!" className={servicesFirstLinkBox}>
               <div className="service-image">
                 <a href="#servImg1" className="lightbox">
                   <img src={benchtop} alt="Kitchen Benchtop" />

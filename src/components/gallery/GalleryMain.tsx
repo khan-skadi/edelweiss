@@ -1,12 +1,20 @@
-import React from "react";
-import MiniHeader from "../header/MiniHeader";
-import useStyles from "./Gallery.styles";
-import Gallery from "react-grid-gallery";
+import React, { useState, useEffect } from 'react';
+import { connect } from 'react-redux';
+import { categories } from '../../utils/constants';
+import clsx from 'clsx';
+import useStyles from './Gallery.styles';
+import MiniHeader from '../header/MiniHeader';
+import Gallery from 'react-grid-gallery';
 
 // Mui
-import { Button } from "@material-ui/core";
+import { Button } from '@material-ui/core';
 
-const GalleryMain = () => {
+// Props
+import { GalleryProps } from '../../utils/interface/interface';
+import { fetchGallery } from '../../redux/actions/galleryActions';
+import { StoreState } from '../../redux/store';
+
+const GalleryMain = (props: GalleryProps) => {
   const {
     sectionGallery,
     titleMain,
@@ -18,70 +26,42 @@ const GalleryMain = () => {
     tagsList,
     catButton,
     gridList,
-    loadMore
+    loadMore,
+    currentButton
   } = useStyles();
+  const { gallery, fetchGallery } = props;
+  const [activeCategory, setActiveCategory] = useState<string>(categories[1]);
 
-  const categories = [
-    "Kitchen Benchtops",
-    "Monuments",
-    "Staircases",
-    "Bathrooms",
-    "Vanities",
-    "Shop Fronts",
-    "Walls",
-    "Fireplaces",
-    "Floors"
-  ];
+  useEffect(() => {
+    fetchGallery();
+    //eslint-disable-next-line
+  }, []);
 
-  const IMAGES = [
-    {
-      src: "https://c2.staticflickr.com/9/8817/28973449265_07e3aa5d2e_b.jpg",
-      thumbnail:
-        "https://c2.staticflickr.com/9/8817/28973449265_07e3aa5d2e_n.jpg",
-      thumbnailWidth: 320,
-      thumbnailHeight: 174
-    },
-    {
-      src: "https://c2.staticflickr.com/9/8356/28897120681_3b2c0f43e0_b.jpg",
-      thumbnail:
-        "https://c2.staticflickr.com/9/8356/28897120681_3b2c0f43e0_n.jpg",
-      thumbnailWidth: 320,
-      thumbnailHeight: 212,
-      caption: "Boats (Jeshu John - designerspics.com)"
-    },
-    {
-      src: "https://c4.staticflickr.com/9/8887/28897124891_98c4fdd82b_b.jpg",
-      thumbnail:
-        "https://c4.staticflickr.com/9/8887/28897124891_98c4fdd82b_n.jpg",
-      thumbnailWidth: 320,
-      thumbnailHeight: 212
-    },
-    {
-      src: "https://c4.staticflickr.com/9/8887/28897124891_98c4fdd82b_b.jpg",
-      thumbnail:
-        "https://c4.staticflickr.com/9/8887/28897124891_98c4fdd82b_n.jpg",
-      thumbnailWidth: 320,
-      thumbnailHeight: 212
-    },
-    {
-      src: "https://c4.staticflickr.com/9/8887/28897124891_98c4fdd82b_b.jpg",
-      thumbnail:
-        "https://c4.staticflickr.com/9/8887/28897124891_98c4fdd82b_n.jpg",
-      thumbnailWidth: 320,
-      thumbnailHeight: 212
-    },
-    {
-      src: "https://c4.staticflickr.com/9/8887/28897124891_98c4fdd82b_b.jpg",
-      thumbnail:
-        "https://c4.staticflickr.com/9/8887/28897124891_98c4fdd82b_n.jpg",
-      thumbnailWidth: 320,
-      thumbnailHeight: 212
-    }
-  ];
+  const isLocationAdmin = window.location.href.includes('/admin');
+
+  const galleryImages = gallery.map((image) => {
+    const captioned = `"${image.name}" - ${image.description}`;
+    return {
+      src: image.path,
+      caption: captioned,
+      thumbnail: image.path,
+      thumbnailWidth: 240,
+      thumbnailHeight: 200,
+      category: image.category
+    };
+  });
+
+  const filteredImages = galleryImages.filter(
+    (image) => image.category === activeCategory
+  );
+
+  const handleCategoryClick = (cat: string): void => {
+    setActiveCategory(cat);
+  };
 
   return (
     <>
-      <MiniHeader />
+      {!isLocationAdmin && <MiniHeader tab="Gallery" />}
       <section className={sectionGallery}>
         <div className={titleMain}>
           <div className={container}>
@@ -93,12 +73,16 @@ const GalleryMain = () => {
             <div className={galleryInner}>
               <div className={tags}>
                 <ul className={tagsList}>
-                  {categories.map((cat) => (
-                    <li>
+                  {categories.map((cat, index) => (
+                    <li key={index}>
                       <Button
-                        className={catButton}
+                        className={clsx(
+                          catButton,
+                          cat === activeCategory ? currentButton : ''
+                        )}
                         variant="contained"
                         disableElevation
+                        onClick={() => handleCategoryClick(cat)}
                       >
                         {cat}
                       </Button>
@@ -107,9 +91,13 @@ const GalleryMain = () => {
                 </ul>
               </div>
               <div className={gridList}>
-                <Gallery images={IMAGES} />
+                {activeCategory !== 'All' ? (
+                  <Gallery images={filteredImages} />
+                ) : (
+                  <Gallery images={galleryImages} />
+                )}
               </div>
-              <div style={{ clear: "both" }}></div>
+              <div style={{ clear: 'both' }}></div>
               <div className={loadMore}>
                 <Button variant="contained" disableElevation>
                   Load More
@@ -123,4 +111,12 @@ const GalleryMain = () => {
   );
 };
 
-export default GalleryMain;
+const mapStateToProps = (state: StoreState) => ({
+  gallery: state.gallery.gallery
+});
+
+const mapActionsToProps = {
+  fetchGallery
+};
+
+export default connect(mapStateToProps, mapActionsToProps)(GalleryMain);
