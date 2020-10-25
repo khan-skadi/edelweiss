@@ -1,7 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { ObjectLiteral } from '../../utils/interface/interface';
 import { links, caroItems } from '../../utils/constants';
-import axios from 'axios';
 import Carousel from 'react-material-ui-carousel';
 import useStyles from './ProjectsDesktop.styles';
 
@@ -69,20 +68,6 @@ const ProjectsDesktop = () => {
     instagramContainer
   } = useStyles();
 
-  const redirect_uri = 'https://edelweissstone.com.au/';
-  const scope = 'user_profile,user_media';
-
-  useEffect(() => {
-    const res = axios.get(`https://api.instagram.com/oauth/authorize
-    ?client_id=${process.env.REACT_APP_INSTAGRAM_CLIENT_ID}
-    &redirect_uri=${redirect_uri}
-    &scope=${scope}
-    &response_type=code`);
-    console.log(res);
-
-    //eslint-disable-next-line
-  }, []);
-
   return (
     <>
       <div id="projects" className={projectLeft}>
@@ -107,8 +92,12 @@ const ProjectsDesktop = () => {
         </a>
         <div className={instagramContainer}>
           <div id="instagram" className={instagram}>
-            <Typography variant="h4" color="secondary">
-              Vmro Narodna
+            <Typography
+              variant="h4"
+              color="secondary"
+              style={{ textAlign: 'center', marginTop: '50px' }}
+            >
+              Coming soon !
             </Typography>
           </div>
         </div>
