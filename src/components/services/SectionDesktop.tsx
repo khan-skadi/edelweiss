@@ -1,7 +1,8 @@
 import React from 'react';
+import { Link } from 'react-scroll';
+import { IGallery } from '../../redux/actions/galleryActions';
 import useStyles from './SectionDesktop.styles';
-
-import { ObjectLiteral } from '../../utils/interface/interface';
+import ServicesLightbox from './ServicesLightbox';
 
 // Images
 import benchtop from '../../assets/images/kitchen/benchtop2.jpg';
@@ -27,7 +28,11 @@ import stoneWallSvg from '../../assets/images/svg/stoneWall.svg';
 
 import './Services.css';
 
-const SectionDesktop = (props: ObjectLiteral) => {
+interface SectionDesktopProps {
+  data: IGallery[];
+}
+
+const SectionDesktop = (props: SectionDesktopProps) => {
   const {
     container,
     servicesUl,
@@ -48,55 +53,11 @@ const SectionDesktop = (props: ObjectLiteral) => {
     servicesSeventhLinkBox,
     servicesSecondLinkBox
   } = useStyles();
-  const { data } = props;
+  // const { data } = props;
 
   return (
     <>
-      <div className="lightbox-target" id="servImg1">
-        <img src={benchtop} alt="Kitchen Benchtops" />
-        {/* eslint-disable-next-line */}
-        <a href="#!" className="lightbox-close"></a>
-      </div>
-      <div className="lightbox-target" id="servImg2">
-        <img src={bathroom} alt="Bathrooms / Laundry Vanities" />
-        {/* eslint-disable-next-line */}
-        <a href="#!" className="lightbox-close"></a>
-      </div>
-      <div className="lightbox-target" id="servImg3">
-        <img src={renovations} alt="Renovations" />
-        {/* eslint-disable-next-line */}
-        <a href="#!" className="lightbox-close"></a>
-      </div>
-      <div className="lightbox-target" id="servImg4">
-        <img src={stoneShopFronts} alt="Stone Splashbacks" />
-        {/* eslint-disable-next-line */}
-        <a href="#!" className="lightbox-close"></a>
-      </div>
-      <div className="lightbox-target" id="servImg5">
-        <img src={fireplace} alt="Fireplaces" />
-        {/* eslint-disable-next-line */}
-        <a href="#!" className="lightbox-close"></a>
-      </div>
-      <div className="lightbox-target" id="servImg6">
-        <img src={stoneStaircases} alt="Stone Staircases" />
-        {/* eslint-disable-next-line */}
-        <a href="#!" className="lightbox-close"></a>
-      </div>
-      <div className="lightbox-target" id="servImg7">
-        <img src={monument} alt="Stone Monuments" />
-        {/* eslint-disable-next-line */}
-        <a href="#!" className="lightbox-close"></a>
-      </div>
-      <div className="lightbox-target" id="servImg8">
-        <img src={stoneFloor} alt="Stone Floors" />
-        {/* eslint-disable-next-line */}
-        <a href="#!" className="lightbox-close"></a>
-      </div>
-      <div className="lightbox-target" id="servImg9">
-        <img src={stoneWall} alt="Stone Walls" />
-        {/* eslint-disable-next-line */}
-        <a href="#!" className="lightbox-close"></a>
-      </div>
+      <ServicesLightbox />
       <div className={container}>
         <ul id="services" className={servicesUl}>
           <li>
@@ -106,7 +67,22 @@ const SectionDesktop = (props: ObjectLiteral) => {
                 <span>Our</span> Services
               </div>
               <p>
-                For more information and contact details visit our Contact Page
+                For more information and contact details visit our{' '}
+                <Link
+                  activeClass="active"
+                  to="contact"
+                  spy={true}
+                  smooth={true}
+                  offset={-140}
+                  duration={500}
+                  style={{
+                    cursor: 'pointer',
+                    color: '#158d43',
+                    fontWeight: 'bold'
+                  }}
+                >
+                  Contact Page
+                </Link>
               </p>
             </div>
 
@@ -127,7 +103,9 @@ const SectionDesktop = (props: ObjectLiteral) => {
                   />
                 </div>
                 <div className={serviceTitle}>Kitchen Benchtops</div>
-                <div className={serviceDisc}>Gallery</div>
+                <div className={serviceDisc}>
+                  <a href="/gallery">Gallery</a>
+                </div>
               </div>
             </a>
             {/* Monuments. First Column, 2nd Row */}
@@ -148,7 +126,9 @@ const SectionDesktop = (props: ObjectLiteral) => {
                   />
                 </div>
                 <div className={serviceTitle}>Monuments</div>
-                <div className={serviceDisc}>Gallery</div>
+                <div className={serviceDisc}>
+                  <a href="/gallery">Gallery</a>
+                </div>
               </div>
             </a>
             {/* Staircases. 1st Column, 3rd Row */}
@@ -169,7 +149,9 @@ const SectionDesktop = (props: ObjectLiteral) => {
                   />
                 </div>
                 <div className={serviceTitle}>Staircases</div>
-                <div className={serviceDisc}>Gallery</div>
+                <div className={serviceDisc}>
+                  <a href="/gallery">Gallery</a>
+                </div>
               </div>
             </a>
           </li>
@@ -191,8 +173,10 @@ const SectionDesktop = (props: ObjectLiteral) => {
                     height="57"
                   />
                 </div>
-                <div className={serviceTitle}>{data && data[0].slug}</div>
-                <div className={serviceDisc}>Gallery</div>
+                <div className={serviceTitle}>Bathrooms</div>
+                <div className={serviceDisc}>
+                  <a href="/gallery">Gallery</a>
+                </div>
               </div>
             </a>
             {/* Vanities. 2nd Column, 2nd Row */}
@@ -213,7 +197,9 @@ const SectionDesktop = (props: ObjectLiteral) => {
                   />
                 </div>
                 <div className={serviceTitle}>Vanities</div>
-                <div className={serviceDisc}>Gallery</div>
+                <div className={serviceDisc}>
+                  <a href="/gallery">Gallery</a>
+                </div>
               </div>
             </a>
             {/* Shop Fronts. 2nd Column, 3rd Row */}
@@ -234,7 +220,9 @@ const SectionDesktop = (props: ObjectLiteral) => {
                   />
                 </div>
                 <div className={serviceTitle}>Shop Fronts</div>
-                <div className={serviceDisc}>Gallery</div>
+                <div className={serviceDisc}>
+                  <a href="/gallery">Gallery</a>
+                </div>
               </div>
             </a>
             {/* Walls. Second Column, 4th Row */}
@@ -255,7 +243,9 @@ const SectionDesktop = (props: ObjectLiteral) => {
                   />
                 </div>
                 <div className={serviceTitle}>Walls</div>
-                <div className={serviceDisc}>Gallery</div>
+                <div className={serviceDisc}>
+                  <a href="/gallery">Gallery</a>
+                </div>
               </div>
             </a>
           </li>
@@ -278,7 +268,9 @@ const SectionDesktop = (props: ObjectLiteral) => {
                   />
                 </div>
                 <div className={serviceTitle}>Fireplaces</div>
-                <div className={serviceDisc}>Gallery</div>
+                <div className={serviceDisc}>
+                  <a href="/gallery">Gallery</a>
+                </div>
               </div>
             </a>
             {/* Floors. Third Column, 2nd Row */}
@@ -299,7 +291,9 @@ const SectionDesktop = (props: ObjectLiteral) => {
                   />
                 </div>
                 <div className={serviceTitle}>Floors</div>
-                <div className={serviceDisc}>Gallery</div>
+                <div className={serviceDisc}>
+                  <a href="/gallery">Gallery</a>
+                </div>
               </div>
             </a>
           </li>

@@ -38,7 +38,6 @@ const useStyles = makeStyles((theme: Theme) =>
         margin: '-5px 0 5px 0'
       }
     },
-    box: {},
     loader: {
       margin: 0
     }
@@ -93,7 +92,7 @@ function Login(props: LoginProps) {
         <Grid item md={12}>
           <Paper className={classes.paper}>
             <Typography variant="h6">Login to your account</Typography>
-            <Box className={classes.box}>
+            <Box>
               <TextField
                 variant="outlined"
                 margin="none"

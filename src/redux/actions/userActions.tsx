@@ -95,16 +95,16 @@ export const loginUser = (credentials: Credentials, history: any) => (
     });
 };
 
-function getCookie(cookieName: string) {
-  const allCookies = document.cookie;
-  const arrayb = allCookies.split(';');
-  for (const item in arrayb) {
-    if (item.startsWith('Token=')) {
-      const c = item.substr(5);
-      return c;
-    }
-  }
-}
+// function getCookie(cookieName: string) {
+//   const allCookies = document.cookie;
+//   const arrayb = allCookies.split(';');
+//   for (const item in arrayb) {
+//     if (item.startsWith('Token=')) {
+//       const c = item.substr(5);
+//       return c;
+//     }
+//   }
+// }
 
 export const logoutUser = () => (dispatch: Dispatch) => {
   localStorage.removeItem('token');

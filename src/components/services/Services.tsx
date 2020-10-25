@@ -1,27 +1,35 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
-import SectionDesktop from "./SectionDesktop";
-import SectionMobile from "./SectionMobile";
+import React, { useEffect } from 'react';
+import { connect } from 'react-redux';
+import { fetchGallery, IGallery } from '../../redux/actions/galleryActions';
+import { StoreState } from '../../redux/store';
+import useStyles from './Services.styles';
 
-import useStyles from "./Services.styles";
+import SectionDesktop from './SectionDesktop';
+import SectionMobile from './SectionMobile';
 
-import "./Services.css";
+import './Services.css';
 
-const Services = () => {
-  const [data, setData] = useState(null);
+interface ServicesProps {
+  fetchGallery: () => void;
+  gallery: IGallery[];
+}
+
+const Services = (props: ServicesProps) => {
   const { sectionDesktop, sectionMobile, sectionServices } = useStyles();
+  const { fetchGallery, gallery } = props;
 
   useEffect(() => {
-    axios
-      .get("/api/v1/gallery")
-      .then((res) => setData(res.data.data))
-      .catch((err) => console.log(err));
+    fetchGallery();
+
+    //eslint-disable-next-line
   }, []);
+
+  console.log('services gallery: ', gallery);
 
   return (
     <section className={sectionServices}>
       <div className={sectionDesktop}>
-        <SectionDesktop data={data} />
+        <SectionDesktop data={gallery} />
       </div>
       <div className={sectionMobile}>
         <SectionMobile />
@@ -30,4 +38,12 @@ const Services = () => {
   );
 };
 
-export default Services;
+const mapStateToProps = (state: StoreState) => ({
+  gallery: state.gallery.gallery
+});
+
+const mapActionsToProps = {
+  fetchGallery
+};
+
+export default connect(mapStateToProps, mapActionsToProps)(Services);
