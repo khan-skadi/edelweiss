@@ -1,12 +1,12 @@
-import React from "react";
-import useStyles from "./FooterDesktop.styles";
+import React from 'react';
+import useStyles from './FooterDesktop.styles';
 
-import Icon from "@material-ui/core/Icon";
-import FacebookIcon from "@material-ui/icons/Facebook";
-import InstagramIcon from "@material-ui/icons/Instagram";
-import ClockIcon from "@material-ui/icons/Schedule";
+import Icon from '@material-ui/core/Icon';
+import FacebookIcon from '@material-ui/icons/Facebook';
+import InstagramIcon from '@material-ui/icons/Instagram';
+import ClockIcon from '@material-ui/icons/Schedule';
 
-import logo from "../../assets/logo/logo395x89-1.png";
+import logo from '../../assets/logo/logo395x89-1.png';
 
 const FooterDesktop = () => {
   const {
@@ -31,11 +31,49 @@ const FooterDesktop = () => {
     days
   } = useStyles();
 
+  React.useEffect(() => {
+    // const vmro = function(window: any, document: Document) {
+    (function (window: any, document: Document) {
+      const loader = function () {
+        const script = document.createElement('script');
+        const tag = document.getElementsByTagName('script')[0];
+        script.src = 'https://cdn.iubenda.com/iubenda.js';
+        tag.parentNode && tag.parentNode.insertBefore(script, tag);
+      };
+      if (window.addEventListener) {
+        window.addEventListener('load', loader, false);
+      } else if (window.attachEvent) {
+        window.attachEvent('onload', loader);
+      } else {
+        window.onload = loader;
+      }
+    })(window, document);
+
+    // vmro(window, document);
+
+    //   <script type="text/javascript">
+    //   (function (w, d) {
+    //     var loader = function () {
+    //       var s = d.createElement('script'),
+    //         tag = d.getElementsByTagName('script')[0];
+    //       s.src = 'https://cdn.iubenda.com/iubenda.js';
+    //       tag.parentNode.insertBefore(s, tag);
+    //     };
+    //     if (w.addEventListener) {
+    //       w.addEventListener('load', loader, false);
+    //     } else if (w.attachEvent) {
+    //       w.attachEvent('onload', loader);
+    //     } else {
+    //       w.onload = loader;
+    //     }
+    //   })(window, document)
+    // </script>
+  });
+
   return (
     <div className={footerMain}>
       <div className={footerTop}>
         <div className={container}>
-          {/* Left */}
           <div className={footerLeft}>
             <div className={leftTitle}>Services</div>
             <ul className={leftUl}>
@@ -53,7 +91,6 @@ const FooterDesktop = () => {
               </li>
             </ul>
           </div>
-          {/* Middle */}
           <div className={footerMiddle}>
             <div className={middleLogo}>
               <a href="#!">
@@ -79,6 +116,15 @@ const FooterDesktop = () => {
                   info@edelweissstone.com.au
                 </a>
               </li>
+              <li>
+                <a
+                  href="https://www.iubenda.com/privacy-policy/81793199"
+                  className="iubenda-white iubenda-embed"
+                  title="Privacy Policy "
+                >
+                  Privacy Policy
+                </a>
+              </li>
             </ul>
             <div className={middleSocial}>
               <p>Follow Us On</p>
@@ -100,7 +146,6 @@ const FooterDesktop = () => {
               </a>
             </div>
           </div>
-          {/* Right */}
           <div className={footerRight}>
             <div className={rightTitle}>Projects</div>
             <ul className={rightUl}>

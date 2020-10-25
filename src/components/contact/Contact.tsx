@@ -1,177 +1,176 @@
-import React from "react";
-import { Map, GoogleApiWrapper, Marker } from "google-maps-react";
+import React from 'react';
+import { Map, GoogleApiWrapper, Marker } from 'google-maps-react';
+import { makeStyles } from '@material-ui/core/styles';
+import { links } from '../../utils/constants';
+import { Typography } from '@material-ui/core';
+import { ObjectLiteral } from '../../utils/interface/interface';
+import EmailForm from './EmailForm';
 
-import { makeStyles } from "@material-ui/core/styles";
-import { Typography } from "@material-ui/core";
+// Mui
+import Icon from '@material-ui/core/Icon';
+import AddressIcon from '@material-ui/icons/Room';
+import MailIcon from '@material-ui/icons/Mail';
+import PhoneIcon from '@material-ui/icons/Phone';
+import FaxIcon from '@material-ui/icons/Print';
 
-import { ObjectLiteral } from "../../utils/interface/interface";
-
-import Icon from "@material-ui/core/Icon";
-import AddressIcon from "@material-ui/icons/Room";
-import MailIcon from "@material-ui/icons/Mail";
-import PhoneIcon from "@material-ui/icons/Phone";
-import FaxIcon from "@material-ui/icons/Print";
-
-import EmailForm from "./EmailForm";
-
-import benchtop from "../../assets/images/original/modified/1wide.jpg";
+import benchtop from '../../assets/images/original/modified/1wide.jpg';
 
 const useStyles = makeStyles((theme) => ({
   sectionContact: {
-    paddingTop: "40px",
-    position: "relative",
-    display: "block",
-    "&:before": {
-      position: "absolute",
+    paddingTop: '40px',
+    position: 'relative',
+    display: 'block',
+    '&:before': {
+      position: 'absolute',
       content: "''",
       top: 0,
-      borderLeft: "1px solid #ebebeb",
-      height: "100%",
-      left: "41px",
-      boxSizing: "border-box"
+      borderLeft: '1px solid #ebebeb',
+      height: '100%',
+      left: '41px',
+      boxSizing: 'border-box'
     },
-    [theme.breakpoints.down("md")]: {
-      display: "none"
+    [theme.breakpoints.down('md')]: {
+      display: 'none'
     }
   },
   container: {
-    height: "100%",
-    maxWidth: "1850px",
-    paddingRight: "15px",
-    paddingLeft: "15px",
-    marginRight: "auto",
-    marginLeft: "auto",
-    position: "relative",
-    "&:before": {
-      display: "table",
+    height: '100%',
+    maxWidth: '1850px',
+    paddingRight: '15px',
+    paddingLeft: '15px',
+    marginRight: 'auto',
+    marginLeft: 'auto',
+    position: 'relative',
+    '&:before': {
+      display: 'table',
       content: "''"
     },
-    "&:after": {
-      clear: "both",
-      display: "table",
+    '&:after': {
+      clear: 'both',
+      display: 'table',
       content: "''"
     }
   },
   titleBorder: {
-    borderTop: "1px solid #ebebeb",
-    borderBottom: "1px solid #ebebeb"
+    borderTop: '1px solid #ebebeb',
+    borderBottom: '1px solid #ebebeb'
   },
   contactBorderTitle: {
-    lineHeight: "43px",
-    textTransform: "capitalize",
+    lineHeight: '43px',
+    textTransform: 'capitalize',
     fontFamily: "'Lato', sans-serif",
     fontWeight: 700,
-    fontSize: "60px",
-    display: "block",
-    "& > span": {
+    fontSize: '60px',
+    display: 'block',
+    '& > span': {
       fontWeight: 100
     }
   },
   contactMain: {
-    display: "inline-block",
-    width: "100%"
+    display: 'inline-block',
+    width: '100%'
   },
   contactLeft: {
-    width: "51%",
-    float: "left",
-    display: "block",
-    paddingRight: "60px",
-    boxSizing: "border-box",
-    "@media (max-width:1400px)": {
-      paddingRight: "30px"
+    width: '51%',
+    float: 'left',
+    display: 'block',
+    paddingRight: '60px',
+    boxSizing: 'border-box',
+    '@media (max-width:1400px)': {
+      paddingRight: '30px'
     }
   },
   contactInfo: {
-    overflow: "hidden",
-    display: "flex",
-    flexWrap: "wrap",
-    marginTop: "50px",
-    listStyle: "none",
-    letterSpacing: "normal",
-    "& > li": {
-      width: "50%",
-      float: "left",
-      marginBottom: "50px",
-      display: "list-item"
+    overflow: 'hidden',
+    display: 'flex',
+    flexWrap: 'wrap',
+    marginTop: '50px',
+    listStyle: 'none',
+    letterSpacing: 'normal',
+    '& > li': {
+      width: '50%',
+      float: 'left',
+      marginBottom: '50px',
+      display: 'list-item'
     }
   },
   contactListInfo: {
-    overflow: "hidden",
-    display: "block"
+    overflow: 'hidden',
+    display: 'block'
   },
   infoIcon: {
-    background: "#333",
-    height: "42px",
-    width: "42px",
-    position: "relative",
-    overflow: "hidden",
-    float: "left",
-    color: "#fff",
-    fontSize: "20px",
-    lineHeight: "40px",
-    textAlign: "center",
-    display: "block"
+    background: '#333',
+    height: '42px',
+    width: '42px',
+    position: 'relative',
+    overflow: 'hidden',
+    float: 'left',
+    color: '#fff',
+    fontSize: '20px',
+    lineHeight: '40px',
+    textAlign: 'center',
+    display: 'block'
   },
   icon: {
-    display: "inline-block",
-    textAlign: "center",
-    verticalAlign: "middle",
-    color: "#fff",
-    "&:before": {
-      content: "\f041",
-      boxSizing: "border-box"
+    display: 'inline-block',
+    textAlign: 'center',
+    verticalAlign: 'middle',
+    color: '#fff',
+    '&:before': {
+      content: '\f041',
+      boxSizing: 'border-box'
     }
   },
   infoText: {
-    float: "left",
-    width: "calc(100% - 42px)",
-    paddingLeft: "18px",
-    display: "block",
-    "@media (max-width:1850px)": {
-      paddingRight: "10px"
+    float: 'left',
+    width: 'calc(100% - 42px)',
+    paddingLeft: '18px',
+    display: 'block',
+    '@media (max-width:1850px)': {
+      paddingRight: '10px'
     },
-    "& > p": {
+    '& > p': {
       padding: 0,
       margin: 0,
-      textTransform: "capitalize",
-      fontSize: "18px",
-      lineHeight: "14px",
+      textTransform: 'capitalize',
+      fontSize: '18px',
+      lineHeight: '14px',
       fontFamily: "'Lato', sans-serif",
       fontWeight: 600,
-      marginBottom: "8px"
+      marginBottom: '8px'
     },
-    "& > a": {
-      display: "inline-block",
-      fontSize: "18px",
-      lineHeight: "24px",
+    '& > a': {
+      display: 'inline-block',
+      fontSize: '18px',
+      lineHeight: '24px',
       fontWeight: 400,
-      textDecoration: "none",
-      color: "inherit",
-      WebkitTransition: "all .5s ease-in-out",
-      cursor: "pointer"
+      textDecoration: 'none',
+      color: 'inherit',
+      WebkitTransition: 'all .5s ease-in-out',
+      cursor: 'pointer'
     },
-    "& > span": {
-      display: "inline-block",
-      fontSize: "18px",
-      lineHeight: "24px",
+    '& > span': {
+      display: 'inline-block',
+      fontSize: '18px',
+      lineHeight: '24px',
       fontWeight: 400
     }
   },
   contactImage: {
-    position: "relative",
-    overflow: "hidden",
-    marginTop: "-90px"
+    position: 'relative',
+    overflow: 'hidden',
+    marginTop: '-90px'
   },
   contactPicture: {
-    margin: "0 auto",
-    display: "block",
-    maxWidth: "100%",
-    verticalAlign: "bottom"
+    margin: '0 auto',
+    display: 'block',
+    maxWidth: '100%',
+    verticalAlign: 'bottom'
   },
   mapContainer: {
-    position: "relative",
-    width: "100%",
-    height: "450px"
+    position: 'relative',
+    width: '100%',
+    height: '450px'
   }
 }));
 
@@ -180,7 +179,6 @@ const Contact = (props: ObjectLiteral) => {
 
   return (
     <section id="contact" className={classes.sectionContact}>
-      {/* Title */}
       <div className={classes.titleBorder}>
         <div className={classes.container}>
           <Typography variant="h1" className={classes.contactBorderTitle}>
@@ -188,7 +186,6 @@ const Contact = (props: ObjectLiteral) => {
           </Typography>
         </div>
       </div>
-      {/* Contact Main */}
       <div className={classes.contactMain}>
         <div className={classes.container}>
           <div className={classes.contactLeft}>
@@ -213,9 +210,7 @@ const Contact = (props: ObjectLiteral) => {
                   </div>
                   <div className={classes.infoText}>
                     <p>Email</p>
-                    <a href="mailto:info@edelweissstone.com.au">
-                      info@edelweissstone.com.au
-                    </a>
+                    <a href={links.mailto}>info@edelweissstone.com.au</a>
                   </div>
                 </div>
               </li>
@@ -226,7 +221,7 @@ const Contact = (props: ObjectLiteral) => {
                   </div>
                   <div className={classes.infoText}>
                     <p>Phone</p>
-                    <a href="tel:(02) 0431 703 388">(02) 0431 703 388</a>
+                    <a href={links.tel}>(02) 0431 703 388</a>
                   </div>
                 </div>
               </li>
@@ -263,7 +258,7 @@ const Contact = (props: ObjectLiteral) => {
           <Marker
             position={{ lat: -33.858258, lng: 150.959442 }}
             mapCenter={{ lat: -33.858258, lng: 150.959442 }}
-            title={"Edelweiss Stone"}
+            title={'Edelweiss Stone'}
           />
         </Map>
       </div>
@@ -272,14 +267,13 @@ const Contact = (props: ObjectLiteral) => {
 };
 
 const mapStyle = {
-  width: "100%",
-  height: "450px",
+  width: '100%',
+  height: '450px',
   margin: 0,
   padding: 0,
-  // verticalAlign: "baseline",
-  boxSizing: "border-box",
-  borderBottom: "10px solid #158d43",
-  position: "relative"
+  boxSizing: 'border-box',
+  borderBottom: '10px solid #158d43',
+  position: 'relative'
 };
 
 export default GoogleApiWrapper({

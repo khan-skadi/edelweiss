@@ -1,25 +1,29 @@
-import React, { useState } from "react";
-import { makeStyles, Theme, createStyles } from "@material-ui/core/styles";
-import { Link as Jump } from "react-scroll";
-import AppBar from "@material-ui/core/AppBar";
-import Toolbar from "@material-ui/core/Toolbar";
-import IconButton from "@material-ui/core/IconButton";
-import Typography from "@material-ui/core/Typography";
-import MenuItem from "@material-ui/core/MenuItem";
-import Menu from "@material-ui/core/Menu";
-import Avatar from "@material-ui/core/Avatar";
-import Button from "@material-ui/core/Button";
+import React, { useState } from 'react';
+import { Link } from 'react-scroll';
+import { Link as Jump } from 'react-router-dom';
+import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
+import ScrollToColor from '../../utils/ScrollToColor';
+import { links } from '../../utils/constants';
+
+// Mui
+import AppBar from '@material-ui/core/AppBar';
+import Toolbar from '@material-ui/core/Toolbar';
+import IconButton from '@material-ui/core/IconButton';
+import Typography from '@material-ui/core/Typography';
+import MenuItem from '@material-ui/core/MenuItem';
+import Menu from '@material-ui/core/Menu';
+import Avatar from '@material-ui/core/Avatar';
+import Button from '@material-ui/core/Button';
 
 // Icons
-import Icon from "@material-ui/core/Icon";
-import MenuIcon from "@material-ui/icons/Menu";
-import InstagramIcon from "@material-ui/icons/Instagram";
-import FacebookIcon from "@material-ui/icons/Facebook";
+import Icon from '@material-ui/core/Icon';
+import MenuIcon from '@material-ui/icons/Menu';
+import InstagramIcon from '@material-ui/icons/Instagram';
+import FacebookIcon from '@material-ui/icons/Facebook';
 
-import logo from "../../assets/logo/logo400.png";
+import logo from '../../assets/logo/logo400.png';
 
-import { Link } from "react-scroll";
-import ScrollToColor from "./ScrollToColor";
+const location = window.location.pathname;
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -31,94 +35,97 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     navbar: {
       background:
-        "linear-gradient(to bottom, rgba(0, 0, 0, 1.0) 30%, rgba(0, 0, 0, 0.0) 100%)",
-      boxShadow: "none",
-      width: "100%",
-      lineHeight: "10vh"
+        location === '/admin'
+          ? '#000000'
+          : 'linear-gradient(to bottom, rgba(0, 0, 0, 1.0) 30%, rgba(0, 0, 0, 0.0) 100%)',
+      boxShadow: 'none',
+      width: '100%',
+      lineHeight: '10vh',
+      zIndex: 5555
     },
     logo: {
-      maxWidth: "83px",
-      maxHeight: "83px",
-      [theme.breakpoints.up("sm")]: {
-        minWidth: "84px",
-        minHeight: "84px"
+      maxWidth: '83px',
+      maxHeight: '83px',
+      [theme.breakpoints.up('sm')]: {
+        minWidth: '84px',
+        minHeight: '84px'
       }
     },
     title: {
-      display: "block",
-      marginLeft: "5px !important",
-      fontSize: "1.2rem",
+      display: 'block',
+      marginLeft: '5px !important',
+      fontSize: '1.2rem',
       fontFamily: "'Lato', sans-serif",
-      textTransform: "uppercase",
-      "& span": {
-        fontWeight: "bold"
+      textTransform: 'uppercase',
+      '& span': {
+        fontWeight: 'bold'
       },
-      [theme.breakpoints.up("sm")]: {
-        fontSize: "2rem !important"
+      [theme.breakpoints.up('sm')]: {
+        fontSize: '2rem !important'
       }
     },
     navLinks: {
       margin: theme.spacing(1),
-      textTransform: "capitalize",
-      "&:active": {
+      textTransform: 'capitalize',
+      '&:active': {
         color: theme.palette.primary.main
       },
-      "&:hover": {
+      '&:hover': {
         color: theme.palette.primary.main
       },
-      "&:disabled": {
-        color: "#9c9c9c"
+      '&:disabled': {
+        color: '#9c9c9c'
       },
-      "& > span > p": {
-        fontSize: "20px",
-        lineHeight: "100%",
+      '& > span > p': {
+        fontSize: '20px',
+        lineHeight: '100%',
         fontWeight: 400,
         fontFamily: "'Lato', sans-serif"
       }
     },
     navSocialIcon: {
       margin: theme.spacing(0.2),
-      fontSize: "2rem",
+      fontSize: '2rem',
       color: theme.palette.primary.main
     },
     socialLink: {
       margin: theme.spacing(0.2),
-      marginTop: "10px",
+      marginTop: '10px',
       padding: 0,
       border: 0
     },
     logoLink: {
-      textDecoration: "none",
+      textDecoration: 'none',
       flexGrow: 1,
       margin: 0,
       padding: 0,
-      verticalAlign: "baseline",
-      "& > p": {
+      verticalAlign: 'baseline',
+      '& > p': {
         flexGrow: 1,
-        marginLeft: "5px",
+        marginLeft: '5px',
         fontFamily: "'Lato', sans-serif",
-        textTransform: "uppercase",
-        color: "#fff"
+        textTransform: 'uppercase',
+        color: '#fff'
       }
     },
     sectionDesktop: {
-      display: "none",
-      [theme.breakpoints.up("md")]: {
-        display: "flex",
-        "& a": {
-          color: "#fff",
-          textDecoration: "none"
+      display: 'none',
+      [theme.breakpoints.up('md')]: {
+        display: 'flex',
+        '& a': {
+          color: '#fff',
+          textDecoration: 'none'
         }
       }
     },
     sectionMobile: {
-      display: "flex",
-      [theme.breakpoints.up("md")]: {
-        display: "none"
+      display: 'flex',
+      [theme.breakpoints.up('md')]: {
+        display: 'none'
       }
     },
     listRoot: {
-      width: "100%",
+      width: '100%',
       maxWidth: 360,
       backgroundColor: theme.palette.background.paper
     },
@@ -126,44 +133,44 @@ const useStyles = makeStyles((theme: Theme) =>
       paddingLeft: theme.spacing(4)
     },
     mobileMenu: {
-      "& > .MuiPaper-root": {
-        position: "relative",
-        width: "100%",
-        padding: "-20px",
-        maxWidth: "100%",
+      '& > .MuiPaper-root': {
+        position: 'relative',
+        width: '100%',
+        padding: '-20px',
+        maxWidth: '100%',
         minWidth: 0,
-        top: "0 !important",
-        left: "0 !important",
-        right: "0 !important",
-        bottom: "0 !important",
+        top: '0 !important',
+        left: '0 !important',
+        right: '0 !important',
+        bottom: '0 !important',
         borderRadius: 0,
-        backgroundColor: "#000",
-        color: "#fff",
+        backgroundColor: '#000',
+        color: '#fff',
         boxShadow: `0px 21px 13px -8px ${theme.palette.primary.main}`,
-        transition: "top 0.3s cubic-bezier(0.17, 0.04, 0.03, 0.94)",
-        transformOrigin: "top !important",
-        overflow: "hidden"
+        transition: 'top 0.3s cubic-bezier(0.17, 0.04, 0.03, 0.94)',
+        transformOrigin: 'top !important',
+        overflow: 'hidden'
       },
-      "& > .MuiPaper-root > ul > li": {
-        justifyContent: "center !important",
-        "& > p": {
-          fontSize: "1rem",
+      '& > .MuiPaper-root > ul > li': {
+        justifyContent: 'center !important',
+        '& > p': {
+          fontSize: '1rem',
           fontWeight: 500
         },
-        "&:last-child": {
-          justifyContent: "center",
-          fontWeight: "bold",
-          color: "#fff",
-          borderTop: "1px solid #fff"
+        '&:last-child': {
+          justifyContent: 'center',
+          fontWeight: 'bold',
+          color: '#fff',
+          borderTop: '1px solid #fff'
         }
       }
     },
     menuSocialLink: {
-      color: "#fff"
+      color: '#fff'
     },
     menuNavSocialIcon: {
       margin: theme.spacing(0.2),
-      fontSize: "2rem"
+      fontSize: '2rem'
     }
   })
 );
@@ -179,6 +186,7 @@ const Navbar = () => {
   const isMenuOpen = Boolean(anchorEl);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
 
+  //eslint-disable-next-line
   const handleProfileMenuOpen = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
   };
@@ -196,14 +204,14 @@ const Navbar = () => {
     setMobileMoreAnchorEl(event.currentTarget);
   };
 
-  const menuId = "primary-search-account-menu";
+  const menuId = 'primary-search-account-menu';
   const renderMenu = (
     <Menu
       anchorEl={anchorEl}
-      anchorOrigin={{ vertical: "top", horizontal: "left" }}
+      anchorOrigin={{ vertical: 'top', horizontal: 'left' }}
       id={menuId}
       keepMounted
-      transformOrigin={{ vertical: "top", horizontal: "left" }}
+      transformOrigin={{ vertical: 'top', horizontal: 'left' }}
       open={isMenuOpen}
       onClose={handleMenuClose}
     >
@@ -212,15 +220,15 @@ const Navbar = () => {
     </Menu>
   );
 
-  const mobileMenuId = "primary-search-account-menu-mobile";
+  const mobileMenuId = 'primary-search-account-menu-mobile';
   const renderMobileMenu = (
     <Menu
       className={classes.mobileMenu}
       anchorEl={mobileMoreAnchorEl}
-      anchorOrigin={{ vertical: "top", horizontal: "center" }}
+      anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
       id={mobileMenuId}
       keepMounted
-      transformOrigin={{ vertical: "top", horizontal: "center" }}
+      transformOrigin={{ vertical: 'top', horizontal: 'center' }}
       open={isMobileMenuOpen}
       onClose={handleMobileMenuClose}
     >
@@ -320,19 +328,13 @@ const Navbar = () => {
         </Link>
       </MenuItem>
       <MenuItem>
-        <a
-          className={classes.menuSocialLink}
-          href="https://www.instagram.com/edelweissstone/"
-        >
+        <a className={classes.menuSocialLink} href={links.instagram}>
           <Icon
             className={classes.menuNavSocialIcon}
             component={InstagramIcon}
           />
         </a>
-        <a
-          className={classes.menuSocialLink}
-          href="https://www.facebook.com/Edelweiss-stone-495239060955229/"
-        >
+        <a className={classes.menuSocialLink} href={links.facebook}>
           <Icon
             className={classes.menuNavSocialIcon}
             component={FacebookIcon}
@@ -344,7 +346,10 @@ const Navbar = () => {
 
   return (
     <div className={classes.grow}>
-      <AppBar position="fixed" className={classes.navbar}>
+      <AppBar
+        position={location === '/admin' ? 'relative' : 'fixed'}
+        className={classes.navbar}
+      >
         <ScrollToColor>
           <Toolbar>
             <a href="/">
@@ -463,7 +468,7 @@ const Navbar = () => {
 
               <a
                 className={classes.socialLink}
-                href="https://www.instagram.com/edelweissstone/"
+                href={links.instagram}
                 target="_blank"
                 rel="noopener noreferrer"
               >
@@ -474,7 +479,7 @@ const Navbar = () => {
               </a>
               <a
                 className={classes.socialLink}
-                href="https://www.facebook.com/Edelweiss-stone-495239060955229/"
+                href={links.facebook}
                 target="_blank"
                 rel="noopener noreferrer"
               >
