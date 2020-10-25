@@ -49,7 +49,6 @@ const SectionDesktop = (props: ObjectLiteral) => {
     servicesSecondLinkBox
   } = useStyles();
   const { data } = props;
-  console.log('desktop data: ', data);
 
   return (
     <>

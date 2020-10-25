@@ -77,7 +77,6 @@ export const loginUser = (credentials: Credentials, history: any) => (
       const token = `Bearer ${res.data.token}`;
       localStorage.setItem('token', `Bearer ${res.data.token}`);
       axios.defaults.headers.common['Authorization'] = token;
-      console.log(getCookie('Token'));
       boundActions.getUserData();
       dispatch<SetAuthenticatedAction>({ type: ActionTypes.setAuthenticated });
       dispatch<ClearErrorsAction>({ type: ActionTypes.clearErrors });
@@ -85,7 +84,6 @@ export const loginUser = (credentials: Credentials, history: any) => (
       history.push('/admin');
     })
     .catch((err) => {
-      console.log(err);
       dispatch<SetErrorsAction>({
         type: ActionTypes.setErrors,
         payload: err.response.data
