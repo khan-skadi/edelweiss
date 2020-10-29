@@ -2,8 +2,9 @@ import React, { useState } from 'react';
 import { Link } from 'react-scroll';
 import { Link as Jump } from 'react-router-dom';
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
-import ScrollToColor from '../../utils/ScrollToColor';
 import { links } from '../../utils/constants';
+import { isBlackBg } from '../../utils/isBlackBg';
+import ScrollToColor from '../../utils/ScrollToColor';
 
 // Mui
 import AppBar from '@material-ui/core/AppBar';
@@ -34,10 +35,9 @@ const useStyles = makeStyles((theme: Theme) =>
       marginRight: theme.spacing(2)
     },
     navbar: {
-      background:
-        location === '/admin'
-          ? '#000000'
-          : 'linear-gradient(to bottom, rgba(0, 0, 0, 1.0) 30%, rgba(0, 0, 0, 0.0) 100%)',
+      background: isBlackBg(location)
+        ? '#000000'
+        : 'linear-gradient(to bottom, rgba(0, 0, 0, 1.0) 30%, rgba(0, 0, 0, 0.0) 100%)',
       boxShadow: 'none',
       width: '100%',
       lineHeight: '10vh',

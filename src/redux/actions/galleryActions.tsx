@@ -38,7 +38,6 @@ interface ResponseData {
 
 export const fetchGallery = () => (dispatch: Dispatch) => {
   axios.get<ResponseData>(url).then((res: AxiosResponse<ResponseData>) => {
-    console.log('Gallery: ', res.data.data);
     dispatch<FetchGalleryAction>({
       type: ActionTypes.fetchGallery,
       payload: res.data.data

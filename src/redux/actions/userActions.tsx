@@ -77,7 +77,6 @@ export const loginUser = (credentials: Credentials, history: any) => (
       const token = `Bearer ${res.data.token}`;
       localStorage.setItem('token', `Bearer ${res.data.token}`);
       axios.defaults.headers.common['Authorization'] = token;
-      console.log(getCookie('Token'));
       boundActions.getUserData();
       dispatch<SetAuthenticatedAction>({ type: ActionTypes.setAuthenticated });
       dispatch<ClearErrorsAction>({ type: ActionTypes.clearErrors });
@@ -85,7 +84,6 @@ export const loginUser = (credentials: Credentials, history: any) => (
       history.push('/admin');
     })
     .catch((err) => {
-      console.log(err);
       dispatch<SetErrorsAction>({
         type: ActionTypes.setErrors,
         payload: err.response.data
@@ -97,16 +95,16 @@ export const loginUser = (credentials: Credentials, history: any) => (
     });
 };
 
-function getCookie(cookieName: string) {
-  const allCookies = document.cookie;
-  const arrayb = allCookies.split(';');
-  for (const item in arrayb) {
-    if (item.startsWith('Token=')) {
-      const c = item.substr(5);
-      return c;
-    }
-  }
-}
+// function getCookie(cookieName: string) {
+//   const allCookies = document.cookie;
+//   const arrayb = allCookies.split(';');
+//   for (const item in arrayb) {
+//     if (item.startsWith('Token=')) {
+//       const c = item.substr(5);
+//       return c;
+//     }
+//   }
+// }
 
 export const logoutUser = () => (dispatch: Dispatch) => {
   localStorage.removeItem('token');
