@@ -20,7 +20,7 @@ import './assets/fonts/Barlow.ttf';
 axios.defaults.baseURL =
   process.env.NODE_ENV === 'development'
     ? 'http://localhost:5000'
-    : 'http://138.68.66.227';
+    : 'https://essapi.online';
 axios.defaults.headers.post['Content-Type'] = 'application/json';
 
 ReactDOM.render(
