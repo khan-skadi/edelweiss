@@ -22,7 +22,7 @@
     "@types/react-redux-toastr": "^7.6.0",
     "@types/react-router-dom": "^5.1.5",
     "@types/react-scroll": "^1.5.5",
-    "axios": "^0.20.0",
+    "axios": "^0.21.1",
     "emailjs-com": "^2.4.1",
     "firebase": "^7.24.0",
     "google-maps-react": "^2.0.6",
