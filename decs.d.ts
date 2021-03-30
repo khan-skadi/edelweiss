@@ -1,2 +1,2 @@
-declare module "react-grid-gallery"
-declare module "google-maps-react"
+declare module "react-grid-gallery";
+declare module "google-maps-react";

@@ -1,9 +1,8 @@
-import { createStore, applyMiddleware, compose } from "redux";
-import { composeWithDevTools } from "redux-devtools-extension/developmentOnly";
+import { createStore, applyMiddleware } from "redux";
+import { composeWithDevTools } from "redux-devtools-extension";
 import thunk from "redux-thunk";
-
+import rootReducer from "./reducers/rootReducer";
 import { ToastrState as ToasterReducer } from "react-redux-toastr";
-import { rootReducer } from "./reducers/rootReducer";
 
 import { UserReducerInterface } from "./reducers/userReducer";
 import { UiReducerInterface } from "./reducers/uiReducer";
@@ -19,20 +18,10 @@ export interface StoreState {
   toastr: ToasterReducer;
 }
 
-// const store = createStore(
-//   rootReducer,
-//   initialState,
-//   compose(applyMiddleware(...middleware))
-// );
+const store = createStore(
+  rootReducer,
+  initialState,
+  composeWithDevTools(applyMiddleware(...middleware))
+);
 
-// export default store;
-
-export function configureStore() {
-  const store = createStore(
-    rootReducer,
-    initialState,
-    composeWithDevTools(applyMiddleware(...middleware))
-  );
-
-  return store;
-}
+export default store;

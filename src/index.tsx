@@ -5,7 +5,7 @@ import { ThemeProvider } from "@material-ui/core/styles";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import axios from "axios";
 import { Provider } from "react-redux";
-import { configureStore } from "./redux/store";
+import store from "./redux/store";
 import dotenv from "dotenv";
 
 import App from "./components/app/App";
@@ -21,8 +21,6 @@ import "./assets/fonts/TheFrontman.ttf";
 import "./assets/fonts/Barlow.ttf";
 
 dotenv.config();
-
-export const store = configureStore();
 
 axios.defaults.baseURL =
   process.env.NODE_ENV === "development"
