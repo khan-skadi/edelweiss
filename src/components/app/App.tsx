@@ -1,35 +1,30 @@
-import React, { useEffect } from 'react';
-import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
-import ReduxToastr from 'react-redux-toastr';
-import ScrollToTop from '../../utils/ScrollToTop';
-import dotenv from 'dotenv';
+import React from "react";
+import { BrowserRouter, Switch, Route, Redirect } from "react-router-dom";
+import ReduxToastr from "react-redux-toastr";
+import ScrollToTop from "../../utils/ScrollToTop";
 
 // views
-import LandingPage from '../landingPage/LandingPage';
-import Footer from '../footer/Footer';
-import Navbar from '../navbar/Navbar';
-import Gallery from '../gallery/GalleryMain';
-import RequestQuote from '../requestQuote/RequestQuote';
-import Admin from '../admin/Admin';
-import Login from '../auth/Login';
-import NotFoundPage from './NotFoundPage';
+import LandingPage from "../landingPage/LandingPage";
+import Footer from "../footer/Footer";
+import Navbar from "../navbar/Navbar";
+import Gallery from "../gallery/GalleryMain";
+import RequestQuote from "../requestQuote/RequestQuote";
+import Admin from "../admin/Admin";
+import Login from "../auth/Login";
+import NotFoundPage from "./NotFoundPage";
 
 // redux
-import { Provider } from 'react-redux';
-import { CheckAuthentication } from '../../utils/auth/CheckAuthentication';
-import store from '../../redux/store';
-import GuestRoute from '../../utils/auth/GuestRoute';
-import PrivateRoute from '../../utils/auth/PrivateRoute';
-
-dotenv.config();
+// import { CheckAuthentication } from "../../utils/auth/CheckAuthentication";
+import GuestRoute from "../../utils/auth/GuestRoute";
+import PrivateRoute from "../../utils/auth/PrivateRoute";
 
 const App = () => {
-  useEffect(() => {
-    CheckAuthentication();
-  }, []);
+  // useEffect(() => {
+  //   CheckAuthentication();
+  // }, []);
 
   return (
-    <Provider store={store}>
+    <>
       <BrowserRouter>
         <ScrollToTop />
         <ReduxToastr
@@ -53,7 +48,7 @@ const App = () => {
         </Switch>
         <Footer />
       </BrowserRouter>
-    </Provider>
+    </>
   );
 };
 

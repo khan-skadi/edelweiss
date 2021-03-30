@@ -1,14 +1,14 @@
-import store from '../store';
-import axios, { AxiosResponse } from 'axios';
-import { Dispatch } from 'redux';
-import { bindActionCreators } from 'redux';
+import axios, { AxiosResponse } from "axios";
+// import { store } from "../../index";
+import { Dispatch } from "redux";
+// import { bindActionCreators } from "redux";
 import {
   LoadingUiAction,
   ClearErrorsAction,
-  SetErrorsAction
-} from './uiActions';
-import { ActionTypes } from '../types';
-import { toastr } from 'react-redux-toastr';
+  SetErrorsAction,
+} from "./uiActions";
+import { ActionTypes } from "../types";
+import { toastr } from "react-redux-toastr";
 
 export interface UserData {
   createdAt: string;
@@ -48,14 +48,14 @@ export interface Credentials {
 
 export const getUserData = () => (dispatch: Dispatch) => {
   dispatch<LoadingUserAction>({ type: ActionTypes.loadingUser });
-  const url = '/api/v1/auth/me';
+  const url = "/api/v1/auth/me";
 
-  axios
+  return axios
     .get<ResponseData>(url)
     .then((res: AxiosResponse<ResponseData>) => {
       dispatch<SetUserAction>({
         type: ActionTypes.setUser,
-        payload: res.data.data
+        payload: res.data.data,
       });
     })
     .catch((err) => {
@@ -63,34 +63,35 @@ export const getUserData = () => (dispatch: Dispatch) => {
     });
 };
 
-const boundActions = bindActionCreators({ getUserData }, store.dispatch);
+// const boundActions = bindActionCreators({ getUserData }, store.dispatch);
 
 export const loginUser = (credentials: Credentials, history: any) => (
   dispatch: Dispatch
 ) => {
   dispatch<LoadingUiAction>({ type: ActionTypes.loadingUi });
-  const url = '/api/v1/auth/login';
+  const url = "/api/v1/auth/login";
 
-  axios
+  return axios
     .post(url, credentials)
     .then((res) => {
       const token = `Bearer ${res.data.token}`;
-      localStorage.setItem('token', `Bearer ${res.data.token}`);
-      axios.defaults.headers.common['Authorization'] = token;
-      boundActions.getUserData();
+      localStorage.setItem("token", `Bearer ${res.data.token}`);
+      axios.defaults.headers.common["Authorization"] = token;
+      // boundActions.getUserData();
+      getUserData();
       dispatch<SetAuthenticatedAction>({ type: ActionTypes.setAuthenticated });
       dispatch<ClearErrorsAction>({ type: ActionTypes.clearErrors });
-      toastr.success('Welcome !', 'Logged in successfully');
-      history.push('/admin');
+      toastr.success("Welcome !", "Logged in successfully");
+      history.push("/admin");
     })
     .catch((err) => {
       dispatch<SetErrorsAction>({
         type: ActionTypes.setErrors,
-        payload: err.response.data
+        payload: err.response.data,
       });
       toastr.error(
-        'Invalid credentials',
-        'Something went wrong, please try again'
+        "Invalid credentials",
+        "Something went wrong, please try again"
       );
     });
 };
@@ -107,10 +108,10 @@ export const loginUser = (credentials: Credentials, history: any) => (
 // }
 
 export const logoutUser = () => (dispatch: Dispatch) => {
-  localStorage.removeItem('token');
-  delete axios.defaults.headers.common['Authorization'];
+  localStorage.removeItem("token");
+  delete axios.defaults.headers.common["Authorization"];
   dispatch<SetUnauthenticatedAction>({
-    type: ActionTypes.setUnauthenticated
+    type: ActionTypes.setUnauthenticated,
   });
-  window.location.href = '/login';
+  window.location.href = "/login";
 };

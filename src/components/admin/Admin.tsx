@@ -1,40 +1,40 @@
-import React, { useState, useEffect } from 'react';
-import { connect } from 'react-redux';
-import { logoutUser } from '../../redux/actions/userActions';
-import { deleteImage } from '../../redux/actions/galleryActions';
-import { categories } from '../../utils/constants';
-import { useTheme } from '@material-ui/core/styles';
-import clsx from 'clsx';
-import useStyles from './Admin.styles';
-import Gallery from 'react-grid-gallery';
+import React, { useState, useEffect } from "react";
+import { connect } from "react-redux";
+import { logoutUser } from "../../redux/actions/userActions";
+import { deleteImage } from "../../redux/actions/galleryActions";
+import { categories } from "../../utils/constants";
+import { useTheme } from "@material-ui/core/styles";
+import clsx from "clsx";
+import useStyles from "./Admin.styles";
+import Gallery from "react-grid-gallery";
 
 // Components
-import MiniHeader from '../header/MiniHeader';
-import AddImageModal from '../modals/AddImageModal.js';
-import DeleteImageModal from '../modals/DeleteImageModal';
+import MiniHeader from "../header/MiniHeader";
+import AddImageModal from "../modals/AddImageModal.js";
+import DeleteImageModal from "../modals/DeleteImageModal";
 
 // Props
-import { GalleryProps } from '../../utils/interface/interface';
-import { fetchGallery } from '../../redux/actions/galleryActions';
-import { StoreState } from '../../redux/store';
+import { GalleryProps } from "../../utils/interface/interface";
+import { fetchGallery } from "../../redux/actions/galleryActions";
+import { StoreState } from "../../redux/store";
 
 // Mui
-import Drawer from '@material-ui/core/Drawer';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import Button from '@material-ui/core/Button';
-import Typography from '@material-ui/core/Typography';
-import Divider from '@material-ui/core/Divider';
-import IconButton from '@material-ui/core/IconButton';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItemText from '@material-ui/core/ListItemText';
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import MenuIcon from '@material-ui/icons/Menu';
-import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
-import ChevronRightIcon from '@material-ui/icons/ChevronRight';
-import InboxIcon from '@material-ui/icons/MoveToInbox';
-import MailIcon from '@material-ui/icons/Mail';
+import Drawer from "@material-ui/core/Drawer";
+import AppBar from "@material-ui/core/AppBar";
+import Toolbar from "@material-ui/core/Toolbar";
+import Button from "@material-ui/core/Button";
+import Typography from "@material-ui/core/Typography";
+import Divider from "@material-ui/core/Divider";
+import IconButton from "@material-ui/core/IconButton";
+import ListItemIcon from "@material-ui/core/ListItemIcon";
+import ListItemText from "@material-ui/core/ListItemText";
+import List from "@material-ui/core/List";
+import ListItem from "@material-ui/core/ListItem";
+import MenuIcon from "@material-ui/icons/Menu";
+import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
+import ChevronRightIcon from "@material-ui/icons/ChevronRight";
+import InboxIcon from "@material-ui/icons/MoveToInbox";
+import MailIcon from "@material-ui/icons/Mail";
 
 const Admin = (props: GalleryProps) => {
   const {
@@ -64,11 +64,11 @@ const Admin = (props: GalleryProps) => {
     tags,
     tagsList,
     catButton,
-    currentButton
+    currentButton,
   } = useStyles();
   const theme = useTheme();
   const [open, setOpen] = useState<boolean>(false);
-  const [state, setState] = useState<string>('Gallery');
+  const [state, setState] = useState<string>("Gallery");
   const [modalIsOpen, setModalIsOpen] = useState<boolean>(false);
   const [deleteModalOpen, setDeleteModalOpen] = useState<boolean>(false);
   const [activeCategory, setActiveCategory] = useState<string>(categories[1]);
@@ -99,14 +99,14 @@ const Admin = (props: GalleryProps) => {
 
   const handleClick = (text: string): void => {
     switch (text) {
-      case 'Gallery':
-        setState('Gallery');
+      case "Gallery":
+        setState("Gallery");
         break;
-      case 'Projects':
-        setState('Projects');
+      case "Projects":
+        setState("Projects");
         break;
-      case 'About Us':
-        setState('About Us');
+      case "About Us":
+        setState("About Us");
         break;
       default:
         return;
@@ -151,7 +151,7 @@ const Admin = (props: GalleryProps) => {
       thumbnailWidth: 240,
       thumbnailHeight: 200,
       category: image.category,
-      id: image._id
+      id: image._id,
     };
   });
 
@@ -175,7 +175,7 @@ const Admin = (props: GalleryProps) => {
         <AppBar
           position="absolute"
           className={clsx(appBar, {
-            [appBarShift]: open
+            [appBarShift]: open,
           })}
         >
           <Toolbar className={toolbar}>
@@ -189,12 +189,12 @@ const Admin = (props: GalleryProps) => {
               <MenuIcon />
             </IconButton>
             <Typography variant="h6" noWrap>
-              Admin Panel{' '}
+              Admin Panel{" "}
               {
-                <IconButton size="small" disabled style={{ color: '#fff' }}>
+                <IconButton size="small" disabled style={{ color: "#fff" }}>
                   <ChevronRightIcon />
                 </IconButton>
-              }{' '}
+              }{" "}
               {state}
             </Typography>
 
@@ -212,7 +212,7 @@ const Admin = (props: GalleryProps) => {
           anchor="left"
           open={open}
           classes={{
-            paper: drawerPaper
+            paper: drawerPaper,
           }}
         >
           <div className={clsx(drawerHeader, drawerLogo)}>
@@ -221,7 +221,7 @@ const Admin = (props: GalleryProps) => {
               Stamenkovski
             </Typography>
             <IconButton onClick={handleDrawerClose}>
-              {theme.direction === 'ltr' ? (
+              {theme.direction === "ltr" ? (
                 <ChevronLeftIcon />
               ) : (
                 <ChevronRightIcon />
@@ -230,7 +230,7 @@ const Admin = (props: GalleryProps) => {
           </div>
           <Divider />
           <List className={drawerList}>
-            {['Gallery', 'Projects', 'About Us'].map((text, index) => (
+            {["Gallery", "Projects", "About Us"].map((text, index) => (
               <ListItem button key={text} onClick={() => handleClick(text)}>
                 <ListItemIcon>
                   {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
@@ -243,10 +243,10 @@ const Admin = (props: GalleryProps) => {
 
         <main
           className={clsx(content, {
-            [contentShift]: open
+            [contentShift]: open,
           })}
         >
-          {state === 'Gallery' && (
+          {state === "Gallery" && (
             <section className={sectionGallery}>
               <div className={drawerHeader} />
               <div className={titleMain}>
@@ -264,7 +264,7 @@ const Admin = (props: GalleryProps) => {
                             <Button
                               className={clsx(
                                 catButton,
-                                cat === activeCategory ? currentButton : ''
+                                cat === activeCategory ? currentButton : ""
                               )}
                               onClick={() => handleCategoryClick(cat)}
                               variant="contained"
@@ -277,7 +277,7 @@ const Admin = (props: GalleryProps) => {
                       </ul>
                     </div>
                     <div className={gridList}>
-                      {activeCategory !== 'All' ? (
+                      {activeCategory !== "All" ? (
                         <Gallery
                           images={filteredImages}
                           currentImageWillChange={onCurrentImageChange}
@@ -294,17 +294,17 @@ const Admin = (props: GalleryProps) => {
                               }
                               style={{
                                 margin: 0,
-                                padding: '0 10px'
+                                padding: "0 10px",
                               }}
                               key="deleteImage"
                             >
                               Delete Image
-                            </Button>
+                            </Button>,
                           ]}
                         />
                       )}
                     </div>
-                    <div style={{ clear: 'both' }} />
+                    <div style={{ clear: "both" }} />
                     <div className={loadMore}>
                       <Button
                         className={addImageBtn}
@@ -320,7 +320,7 @@ const Admin = (props: GalleryProps) => {
               </div>
             </section>
           )}
-          {state === 'Projects' && (
+          {state === "Projects" && (
             <>
               <section className={sectionGallery}>
                 <div className={drawerHeader} />
@@ -329,7 +329,7 @@ const Admin = (props: GalleryProps) => {
                     <h1 className={title}>Projects</h1>
                   </div>
                 </div>
-                <Typography paragraph style={{ marginTop: '30px' }}>
+                <Typography paragraph style={{ marginTop: "30px" }}>
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
                   do eiusmod tempor incididunt ut labore et dolore magna aliqua.
                   Rhoncus dolor purus non enim praesent elementum facilisis leo
@@ -364,7 +364,7 @@ const Admin = (props: GalleryProps) => {
               </section>
             </>
           )}
-          {state === 'About Us' && (
+          {state === "About Us" && (
             <>
               <section className={sectionGallery}>
                 <div className={drawerHeader} />
@@ -373,7 +373,7 @@ const Admin = (props: GalleryProps) => {
                     <h1 className={title}>About Us</h1>
                   </div>
                 </div>
-                <Typography paragraph style={{ marginTop: '30px' }}>
+                <Typography paragraph style={{ marginTop: "30px" }}>
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
                   do eiusmod tempor incididunt ut labore et dolore magna aliqua.
                   Rhoncus dolor purus non enim praesent elementum facilisis leo
@@ -415,13 +415,13 @@ const Admin = (props: GalleryProps) => {
 };
 
 const mapStateToProps = (state: StoreState) => ({
-  gallery: state.gallery.gallery
+  gallery: state.gallery.gallery,
 });
 
 const mapActionsToProps = {
   fetchGallery,
   deleteImage,
-  logoutUser
+  logoutUser,
 };
 
 export default connect(mapStateToProps, mapActionsToProps)(Admin);
